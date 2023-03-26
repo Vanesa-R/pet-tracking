@@ -1,0 +1,45 @@
+/// Definiendo fuentes
+
+$fontPrimary: 'Alegreya Sans', sans-serif;
+$fontSecondary: 'Source Sans Pro', sans-serif;
+
+$font-size-1: 12px;
+$font-size-2: 14px;
+$font-size-3: 16px;
+$font-size-4: 20px;
+
+
+
+/// Definiendo colores
+
+$amethyst-400: hsl(277, 45%, 60%);
+$amethyst-300: hsl(277, 45%, 73%);
+$amethyst-200: hsl(277, 45%, 79%);
+$amethyst-100: hsl(278, 44%, 89%);
+
+$turquoise-400: hsl(165, 56%, 47%);
+$turquoise-300: hsl(165, 80%, 59%);
+$turquoise-200: hsl(165, 80%, 67%);
+$turquoise-100: hsl(165, 80%, 88%);
+
+$sunglow-400: hsl(43, 100%, 62%);
+$sunglow-300: hsl(43, 100%, 68%);
+$sunglow-200: hsl(43, 100%, 80%);
+$sunglow-100: hsl(43, 100%, 89%);
+
+$black: hsl(0, 0%, 1%);
+$grey-300: hsl(0, 0%, 36%);
+$grey-200: hsl(0, 0%, 72%);
+$grey-100: hsl(0, 0%, 90%);
+$white: hsl(0, 0%, 100%);
+
+$error: hsl(0, 100%, 67%);
+
+
+
+
+
+
+// Definiendo breakpoints
+$bp-tablet: 768px;
+$bp-desktop: 1440px;
