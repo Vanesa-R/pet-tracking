@@ -69,6 +69,16 @@ const js = done => {
     done() 
 }
 
+const bundle = done => {
+    src("app/js/connection/*.js")
+    .pipe(plumber())
+    .pipe(concat("bundle.js"))
+    .pipe(babel())
+    .pipe(terser())
+    .pipe(dest("app/js"));
+    done() 
+}
+
 // IMÁGENES
 const images = done => {
     src("app/assets/**/*")
@@ -86,4 +96,4 @@ const images = done => {
 // });
 
 
-exports.package = series(parallel(html, css, js), images)
+exports.package = series(parallel(html, css, js, bundle), images)

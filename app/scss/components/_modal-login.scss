@@ -1,0 +1,123 @@
+.modal__container {
+    display: none;
+}
+
+.modal__container--active {
+    position: fixed;
+    z-index: 100;
+    inset: 0;
+    @include flexbox(flex, row, nowrap, center, center);
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(70, 70, 70, 0.4);
+    
+    .modal {
+        display: none;
+        
+        &.modal--active {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            min-height: fit-content;
+            margin-left: 1em;
+            margin-right: 1em;
+            padding: 1em;
+            background-color: $white;
+            border-radius: 8px;
+            border-top: 1px solid rgba(90, 90, 90, 0.2);
+            border-left: 1px solid rgba(90, 90, 90, 0.2);
+            box-shadow: 8px 8px 25px rgba(0, 0, 0, 0.1);
+    
+            @media (min-width: $bp-tablet) {
+                max-width: 450px;
+            }
+
+
+            .form {
+                width: 100%;
+
+                .icon__close {
+                    position: absolute;
+                    right: 1em;
+                }
+
+                .form__logotipo {
+                    display : flex;
+                    margin  : 14px auto 20px;
+                    
+                }
+
+                .input__group {
+                    position: relative;
+                    input {
+                        @include reset-appearance;
+                        @include reset-autofill;
+                    }
+
+                    .input__icon {
+                        position: absolute;
+                        bottom: 42px;
+                        right: 24px;
+                        @include icon-basic;
+                    }
+                    @include input-group-basic;
+                }
+    
+                .btn__submit {
+                    @include reset-appearance;
+                    @include btn-basic;
+                    @include btn--primary;
+                    width: 100%;
+                }
+
+                .btn__rrss {
+                    @include flexbox(flex, row, nowrap, center, center);
+                    @include btn-basic;
+                    @include btn--secondary;
+                    width: 100%;
+
+                    &:first-of-type {
+                        margin-top: 20px;
+                    }
+
+                    &.btn--google {
+                        background-color: $grey-100;
+                    }
+
+                    .btn__text {
+                        padding-left: 12px;
+                    }
+
+                }
+
+                .form__text {
+                    padding-top: 1em;
+                    text-align: center;
+
+                    .link {
+                        padding-left: 10px;
+                        @include link-login;
+                    }
+                }
+
+                .form__login--withCount {
+                    position    : relative;
+                    margin-top  : 35px;
+                    border-top: 1px solid $grey-200;
+
+                    &::before {
+                        position        : absolute;
+                        content         :  "o";
+                        top             : -15px;
+                        left            : calc(50% - 8px);
+                        padding         : 0 8px;
+                        color           : $grey-200;
+                        background-color: $white;
+                    }
+                }
+            }
+        }
+    }
+}

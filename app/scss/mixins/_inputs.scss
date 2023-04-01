@@ -1,0 +1,39 @@
+/*** INPUTS ***/
+@mixin input-group-basic {
+    display         : flex;
+    flex-direction  : column;
+    font-family     : $fontSecondary;
+    padding-bottom  : 30px;
+
+    label {
+        font-size       : $font-size-1;
+        margin-bottom   : 8px;
+        color           : $grey-300;
+    }
+
+    input {
+        height          : 48px;
+        font-family     : $fontSecondary;
+        font-size       : $font-size-3;
+        padding         : 10px 16px;
+        color           : $black;
+        border          : 1px solid $grey-200;
+        border-radius   : 8px;
+
+        &.validate--error {
+            border: 1px solid $error;
+        }
+
+        &:focus {
+            border: 2px solid $turquoise-200;
+        }
+    }
+
+    .message--error {
+        height      : 0;
+        padding-left: 16px;
+        font-size   : $font-size-1;
+        line-height : 20px;
+        color       : $error;
+    }
+}
