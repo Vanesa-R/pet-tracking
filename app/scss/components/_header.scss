@@ -1,0 +1,198 @@
+.header {
+    position        : relative;
+    @include flexbox(flex, row, nowrap, space-between, center);
+    width           : 100%;
+    height          : 5vh;
+    &::before {
+        position    : absolute;
+        top         : 5px;
+        left        : -10px;
+        z-index     : -10;
+        content     : url(/dist/assets/images/footprint_2.png);
+        transform   : rotate(-35deg);
+    }
+
+    .logo {
+        width   : 94px;
+        height  : 40px;
+
+        img {
+            width       : 100%;
+            height      : 100%;
+            object-fit  : contain;
+        }
+    }
+
+    .menu__primary {
+        position        : fixed;
+        inset           : 0;
+        width           : 100%;
+        height          : 100vh;
+        background      : linear-gradient(120deg, $sunglow-200 65%, $sunglow-100);
+        clip-path       : circle(0 at 0% 0);
+        transition      : ease 1s all;
+        
+        @media (min-width: $bp-tablet) {
+            position    : relative;
+            width       : 65%;
+            height      : auto;
+            background  : none;
+            clip-path   : none;
+        }
+        
+        .menu__items {
+            display: none
+        }
+        
+        /* Elementos activados del menú*/
+        &.menu--active {
+            @include flexbox(flex, row, nowrap, center, center);
+            clip-path       : circle(100% at 100%);
+            .menu__items {
+                @include flexbox(flex, column, nowrap, center, center);
+                list-style      : none;
+    
+                @media (min-width: $bp-tablet) {
+                    position    : absolute;
+                    right       : 20px;
+                }
+    
+                .list__menu__item {
+                    @include link-basic;
+                    font-size: 20px;
+    
+                    @media (min-width: $bp-tablet) {
+                       font-size: 16px;
+                    }
+    
+                    &:first-of-type {
+                        padding-bottom: 32px;
+    
+                        @media (min-width: $bp-tablet) {
+                            padding-bottom: 0;
+                        }
+                    }
+    
+                    .link {
+                        text-decoration: none;
+                    }
+    
+                    .btn {
+                        @include btn-basic;
+                        @include btn--secondary;
+    
+                        @media (min-width: $bp-tablet) {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    .interaction {
+        display     : flex;
+        align-items : center;
+
+        // Menú hamburguesa
+        .icon__menu {
+            position        : relative;
+            display         : none;
+            width           : 32px;
+            height          : 32px;
+            margin-right    : 12px;
+            outline         : 0;
+            border          : 0;
+            background-color: transparent;
+            cursor          : pointer;
+            opacity         : .9;
+
+            &.btn--enabled {
+                display: inline-flex;
+            }
+            
+            .icon__line {
+                    position: absolute;
+                    display: block;
+                    height: .1em;
+                    background-color: $amethyst-400;
+            }
+            .icon__line:first-child,
+            .icon__line:last-child {
+                width: 24px;
+            }
+            .icon__line:first-child {
+                    top: 4px;
+                    transition: top 300ms ease 300ms, transform 300ms ease-in-out, width 300ms ease;
+            }
+            .icon__line:nth-child(2){
+                    top: 15px;
+                    width: 32px;
+                    transition: background-color 100ms ease 350ms;
+            }
+            .icon__line:last-child {
+                    bottom      : 3.5px;
+                    right       : 0;
+                    transition  : top 300ms ease 300ms, transform 300ms ease-in-out, width 300ms ease;
+            }
+
+            /* Menú activado */
+            &.icon--active {
+                .icon__line:first-child,
+                .icon__line:last-child {
+                    width: 32px;
+                }
+                .icon__line:first-child {
+                        top: 15px;
+                        transform: rotate(45deg);
+                        transition: top 300ms ease, transform 300ms ease-in-out 300ms, width 300ms ease;
+                }
+                .icon__line:nth-child(2) {
+                        background-color: transparent;
+                        transition: background-color 100ms ease 350ms;
+                }
+                .icon__line:last-child {
+                        top: 15px;
+                        transform: rotate(135deg);
+                        transition: top 300ms ease, transform 300ms ease-in-out 300ms, width 300ms ease;
+                }
+            }
+
+            @media (min-width: $bp-tablet) {
+                display: none;
+            }
+        }
+
+
+        // Login/Register/Logout
+        .btn {
+            @include reset-appearance;
+            display: none;
+
+            &.interaction__logout {
+                display: none;
+
+                &.btn--enabled {
+                    @media (min-width: $bp-tablet) {
+                        display: inline-flex;
+                    }
+                }
+            }
+
+            &.btn--primary {
+                @include btn--primary;
+                margin-right: 8px
+            }
+
+            &.btn--secondary {
+                @include btn--secondary;
+            }
+           
+            &.btn--enabled {
+                display: inline-flex;
+            }
+        }
+
+    }
+}
