@@ -92,12 +92,12 @@ const validateForm = (e) => {
 
         case "email__register":
         case "email__login":
-            validateInput(regExpres.email, e.target.value, e.target, "email", "La dirección no es correcta")
+            validateInput(regExpres.email, e.target.value, e.target, "email", "La dirección de correo electrónico no es válida")
             break;
 
         case "password__register":
         case "password__login":
-            validateInput(regExpres.password, e.target.value, e.target, "password")
+            validateInput(regExpres.password, e.target.value, e.target, "password", "La contraseña no cumple con los requisitos")
             break;
 
         case "repeat__password__register":
@@ -167,7 +167,6 @@ const resetForm = () => {
 
 // Mostrar contraseña
 iconPass.forEach(icon => {
-    console.log(icon)
     icon.addEventListener("click", () => {
         let input = icon.previousElementSibling;
         if (input.value !== ""){

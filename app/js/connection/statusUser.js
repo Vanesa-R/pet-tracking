@@ -31,9 +31,8 @@ onAuthStateChanged(auth, (user) => {
                 informationAppLoggedOut.classList.remove("section__fade--in");
             }
 
-            petEmpty.classList.add("section__fade--in");
+            // petEmpty.classList.add("section__fade--in");
             showIconMenu()
-            showPets()
 
         } else {
             if (btn.classList.contains("user__logged--out")){
