@@ -54,8 +54,8 @@ html(lang="es")
                         div.input__group
                             label(for="password__login") Contraseña
                             input(type="password" name="password__login" id="password__login" aria-label="password" aria-required="true")
-                            img.icon.input__icon(src="/dist/assets/icons/eye-close.png" alt="Mostrar contraseña")
                             span.message--error
+                            img.icon.input__icon(src="/dist/assets/icons/eye-close.png" alt="Mostrar contraseña")
                         button.btn__submit.btn__submit--login.btn--primary(disabled) Entrar
                         p.form__text.paragraph ¿Aún no tienes cuenta? 
                             span.link.link__login Regístrate
@@ -81,18 +81,24 @@ html(lang="es")
                         div.input__group
                             label(for="password__register") Contraseña
                             input(type="password" name="password__register" id="password__register" aria-label="password" aria-required="true")
-                            img.icon.input__icon(src="/dist/assets/icons/eye-close.png" alt="Mostrar contraseña")
                             span.message--error
+                            img.icon.input__icon(src="/dist/assets/icons/eye-close.png" alt="Mostrar contraseña")
                         div.input__group
                             label(for="repet__password__register") Repetir contraseña
                             input(type="password" name="repeat__password__register" id="repet__password__register" aria-label="repeat password" aria-required="true")
-                            img.icon.input__icon(src="/dist/assets/icons/eye-close.png" alt="Mostrar contraseña")
                             span.message--error
+                            img.icon.input__icon(src="/dist/assets/icons/eye-close.png" alt="Mostrar contraseña")
                         button.btn__submit.btn__submit--register.btn--primary(disabled) Regístrate
                         p.form__text.paragraph ¿Ya tienes cuenta?
                             span.link.link__login Entra
             
         block introduction
+
+        // - Sección para añadir mascotas
+        //- section.pet__empty
+        //-     h2.subtitle ¡Vaya!<br>Parece que aún no tienes registrada ninguna mascota
+        //-     button.btn--primary.btn__addPet Agregar
+
 
         block myPets
 

@@ -30,7 +30,7 @@
     }
 
     .message--error {
-        height      : 0;
+        min-height  : fit-content;
         padding-left: 16px;
         font-size   : $font-size-1;
         line-height : 20px;

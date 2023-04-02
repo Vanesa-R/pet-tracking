@@ -8,40 +8,58 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 forms.forEach(form => {
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        let name = document.querySelector("#user__name").value;
-        let email = document.querySelector("#email__register").value;
-        let password = document.querySelector("#password__register").value;
+
 
         // Registro
         if (form.classList.contains("form__register")){
-            closeModal();
-            
-            const newUserRegister = await createUserWithEmailAndPassword(auth, email, password)
-            const userId = auth.currentUser.uid;
 
-            const newUserDDBB = await setDoc(doc(db, "users", userId),{
-                Datos_personales : {
-                    Nombre: name,
-                    Email: email,
+            let name = document.querySelector("#user__name").value;
+            let email = document.querySelector("#email__register");
+            let password = document.querySelector("#password__register");
+            let btnSubmit = document.querySelector(".btn__submit--register");
+            createUserWithEmailAndPassword(auth, email.value, password.value)
+            .then(() => {
+                const userId = auth.currentUser.uid;
+                newUserDDBB(userId, name, email.value);
+
+                closeModal();
+            })
+            .catch((error) => {
+                if (error.code == "auth/email-already-in-use"){
+                    btnSubmit.setAttribute("disabled", "disabled");
+                    email.nextElementSibling.textContent = "Existe un usuario registrado con esta dirección de correo electrónico"
+                } else {
+                    email.nextElementSibling.textContent = "";
                 }
             })
-
+            
         }
+
 
         // Login
         if (form.classList.contains("form__login")){
-            const userLogged = await signInWithEmailAndPassword(auth, email, password)
-            closeModal();
-
-            signInWithEmailAndPassword(auth, email, password)
+            let email = document.querySelector("#email__login");
+            let password = document.querySelector("#password__login");
+            let btnSubmit = document.querySelector(".btn__submit--login");
+            signInWithEmailAndPassword(auth, email.value, password.value)
             .then((userCredential) => {
-              const user = userCredential.user;
+              closeModal();
             })
             .catch((error) => {
-              console.log(error.message)
+                btnSubmit.setAttribute("disabled", "disabled");
+                if (error.code == "auth/user-not-found"){
+                    email.nextElementSibling.textContent = "La dirección de correo introducida no está asociada a ninguna cuenta"
+                } else {
+                    email.nextElementSibling.textContent = "";
+                }
+
+                if (error.code == "auth/wrong-password"){
+                    password.nextElementSibling.textContent = "La contraseña es incorrecta"
+                } else {
+                    password.nextElementSibling.textContent = ""
+                }
             });
         }
-    
     })
 })
 
@@ -54,20 +72,23 @@ btnGoogle.addEventListener("click", () => {
     signInWithPopup(auth, provider)
     .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
         const user = result.user;
+        newUserDDBB(user.uid, user.displayName, user.email);
         closeModal();
 
-        const userId = auth.currentUser.uid;
-        const newUserDDBB = setDoc(doc(db, "users", userId),{
-            Datos_personales : {
-                Nombre: user.displayName,
-                Email: user.email,
-            }
-        })
-
-      }).catch((error) => {
-        console.log(error.message)
-      });
+    }).catch((error) => {
+      console.log(error.message)
+    });
 })
 
+
+
+// Almacenar nuevo usuario en la base de datos
+const newUserDDBB = (userId, name, email) => {
+    setDoc(doc(db, "users", userId), {
+        datos_personales : {
+            nombre: name,
+            email: email
+        }
+    })
+}
