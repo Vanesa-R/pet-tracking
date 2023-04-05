@@ -1,9 +1,11 @@
 /*** LINKS ***/
 
 @mixin link-basic {
-    font-family : $fontSecondary;
-    font-size   : $font-size-3;
-    color       : $grey-300;
+    font-family     : $fontSecondary;
+    font-size       : $font-size-3;
+    color           : $grey-300;
+    list-style      : none;
+    text-decoration : none;
 
     @media (hover: hover){
         &:hover {
@@ -13,10 +15,8 @@
 }
 
 @mixin link-login {
-    font-family : $fontSecondary;
-    font-size   : $font-size-3;
+   @include link-basic;
     color       : $amethyst-300;
-    cursor      : pointer;
 
     @media (hover: hover){
         &:hover {

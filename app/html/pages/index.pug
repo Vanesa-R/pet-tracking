@@ -1,10 +1,33 @@
 extends ../templates/template
 
-block introduction
-  // -Información básica sobre la app
+block introductionLoggedOut
+  //- Información básica sobre la app
   section.information__app
     div.information__app__text
       h1.title Monitoriza el cuidado de tus mascotas
-      p.paragraph ¡Planifica sus necesidades de manera simple y rápida! Solo tienes que dar de alta a tu mascota y marcar las tareas sobre las que quieres realizar seguimiento: medicación, higiene, limpieza de juguetes…
+      p.paragraph ¡Planifica sus necesidades de manera simple y rápida! Solo tienes que identificarte, dar de alta a tu mascota y marcar las tareas sobre las que quieres realizar seguimiento: baño, corte de pelo, limpieza de juguetes…
     div.information__app__img
       img(src="./assets/images/pets1.png" alt="Entra y mantén un seguimiento de todas las necesidades de tu mascota")
+
+
+block introductionLoggedIn
+  section.information__pets.section--hidden
+    div.section__pets
+      section.pet__info
+        div.pet__info__show
+      section.container__cards
+    div.section__pets--empty
+      p.paragraph.onomatopoeia.--light
+        |
+        em ¡Vaya!
+      picture.img__empty__area
+        img(src="/dist/assets/images/empty.png", alt="La sección de mascotas está vacía. Agrega a tu mascota")
+      p.paragraph.--light Parece que aún no has agregado a ninguna mascota a tu sección.
+      p.paragraph ¡Puedes hacerlo ahora!
+        |
+        br 
+        | Solo tienes que rellenar 
+        | 
+        a.link(href="/dist/agregar-mascota.html") este formulario
+
+   

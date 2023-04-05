@@ -58,7 +58,7 @@
 
                     .input__icon {
                         position: absolute;
-                        bottom: 42px;
+                        top: 34px;
                         right: 24px;
                         @include icon-basic;
                     }
@@ -67,14 +67,12 @@
     
                 .btn__submit {
                     @include reset-appearance;
-                    @include btn-basic;
                     @include btn--primary;
                     width: 100%;
                 }
 
                 .btn__rrss {
                     @include flexbox(flex, row, nowrap, center, center);
-                    @include btn-basic;
                     @include btn--secondary;
                     width: 100%;
 

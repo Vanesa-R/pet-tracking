@@ -1,0 +1,55 @@
+extends ../templates/template
+include ../mixins/detail
+include ../mixins/input
+include ../mixins/private
+
+
+
+block formularioNewPet
+
+    +area51
+
+    form.form__add__pet.page-51.section--hidden(method="post")
+
+        //- Sección datos sobre la mascota
+        div.form__pet__tab
+            fieldset.fieldset
+                legend.legend 
+                    h2.subtitle Datos de tu mascota
+                +input-group("name__pet", "Nombre", "text")
+
+                div.container__radio__group
+                    label(for="type__pet") Selecciona tu mascota
+                    div.radio__group
+                        +radio("dog", "type__pet", "perro", "Perro")
+                        +radio("cat", "type__pet", "gato", "Gato")
+                        +radio("bird", "type__pet", "ave", "Ave")
+                        +radio("turtle", "type__pet", "tortuga", "Tortuga")
+                    span.message--error
+
+                div.control__tab(data-control="0")
+                    button.btn.btn__next.btn--primary(disabled, data-next="0") Siguiente
+        
+        //- Sección tareas de seguimiento
+        div.form__pet__tab
+            fieldset.fieldset
+                legend.legend
+                    h2.subtitle Selecciona tareas                
+                +detail("Higiene", "/dist/assets/images/hygiene.png", "Higiene de la mascota", "/dist/assets/icons/chevron-down.png", "Desplegar detalle")
+                +detail("Limpieza", "/dist/assets/images/cleaning.png", "Limpieza", "/dist/assets/icons/chevron-down.png", "Desplegar detalle")
+                //- +detail("Medicación", "/dist/assets/images/medicacion.png", "Medicación", "/dist/assets/icons/chevron-down.png", "Desplegar detalle")
+            
+                div.control__tab(data-control="1")
+                    button.btn.btn__prev.btn--secondary Anterior
+                    button.btn.btn__next.btn--primary(disabled, data-next="1") Siguiente
+        
+        div.form__pet__tab
+            fieldset.fieldset
+                legend.legend
+                    h2.subtitle Temporalización
+                div.container__task--checked
+
+                div.control__tab(data-control="2")
+                    button.btn.btn__prev.btn--secondary Anterior
+                    button.btn.btn__submit.btn--primary Enviar
+                p.paragraph.text--success
