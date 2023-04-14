@@ -1,0 +1,86 @@
+.information__pets {
+    @extend .information__app;
+    @extend .private__area__warning;
+    width   : 100%;
+
+    .section__pets--empty {
+        display: none;
+
+
+        &.section__fade--in{
+            @include flexbox(flex, column, nowrap, center, center);
+    
+            @media (min-width: $bp-laptop) {
+                flex-direction: row;
+                justify-content: space-evenly;
+            }
+        }
+
+        .img__empty__area {
+            @extend .img__private__area;
+        }
+
+        .link {
+            @include link-login;
+        }
+
+    }
+
+    .section__pets {
+        width: 100%;
+        .container__cards {
+            &.section__fade--in{
+                @include flexbox(flex, row, wrap, space-between, center);
+                width: 100%;
+        
+                @media (min-width: $bp-laptop) {
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                }
+            }
+            .card {
+                width           : calc(50% - 8px);
+                margin-bottom   : 16px;
+                padding         : 10px 16px;
+                text-align      : center;
+                border-radius   : 8px;
+                border          : 1px solid;
+                box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    
+                &:nth-of-type(odd){
+                    margin-right: 8px;
+                }
+    
+                &:nth-of-type(even){
+                    margin-left: 8px;
+                }
+    
+                &:nth-of-type(1n){
+                    background: linear-gradient(195deg, $sunglow-100 5%, transparent);
+                    border-color: $sunglow-400;
+                    
+                }
+    
+                .card__title {
+                    font-size: 1em;
+                }
+    
+                img {
+                    border-radius: 50%;
+                    border: 1px solid $grey-200;
+                }
+            }
+        }
+
+        .pet__info {
+            display         : none;
+            position        : absolute;
+            inset           : 0;
+            background-color: $white;
+
+            &.pet__info--active {
+                display: flex;
+            }
+        }
+    }
+}

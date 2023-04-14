@@ -9,6 +9,4 @@ const rotateImages = () => {
     }, 5000)
 }
 
-if (location.pathname === "/dist/index.html"){
-    rotateImages()
-}
+(location.pathname.includes("index") && rotateImages())

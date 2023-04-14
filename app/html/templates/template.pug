@@ -1,3 +1,5 @@
+include ../mixins/input
+
 doctype html
 html(lang="es")
   head
@@ -18,95 +20,75 @@ html(lang="es")
 
   body
 
-    // - HEADER
+    // HEADER
     header.header
       a.logo(href="./index.html" title="Pet Tracking" aria-label="Ir a la página de inicio")
         img(src="/dist/assets/images/logo.png" alt="Ir a la página de inicio")
-      nav.menu__primary
+
+      nav.menu__primary.section--hidden
         ul.menu__items(role="menu")
-          li.list__menu__item(role="menuitem"): a.link(href="./pets.html") Mis mascotas
+          li.list__menu__item(role="menuitem"): a.link(href="./agregar-mascota.html") Registra a tus mascotas
           li.list__menu__item(role="menuitem"): button.interaction__logout.btn.btn--primary.user__logged--in(aria-label="Cerrar sesión") Cerrar sesión
+          
       div.interaction
         button.interaction__login.btn.btn--primary.user__logged--out(aria-haspopup="true" aria-label="Entra") Entra
-        button.interaction__register.btn.btn--secondary.user__logged--out(aria-haspopup="true" aria-label="Regístrate") Registrate
+        button.interaction__register.btn.btn--secondary.user__logged--out(aria-haspopup="true" aria-label="Regístrate") Regístrate
         button.icon__menu(aria-controls="menu__primary" aria-expanded="false" aria-label="Expandir menú")
-          span.icon__line
-          span.icon__line
-          span.icon__line 
+          each val in [1, 2, 3]
+            span.icon__line
+    
         button.interaction__logout.btn.btn--primary.user__logged--in(aria-label="Cerrar sesión") Cerrar sesión
 
 
-    // - MAIN
+    // MAIN
     main.main
         
-        // - Modales login y registro
-        section.modal__container
-            div.modal.modal__login
-                form.form.form__login
-                    img(src="/dist/assets/icons/icon-close.png" alt="Cerrar modal de acceso" class="icon icon__close")
-                    img(src="/dist/assets/images/logotipo.png" alt="Logotipo" class="form__logotipo")
-                        
-                    div.form__login--withEmail
-                        div.input__group
-                            label(for="email__login") Email
-                            input(type="email" name="email__login" id="email__login" aria-label="email" aria-required="true")
-                            span.message--error
-                        div.input__group
-                            label(for="password__login") Contraseña
-                            input(type="password" name="password__login" id="password__login" aria-label="password" aria-required="true")
-                            span.message--error
-                            img.icon.input__icon(src="/dist/assets/icons/eye-close.png" alt="Mostrar contraseña")
-                        button.btn__submit.btn__submit--login.btn--primary(disabled) Entrar
-                        p.form__text.paragraph ¿Aún no tienes cuenta? 
-                            span.link.link__login Regístrate
+      //- Modales login y registro
+      section.modal__container
+        div.modal.modal__login
+          form.form.form__login
+            img(src="/dist/assets/icons/icon-close.png" alt="Cerrar modal de acceso" class="icon icon__close")
+            img(src="/dist/assets/images/logotipo.png" alt="Logotipo" class="form__logotipo")
+                  
+            div.form__login--withEmail
+              +input-required("email__login", "Email", "email")
+              +input-password("password__login", "Contraseña", "password", "/dist/assets/icons/eye-close.png", "Mostrar contraseña")
+              button.btn__submit.btn__submit--login.btn--primary(disabled) Entrar
+              p.form__text.paragraph ¿Aún no tienes cuenta? 
+                span.link.link__login Regístrate
 
-                    div.form__login--withCount
-                        button.btn.btn__rrss.btn--google
-                            img(src="/dist/assets/icons/icon-google.png" alt="Acceder con Google")
-                            span.btn__text Accede con Google
+            div.form__login--withCount
+              button.btn.btn__rrss.btn--google
+                img(src="/dist/assets/icons/icon-google.png" alt="Acceder con Google")
+                span.btn__text Accede con Google
                     
-            div.modal.modal__register
-                form.form.form__register
-                    img.icon.icon__close(src="/dist/assets/icons/icon-close.png" alt="Cerrar modal de registro")
-                    img.form__logotipo(src="/dist/assets/images/logotipo.png" alt="Logotipo")
-                    div.form__register--create
-                        div.input__group
-                            label(for="user__name") Nombre
-                            input(type="text" name="user__name" id="user__name")
-                            span.message--error
-                        div.input__group
-                            label(for="email__register") Email
-                            input(type="email" name="email__register" id="email__register" aria-label="email" aria-required="true")
-                            span.message--error
-                        div.input__group
-                            label(for="password__register") Contraseña
-                            input(type="password" name="password__register" id="password__register" aria-label="password" aria-required="true")
-                            span.message--error
-                            img.icon.input__icon(src="/dist/assets/icons/eye-close.png" alt="Mostrar contraseña")
-                        div.input__group
-                            label(for="repet__password__register") Repetir contraseña
-                            input(type="password" name="repeat__password__register" id="repet__password__register" aria-label="repeat password" aria-required="true")
-                            span.message--error
-                            img.icon.input__icon(src="/dist/assets/icons/eye-close.png" alt="Mostrar contraseña")
-                        button.btn__submit.btn__submit--register.btn--primary(disabled) Regístrate
-                        p.form__text.paragraph ¿Ya tienes cuenta?
-                            span.link.link__login Entra
+        div.modal.modal__register
+          form.form.form__register
+            img.icon.icon__close(src="/dist/assets/icons/icon-close.png" alt="Cerrar modal de registro")
+            img.form__logotipo(src="/dist/assets/images/logotipo.png" alt="Logotipo")
             
-        block introduction
+            div.form__register--create
+              +input-group("user__name", "Nombre", "text")
+              +input-required("email__register", "Email", "email")
+              +input-password("password__register", "Contraseña", "password", "/dist/assets/icons/eye-close.png", "Mostrar contraseña")
+              +input-password("repeat__password__register", "Repetir contraseña", "password", "/dist/assets/icons/eye-close.png", "Mostrar contraseña")
+              button.btn__submit.btn__submit--register.btn--primary(disabled) Regístrate
+              p.form__text.paragraph ¿Ya tienes cuenta?
+                span.link.link__login Entra
+            
+      block introductionLoggedOut
 
-        // - Sección para añadir mascotas
-        //- section.pet__empty
-        //-     h2.subtitle ¡Vaya!<br>Parece que aún no tienes registrada ninguna mascota
-        //-     button.btn--primary.btn__addPet Agregar
+      block introductionLoggedIn
+      
+      block formularioNewPet
 
-
-        block myPets
-
-
-    // - FOOTER
+      block myPets
+      
+    
+    // FOOTER
     footer.footer
-        p.attribution © Vanesa Rodríguez 
-            span.attribution__year(data-create="2023")
+      p.attribution © Vanesa Rodríguez 
+        span.attribution__year(data-create="2023")
 
 
     script(async src="js/bundle.js")

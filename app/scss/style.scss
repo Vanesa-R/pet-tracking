@@ -3,11 +3,14 @@
 @import "mixins/flexbox";
 @import "mixins/buttons";
 @import "mixins/icons";
-@import "mixins/inputs";
+@import "mixins/inputs.scss";
 @import "mixins/links";
 
 @import "base/layout";
 @import "components/header";
 @import "components/footer";
-@import "components/modal-login";
 @import "components/introduction";
+@import "components/private-area";
+@import "components/form-user";
+@import "components/form-pet";
+@import "components/pets";

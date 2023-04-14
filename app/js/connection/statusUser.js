@@ -6,19 +6,23 @@ import { onAuthStateChanged } from "firebase/auth";
 let btnInteraction = document.querySelectorAll(".header .interaction .btn");
 let btnMenuMobile = document.querySelector(".icon__menu");
 let informationAppLoggedOut = document.querySelector(".information__app");
-let petEmpty = document.querySelector(".pet__empty");
+let informationAppLoggedIn = document.querySelector(".information__pets");
+
+let page51 = document.querySelectorAll(".page-51");
+let warningPage51 = document.querySelectorAll(".private__area__warning");
+let linksModal = document.querySelectorAll(".private__area__warning .link");
 
 
 onAuthStateChanged(auth, (user) => {
-    btnInteraction.forEach(btn => {
-        if (user) {
 
-            if (btn.classList.contains("user__logged--out")){
-                btn.classList.remove("btn--enabled")
-            }
+    // Usuario conectado
+    if (user) {
 
+        btnInteraction.forEach(btn => {
+
+            (btn.classList.contains("user__logged--out")) && btn.classList.remove("btn--enabled");
+    
             if (btn.classList.contains("user__logged--in")) {
-                
                 if (window.outerWidth >= 768){
                     btn.classList.add("btn--enabled")
                     btnMenuMobile.classList.remove("btn--enabled");
@@ -26,25 +30,77 @@ onAuthStateChanged(auth, (user) => {
                     btnMenuMobile.classList.add("btn--enabled");
                 }
             }
+        })
 
-            if (location.pathname.includes("index")){
-                informationAppLoggedOut.classList.remove("section__fade--in");
-            }
+        if (location.pathname.includes("index")){
+            informationAppLoggedOut.classList.remove("section__fade--in");
+            informationAppLoggedIn.classList.add("section__fade--in");
+            showPets(user.uid);
+        }
 
-            // petEmpty.classList.add("section__fade--in");
-            showIconMenu()
+        if (location.pathname.includes("mascota")){
+            formPet(user.uid)
+        }
+        
+        page51.forEach(section => {
+            section.classList.remove("section--hidden")
+        })
+        
+        warningPage51.forEach(warning => {
+            warning.classList.add("section--hidden")
+        })
+        
+        menu.classList.remove("section--hidden");
 
-        } else {
-            if (btn.classList.contains("user__logged--out")){
-                btn.classList.add("btn--enabled")
-            }
-            if (btn.classList.contains("user__logged--in")) {
-                btn.classList.remove("btn--enabled")
-            }
+        showIconMenu();
 
+
+    // Usuario desconectado - Invitado
+    } else {
+
+        btnInteraction.forEach(btn => {
+            (btn.classList.contains("user__logged--out")) && btn.classList.add("btn--enabled");
+            (btn.classList.contains("user__logged--in")) && btn.classList.remove("btn--enabled");
+    
             if (location.pathname.includes("index")){
                 informationAppLoggedOut.classList.add("section__fade--in");
+                informationAppLoggedIn.classList.remove("section__fade--in");
             }
-        }
-    })
+
+            page51.forEach(section => {
+                section.classList.add("section--hidden");
+                openLoginModalAutomatically(btn)
+                openModalClick(btn)
+            })
+        })
+
+
+        warningPage51.forEach(warning => {
+            warning.classList.remove("section--hidden");
+        })
+    }
+
 });
+
+const openLoginModalAutomatically = (btn) => {
+    setTimeout(() => {
+        if (btn.classList.contains("interaction__login")){
+            btn.click()
+        }
+    },2600)
+}
+
+const openModalClick = (btn) => {
+    linksModal.forEach(link => {
+        link.addEventListener("click", () => {
+            if (link.classList.contains("link__login")){
+               (btn.classList.contains("interaction__login")) && btn.click();
+            }
+
+            if (link.classList.contains("link__register")){
+                (btn.classList.contains("interaction__register")) && btn.click();
+            }
+        })
+    })
+}
+

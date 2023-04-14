@@ -16,8 +16,6 @@ const regExpres = {
 }
 
 
-
-
 // Validación de inputs
 const isValidateInput = {
     user: false,
@@ -31,8 +29,7 @@ const isValidateInput = {
 btnInteraction.forEach(btn => {
     if(btn.classList.contains("user__logged--out")){
         btn.addEventListener("click", () => {
-            modalLogin.classList.add("modal__container--active");
-            modalLogin.classList.remove("modal__container");
+            modalLogin.classList.replace("modal__container", "modal__container--active")
             
             if (btn.classList.contains("interaction__login")){
                 modalLogin.firstChild.classList.add("modal--active")
@@ -49,8 +46,7 @@ iconClose.forEach(icon => {
     icon.addEventListener("click", () => {
         icon.parentNode.parentNode.classList.remove("modal--active");
         if (modalLogin.classList.contains("modal__container--active")){
-            modalLogin.classList.remove("modal__container--active");
-            modalLogin.classList.add("modal__container");
+            modalLogin.classList.replace("modal__container--active", "modal__container")
         }
         resetForm()
     })
@@ -61,7 +57,6 @@ const closeModal = () => {
     modalLogin.classList.remove("modal__container--active");
     modalLogin.firstChild.classList.remove("modal--active");
     modalLogin.lastChild.classList.remove("modal--active");
-
 }
 
 
@@ -77,8 +72,6 @@ linkOtherForm.forEach((linkLogin, i) => {
         }
     })
 })
-
-
 
 
 // FORMULARIOS, validaciones y envío
@@ -168,7 +161,7 @@ const resetForm = () => {
 // Mostrar contraseña
 iconPass.forEach(icon => {
     icon.addEventListener("click", () => {
-        let input = icon.previousElementSibling;
+        let input = icon.previousElementSibling.previousElementSibling;
         if (input.value !== ""){
             if (input.getAttribute("type") === "password"){
                 input.setAttribute("type", "text")

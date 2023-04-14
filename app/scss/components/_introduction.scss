@@ -1,66 +1,62 @@
-.main {
-    height: calc(90vh - 40px);
-    .information__app {
-        display: none;
-        height: 100%;
-        padding-top: 2em;
-        
-        &.section__fade--in{
-            @include flexbox(flex, column, nowrap, center, center);
-
-            @media (min-width: $bp-laptop) {
-                flex-direction: row;
-                justify-content: space-evenly;
-            }
-        }
-        
-        .information__app__text {
-            @media (min-width: $bp-laptop) {
-               width: 50%;
-            }
-        }
-
-
-        .information__app__img {
-            position: relative;
-            width   : 250px;
-            height  : 250px;
-
-            img {
-                width       : 100%;
-                height      : 100%;
-                object-fit  : contain;
-                opacity     : .9;
-            }
-
-            &::before,
-            &::after {
-                position: absolute;
-                content : "";
-                width   : 300px;
-            }
-            
-            &::before {
-                bottom          : -10px;
-                left            : -20px;
-                z-index         : -20;
-                height          : 200px;
-                border-radius   : 50% 100% 50% / 25% 50% 100% 100%;
-                background      : linear-gradient($turquoise-200, $sunglow-100);
-                transform       : rotate(-45deg);
-                opacity         : .4;
-            }
+.information__app {
+    display: none;
+    height: 100%;
+    padding-top: 2em;
     
-            &::after {
-                bottom          : -30px;
-                left            :  -25px;
-                z-index         : -10;
-                height          : 100%;
-                background      : linear-gradient(100deg, $amethyst-200, $turquoise-100);
-                border-radius   : 85% 75% 50%/ 50% 85% 75%;
-                opacity         : .6;
-            }
+    &.section__fade--in{
+        @include flexbox(flex, column, nowrap, center, center);
+
+        @media (min-width: $bp-laptop) {
+            flex-direction: row;
+            justify-content: space-evenly;
         }
-       
+    }
+    
+    .information__app__text {
+        @media (min-width: $bp-laptop) {
+           width: 50%;
+        }
+    }
+
+
+    .information__app__img {
+        position: relative;
+        width   : 250px;
+        height  : 250px;
+
+        img {
+            width       : 100%;
+            height      : 100%;
+            object-fit  : contain;
+            opacity     : .9;
+        }
+
+        &::before,
+        &::after {
+            position: absolute;
+            content : "";
+            width   : 300px;
+        }
+        
+        &::before {
+            bottom          : -10px;
+            left            : -20px;
+            z-index         : -20;
+            height          : 200px;
+            border-radius   : 50% 100% 50% / 25% 50% 100% 100%;
+            background      : linear-gradient($turquoise-200, $sunglow-100);
+            transform       : rotate(-45deg);
+            opacity         : .4;
+        }
+
+        &::after {
+            bottom          : -30px;
+            left            :  -25px;
+            z-index         : -10;
+            height          : 100%;
+            background      : linear-gradient(100deg, $amethyst-200, $turquoise-100);
+            border-radius   : 85% 75% 50%/ 50% 85% 75%;
+            opacity         : .6;
+        }
     }
 }

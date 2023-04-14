@@ -1,0 +1,29 @@
+mixin input-required(forName, label, type)
+    div.input__group
+        label(for=forName) #{label}
+        input(id=forName, type=type, name=forName, aria-label=type, aria-required="true")
+        span.message--error
+
+mixin input-group(forName, label, type)
+    div.input__group
+        label(for=forName) #{label}
+        input(id=forName, type=type, name=forName)
+        span.message--error
+
+
+mixin input-password(forName, label, type, icon, altIcon)
+    div.input__group
+        label(for=forName) #{label}
+        input(id=forName, type=type, name=forName, aria-label=type, aria-required="true")
+        span.message--error
+        img.icon.input__icon(src=icon, alt=altIcon)
+
+
+mixin radio(forName, name, value, label)
+    input.input(id=forName, type="radio", name=name, value=value)
+    label.label(for=forName) #{label}
+
+
+mixin checkbox(forName, name, value, label)
+    input.input(id=forName, type="checkbox", name=name, value=value)
+    label.label(for=forName) #{label}

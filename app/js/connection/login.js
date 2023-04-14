@@ -1,14 +1,13 @@
 // Firebase 
 import { async } from "@firebase/util";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 
 // Evento submit sobre formulario de login y registro
 forms.forEach(form => {
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
-
 
         // Registro
         if (form.classList.contains("form__register")){
@@ -17,6 +16,7 @@ forms.forEach(form => {
             let email = document.querySelector("#email__register");
             let password = document.querySelector("#password__register");
             let btnSubmit = document.querySelector(".btn__submit--register");
+    
             createUserWithEmailAndPassword(auth, email.value, password.value)
             .then(() => {
                 const userId = auth.currentUser.uid;

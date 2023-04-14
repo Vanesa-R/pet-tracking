@@ -1,7 +1,8 @@
 .footer {
+    position        : absolute;
+    bottom          : 0;
     @include flexbox(flex, row, nowrap, center, center);
-    height: 5vh;
-
+    padding-bottom  : .5em;
     .attribution {
         font-family : $fontPrimary;
         font-size   : $font-size-2;
