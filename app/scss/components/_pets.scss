@@ -6,7 +6,6 @@
     .section__pets--empty {
         display: none;
 
-
         &.section__fade--in{
             @include flexbox(flex, column, nowrap, center, center);
     
@@ -28,6 +27,7 @@
 
     .section__pets {
         width: 100%;
+
         .container__cards {
             &.section__fade--in{
                 @include flexbox(flex, row, wrap, space-between, center);
@@ -72,14 +72,15 @@
             }
         }
 
-        .pet__info {
+        .section__pet__info {
             display         : none;
-            position        : absolute;
-            inset           : 0;
-            background-color: $white;
 
-            &.pet__info--active {
-                display: flex;
+            &.section__fade--in{
+                @include flexbox(flex, column, wrap, flex-start, center);
+            }
+
+            .pet__info {
+                @include flexbox(flex, column, wrap, center, center);
             }
         }
     }
