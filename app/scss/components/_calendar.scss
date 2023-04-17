@@ -1,0 +1,138 @@
+.pet__calendar {
+    width           : 300px;
+    padding         : 1em;
+
+    .pet__info__calendar {
+        margin-top      : 1em;
+        margin-bottom   : 1em;
+        border-radius   : 8px;
+    
+        .calendar__header {
+            .calendar__header__interaction {
+                @include flexbox(flex, row, nowrap, space-between, center);
+                margin-bottom: 1em;
+    
+                .calendar__actual__date {
+                    margin-bottom   : 0;
+                    font-weight     : 600;
+                }
+            }
+    
+            .calendar__header__info {
+                .text {
+                    color: $grey-200;
+                }
+            }
+            
+        }
+    
+        .calendar__header__info,
+        .calendar__main {
+            @include flexbox(flex, row, wrap, space-between, center);
+            list-style: none;
+    
+            .text {
+                @include flexbox(flex, row, wrap, center, center);
+                width           : calc(100% / 7 - 6px);
+                padding         : 4px;
+                margin          : 2px;
+                border-radius   : 4px;
+            }
+        }
+    
+        .calendar__main {
+            .text {
+                color: $grey-300;
+                &.--light {
+                    color: $grey-100;
+                }
+    
+                &.--today {
+                    border: 1px solid $grey-300;
+                }
+    
+                &.--task {
+                    position: relative;
+    
+                    &::after {
+                        position        : absolute;
+                        content         : "";
+                        bottom          : 0;
+                        width           : calc(100% - 10px);
+                        height          : 2px;
+                        border-radius   : 4px;
+                    }
+    
+                    &.--active {
+                        color   : $white;
+                    }
+    
+                    &.--hygiene__task {
+                        &.--active,
+                        &::after {
+                            background-color: $turquoise-300;
+                        }
+                    }
+    
+                    &.--cleaning__task {
+                        &.--active,
+                        &::after {
+                            background-color: $sunglow-300;
+                        }
+                    }
+    
+                    
+                    &.--hygiene__task.--cleaning__task {
+                        &.--active,
+                        &::after {
+                            background-color: $amethyst-300;
+                        }
+                    }
+    
+                }
+            }
+        }
+    }
+
+    .about__task {
+        list-style: none;
+        
+        .text {
+            position    : relative;
+            display     : flex;
+            align-items : center;
+            padding: .2em 0 .2em 1.5em;
+            color       : $black;
+
+            &:first-of-type {
+                padding-top: 1em;
+            }
+
+            &:last-of-type {
+                padding-bottom: 1em;
+            }
+
+            &::before {
+                position: absolute;
+                content: "";
+                left: 0;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+            }
+
+            &.--hygiene__task {
+                &::before {
+                    background-color: $turquoise-300;
+                }
+            }
+
+            &.--cleaning__task {
+                &::before {
+                    background-color: $sunglow-300;
+                }
+            }
+        }
+    }
+
+}

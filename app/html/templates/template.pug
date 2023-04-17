@@ -52,7 +52,7 @@ html(lang="es")
                   
             div.form__login--withEmail
               +input-required("email__login", "Email", "email")
-              +input-password("password__login", "Contraseña", "password", "/dist/assets/icons/eye-close.png", "Mostrar contraseña")
+              +input-password("password__login", "Contraseña", "password", "/dist/assets/icons/icon-eye-close.png", "Mostrar contraseña")
               button.btn__submit.btn__submit--login.btn--primary(disabled) Entrar
               p.form__text.paragraph ¿Aún no tienes cuenta? 
                 span.link.link__login Regístrate
@@ -70,8 +70,8 @@ html(lang="es")
             div.form__register--create
               +input-group("user__name", "Nombre", "text")
               +input-required("email__register", "Email", "email")
-              +input-password("password__register", "Contraseña", "password", "/dist/assets/icons/eye-close.png", "Mostrar contraseña")
-              +input-password("repeat__password__register", "Repetir contraseña", "password", "/dist/assets/icons/eye-close.png", "Mostrar contraseña")
+              +input-password("password__register", "Contraseña", "password", "/dist/assets/icons/icon-eye-close.png", "Mostrar contraseña")
+              +input-password("repeat__password__register", "Repetir contraseña", "password", "/dist/assets/icons/icon-eye-close.png", "Mostrar contraseña")
               button.btn__submit.btn__submit--register.btn--primary(disabled) Regístrate
               p.form__text.paragraph ¿Ya tienes cuenta?
                 span.link.link__login Entra

@@ -1,0 +1,15 @@
+mixin calendar
+    section.section__pet__info
+        div.pet__info
+        div.pet__calendar
+            div.pet__info__calendar
+                div.calendar__header
+                    div.calendar__header__interaction
+                        img.icon.icon__prev(src="/dist/assets/icons/icon-chevron-left.png", alt="Mes anterior")
+                        span.paragraph.calendar__actual__date
+                        img.icon.icon__next(src="/dist/assets/icons/icon-chevron-right.png", alt="Mes siguiente")
+                    ul.calendar__header__info
+                        each val in ["L", "M", "X", "J", "V", "S", "D"]
+                            li.text.weekdays= val
+                ul.calendar__main
+            ul.about__task

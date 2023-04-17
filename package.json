@@ -38,7 +38,7 @@
     "gulp-pug": "^5.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-terser": "^2.1.0",
-    "webpack": "^5.77.0",
+    "webpack": "^5.79.0",
     "webpack-cli": "^5.0.1",
     "webpack-stream": "^7.0.0"
   },

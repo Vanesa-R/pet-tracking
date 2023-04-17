@@ -75,4 +75,11 @@ body {
             font-size       : .9em;
         }
     }
+
+    .text {
+        font-family: $fontSecondary;
+        font-weight: 400;
+        font-size  : .7em;
+        color      : $grey-200;
+    }
 }
