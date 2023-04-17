@@ -14,7 +14,11 @@
     
     .information__app__text {
         @media (min-width: $bp-laptop) {
-           width: 50%;
+           width: 45%;
+        }
+
+        @media (min-width: $bp-desktop) {
+            width: 40%;
         }
     }
 
@@ -23,6 +27,12 @@
         position: relative;
         width   : 250px;
         height  : 250px;
+
+        @media (min-width: $bp-desktop) {
+            width   : 350px;
+            height  : 350px;
+        }
+
 
         img {
             width       : 100%;
@@ -36,6 +46,10 @@
             position: absolute;
             content : "";
             width   : 300px;
+            
+            @media (min-width: $bp-desktop) {
+                width   : 400px;
+            }
         }
         
         &::before {
@@ -47,6 +61,10 @@
             background      : linear-gradient($turquoise-200, $sunglow-100);
             transform       : rotate(-45deg);
             opacity         : .4;
+
+            @media (min-width: $bp-desktop) {
+                height  : 300px;
+            }
         }
 
         &::after {

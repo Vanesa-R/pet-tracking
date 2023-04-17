@@ -74,6 +74,7 @@ onAuthStateChanged(auth, (user) => {
             })
         })
 
+        menu.classList.add("section--hidden");
 
         warningPage51.forEach(warning => {
             warning.classList.remove("section--hidden");
