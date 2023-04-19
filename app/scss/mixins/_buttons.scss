@@ -15,9 +15,12 @@
         background-color: $grey-100;
     }
     
-    @media (hover: hover) {
-        &:active {
-            border-color: $turquoise-200;
+    &:not(:disabled){
+        @media (hover: hover) {
+            cursor: pointer;
+            &:active {
+                border-color: $turquoise-200;
+            }
         }
     }
 }
@@ -27,9 +30,11 @@
     color           : $amethyst-400;
     background-color: $amethyst-100;
 
-    @media (hover: hover) {
-        &:hover {
-            background-color: $amethyst-200;
+    &:not(:disabled){
+        @media (hover: hover) {
+            &:hover {
+                background-color: $amethyst-200;
+            }
         }
     }
 }
@@ -39,9 +44,11 @@
     color           : $grey-300;
     background-color: $white;
 
-    @media (hover: hover) {
-        &:hover {
-            background-color: $grey-100;
+    &:not(:disabled){
+        @media (hover: hover) {
+            &:hover {
+                background-color: $grey-100;
+            }
         }
     }
 }

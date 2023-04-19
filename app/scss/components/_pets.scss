@@ -28,14 +28,19 @@
     .section__pets {
         width: 100%;
 
+        @media (min-width: $bp-laptop) {
+            @include flexbox(flex, row, wrap, center, flex-start);
+        }
+        
+
         .container__cards {
             &.section__fade--in{
                 @include flexbox(flex, row, wrap, space-between, center);
                 width: 100%;
-        
+
                 @media (min-width: $bp-laptop) {
-                    flex-direction: row;
-                    justify-content: space-evenly;
+                    justify-content: flex-start;
+                    gap: 16px;
                 }
             }
             .card {
@@ -44,7 +49,6 @@
                 padding         : 10px 16px;
                 text-align      : center;
                 border-radius   : 8px;
-                border          : 1px solid;
                 box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
     
                 &:nth-of-type(odd){
@@ -53,6 +57,19 @@
     
                 &:nth-of-type(even){
                     margin-left: 8px;
+                }
+
+                @media (min-width: $bp-laptop) {
+                    width : calc(25% - 12px);
+                    cursor: pointer;
+
+                    &:nth-of-type(odd){
+                        margin-right: 0px;
+                    }
+        
+                    &:nth-of-type(even){
+                        margin-left: 0px;
+                    }
                 }
     
                 &:nth-of-type(1n){
@@ -77,6 +94,14 @@
 
             &.section__fade--in{
                 @include flexbox(flex, column, wrap, flex-start, center);
+                position: relative;
+
+                .icon__close {
+                    position: absolute;
+                    left    : 1em;
+                    top     : -1.4em;
+                    cursor  : pointer;
+                }
             }
 
             .pet__info {

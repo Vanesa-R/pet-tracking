@@ -1,8 +1,13 @@
 .pet__calendar {
-    width           : 300px;
     padding         : 1em;
 
+    @media (min-width: $bp-laptop) {
+        width       : 550px;
+        @include flexbox(flex, row, nowrap, space-between, flex-start);
+    }
+
     .pet__info__calendar {
+        width           : 300px;
         margin-top      : 1em;
         margin-bottom   : 1em;
         border-radius   : 8px;
@@ -10,11 +15,16 @@
         .calendar__header {
             .calendar__header__interaction {
                 @include flexbox(flex, row, nowrap, space-between, center);
-                margin-bottom: 1em;
+                margin-bottom   : 1em;
+                padding-inline  : .5em;
     
                 .calendar__actual__date {
                     margin-bottom   : 0;
                     font-weight     : 600;
+                }
+
+                .icon {
+                    cursor: pointer;
                 }
             }
     
@@ -88,6 +98,10 @@
                             background-color: $amethyst-300;
                         }
                     }
+
+                    @media (min-width: $bp-laptop) {
+                        cursor: pointer;
+                    }
     
                 }
             }
@@ -96,6 +110,11 @@
 
     .about__task {
         list-style: none;
+        width: 200px;
+
+        @media (min-width: $bp-laptop) {
+            margin: 1em 0 1em 2em;
+        }
         
         .text {
             position    : relative;

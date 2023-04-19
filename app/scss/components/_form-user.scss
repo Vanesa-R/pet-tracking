@@ -34,6 +34,10 @@
                 max-width: 450px;
             }
 
+            @media (min-width: $bp-laptop) {
+                padding: 1.5em;
+            }
+
 
             .form {
                 width: 100%;
@@ -41,6 +45,7 @@
                 .icon__close {
                     position: absolute;
                     right: 1em;
+                    cursor: pointer;
                 }
 
                 .form__logotipo {
@@ -61,6 +66,7 @@
                         top: 34px;
                         right: 24px;
                         @include icon-basic;
+                        cursor: pointer;
                     }
                     @include input-group-basic;
                 }

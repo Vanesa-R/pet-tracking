@@ -9,7 +9,8 @@
 
     @media (hover: hover){
         &:hover {
-            color: $amethyst-300;
+            color   : $amethyst-300;
+            cursor  : pointer;
         }
     }
 }
