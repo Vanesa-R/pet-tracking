@@ -70,6 +70,12 @@
                     }
                     @include input-group-basic;
                 }
+
+                .link__password {
+                    @include link-basic;
+                    padding-bottom: 30px;
+                    text-align: center;
+                }
     
                 .btn__submit {
                     @include reset-appearance;

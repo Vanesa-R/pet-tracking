@@ -1,6 +1,6 @@
 // Firebase 
 import { async } from "@firebase/util";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
 
@@ -81,6 +81,26 @@ btnGoogle.addEventListener("click", () => {
     });
 })
 
+
+// FORMULARIO LOGIN - SOLICITAR NUEVA CONTRASEÑA
+let linkPassword = document.querySelector(".link__password");
+
+linkPassword.addEventListener("click", () => {
+    let email = document.querySelector("#email__login");
+    const auth = getAuth();
+    sendPasswordResetEmail(auth, email.value)
+      .then(() => {
+        email.nextElementSibling.textContent = "";
+      })
+      .catch((error) => {
+        if (email.value === "") {
+            email.nextElementSibling.textContent = "El campo email no puede estar vacío"
+        } else if (error.code == "auth/user-not-found"){
+            email.nextElementSibling.textContent = "La dirección de correo introducida no está asociada a ninguna cuenta"
+        }
+       
+      });
+})
 
 
 // Almacenar nuevo usuario en la base de datos
