@@ -59,10 +59,23 @@
     
                 &.--today {
                     border: 1px solid $grey-300;
+
+                    @media (hover: hover) {
+                        &:hover {
+                            cursor: pointer;
+                            border-color: $grey-200;
+                        }
+                    }
                 }
     
                 &.--task {
                     position: relative;
+
+                    @media (hover: hover) {
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
     
                     &::after {
                         position        : absolute;
@@ -98,11 +111,6 @@
                             background-color: $amethyst-300;
                         }
                     }
-
-                    @media (min-width: $bp-laptop) {
-                        cursor: pointer;
-                    }
-    
                 }
             }
         }
