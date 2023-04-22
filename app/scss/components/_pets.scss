@@ -44,6 +44,7 @@
                 }
             }
             .card {
+                @include flexbox(flex, column, wrap, center, center);
                 width           : calc(50% - 8px);
                 margin-bottom   : 16px;
                 padding         : 10px 16px;
@@ -106,6 +107,20 @@
 
             .pet__info {
                 @include flexbox(flex, column, wrap, center, center);
+            }
+        }
+
+        .container__cards,
+        .pet__info {
+            .picture {
+                width           : 64px;
+                height          : 64px;
+            }
+            .card__img {
+                width           : 100%;
+                height          : 100%;
+                object-fit      : cover;
+                border-radius   : 50%;
             }
         }
     }

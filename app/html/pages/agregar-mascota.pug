@@ -16,10 +16,11 @@ block formularioNewPet
             fieldset.fieldset
                 legend.legend 
                     h2.subtitle Datos de tu mascota
-                +input-group("name__pet", "Nombre", "text")
+                +input-group("name__pet", "Nombre *", "text", "Nombre de mascota")
+                +input-group-drop("avatar__group", "Fotografía", "avatar__pet", "/dist/assets/icons/icon-upload.png", "Subir imagen", "Arrastra el fichero o haz clic aquí", "file", ".jpg, .jpeg, .png")
 
                 div.container__radio__group
-                    label(for="type__pet") Selecciona tu mascota
+                    label(for="type__pet") Selecciona tu mascota *
                     div.radio__group
                         +radio("dog", "type__pet", "perro", "Perro")
                         +radio("cat", "type__pet", "gato", "Gato")

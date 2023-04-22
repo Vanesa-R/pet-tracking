@@ -1,5 +1,6 @@
 // Firebase
-import { query, where, collection, getDocs } from "firebase/firestore";
+import { query, where, collection, getDocs, AggregateField } from "firebase/firestore";
+import { getDownloadURL } from "firebase/storage";
 
 // Variables DOM
 let sectionEmpty = document.querySelector(".information__pets .section__pets--empty");
@@ -37,14 +38,29 @@ const showPets = async (userId) => {
                 article.setAttribute("data-pet", `${data[i].mascota.nombre}`)
                 cards.push(article);
 
-                let avatar = document.createElement("img");
-                avatar.setAttribute("src", `/dist/assets/images/avatars/avatar-${data[i].mascota.tipo}.png`)
+                 // Avatar
+                 let picture = document.createElement("picture");
+                 picture.classList.add("picture");
+                 let avatar = document.createElement("img");
+                 avatar.classList.add("card__img")
+                 
+                 if (data[i].mascota.avatar){
+                     const pathReference = ref(storage, `${data[i].mascota.avatar}`);
+                     getDownloadURL(pathReference)
+                       .then((url) => {
+                         avatar.setAttribute('src', `${url}`);
+                       })
+                       .catch(error => console.log(error));
+                 } else {
+                     avatar.setAttribute("src", `/dist/assets/images/avatars/avatar-${data[i].mascota.tipo}.png`);
+                 }
 
                 let name = document.createElement("h3");
                 name.classList.add("card__title", "title__body--bold");
                 name.textContent = data[i].mascota.nombre;
 
-                article.appendChild(avatar)
+                picture.appendChild(avatar)
+                article.appendChild(picture)
                 article.appendChild(name)
                 section.appendChild(article)
             }
@@ -64,11 +80,26 @@ const showPets = async (userId) => {
                     if (cardPet === data[i].mascota.nombre){ // Mostramos la información de la mascota seleccionada
 
                         card.addEventListener("click", (e) => {
-                            section.classList.replace("section__fade--in", "section--hidden")
+                            section.classList.replace("section__fade--in", "section--hidden");
 
+                            // Avatar
+                            let picture = document.createElement("picture");
+                            picture.classList.add("picture");
                             let avatar = document.createElement("img");
-                            avatar.setAttribute("src", `/dist/assets/images/avatars/avatar-${data[i].mascota.tipo}.png`)
+                            avatar.classList.add("card__img")
+                            
+                            if (data[i].mascota.avatar){
+                                const pathReference = ref(storage, `${data[i].mascota.avatar}`);
+                                getDownloadURL(pathReference)
+                                  .then((url) => {
+                                    avatar.setAttribute('src', `${url}`);
+                                  })
+                                  .catch(error => console.log(error));
+                            } else {
+                                avatar.setAttribute("src", `/dist/assets/images/avatars/avatar-${data[i].mascota.tipo}.png`);
+                            }
             
+                            // Nombre
                             let name = document.createElement("h3");
                             name.classList.add("card__title", "title__body--bold");
                             name.textContent = data[i].mascota.nombre;
@@ -76,7 +107,8 @@ const showPets = async (userId) => {
                             printTaskCalendar(data[i].fecha_alta, data[i].mascota.tipo, data[i].mascota.tareas, data[i].mascota.temporalizacion, hygiene)                            
 
                             infoPet.parentNode.classList.add("section__fade--in")
-                            infoPet.appendChild(avatar);
+                            picture.appendChild(avatar)
+                            infoPet.appendChild(picture);
                             infoPet.appendChild(name);
 
 
@@ -87,18 +119,18 @@ const showPets = async (userId) => {
                                     days.forEach(day => day.remove())
                                     
                                     if (icon.classList.contains("icon__prev")){
-                                        actualMonth--
+                                        currentMonth--
                             
-                                        if (actualMonth < 0){
-                                            actualMonth = 11;
-                                            actualYear--
+                                        if (currentMonth < 0){
+                                            currentMonth = 11;
+                                            currentYear--
                                         }
                             
                                     } else if (icon.classList.contains("icon__next")){
-                                        actualMonth++
-                                        if (actualMonth > 11){
-                                            actualMonth = 0;
-                                            actualYear++
+                                        currentMonth++
+                                        if (currentMonth > 11){
+                                            currentMonth = 0;
+                                            currentYear++
                                         }
                                     }
                                     setTimeout(() => {
@@ -123,11 +155,9 @@ const showTask = () => {
 
     days.forEach(day => {
         day.addEventListener("click", (e) => {     
-
+            // Al hacer click sobre un día con tareas, se activa este día y se muestran las tareas
             if (day.classList.contains("--task")){
-
                 day.classList.add("--active");
-
                 setTimeout(() => {
                     for (let i in day.dataset){
                         let item = document.createElement("li");
@@ -137,7 +167,7 @@ const showTask = () => {
                     }
                 }, 150)
         
-
+                // Si previamente estaba activado otro día, este se desactiva y se remueven sus tareas
                 days.forEach(day => {
                     if (day.textContent != e.target.textContent){
                         day.classList.remove("--active")
@@ -151,11 +181,21 @@ const showTask = () => {
             }
         })
 
+        // Por defecto, se mostrarán las tareas del día actual sin necesidad de hacer clic
         if (day.classList.contains("--today")){
-            let span = document.createElement("span");
-            span.classList.add("text");
-            span.textContent = `No hay tareas para hoy`
-            infoTask.appendChild(span)
+            if (!day.classList.contains("--task")){
+                let span = document.createElement("span");
+                span.classList.add("text");
+                span.textContent = `No hay tareas para hoy`
+                infoTask.appendChild(span)
+            } else {
+                for (let i in day.dataset){
+                    let item = document.createElement("li");
+                    item.classList.add("text", `${(hygiene.includes(`${day.dataset[i]}`)) ? "--hygiene__task" : "--cleaning__task"}`)
+                    item.textContent = `${day.dataset[i]}`
+                    infoTask.appendChild(item)
+                }
+            }
         }
     })
 }
