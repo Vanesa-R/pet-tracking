@@ -13,8 +13,10 @@
     }
     
     .information__app__text {
+        margin-bottom: 1em;
         @media (min-width: $bp-laptop) {
-           width: 45%;
+            margin-bottom: 0em;
+            width: 45%;
         }
 
         @media (min-width: $bp-desktop) {
