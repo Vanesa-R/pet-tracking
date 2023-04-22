@@ -4,10 +4,10 @@ mixin input-required(forName, label, type)
         input(id=forName, type=type, name=forName, aria-label=type, aria-required="true")
         span.message--error
 
-mixin input-group(forName, label, type)
+mixin input-group(forName, label, type, ariaLabel)
     div.input__group
         label(for=forName) #{label}
-        input(id=forName, type=type, name=forName)
+        input(id=forName, type=type, name=forName, aria-label=ariaLabel)
         span.message--error
 
 
@@ -20,7 +20,7 @@ mixin input-password(forName, label, type, icon, altIcon)
 
 
 mixin radio(forName, name, value, label)
-    input.input(id=forName, type="radio", name=name, value=value)
+    input.input(id=forName, type="radio", name=name, value=value, aria-label=value)
     label.label(for=forName) #{label}
 
 
@@ -33,6 +33,6 @@ mixin input-group-drop(forGroup, title, forName, srcIcon, altIcon, label, type, 
     div.input__group
         label(for=forGroup) #{title}
         div.drop__zone
-            img.icon(src=srcIcon, alt=altIcon,  accept=accept)
+            img.icon(src=srcIcon, alt=altIcon)
             label(for=forName) #{label}
-                input(id=forName, type=type, name=forName)
+                input(id=forName, type=type, name=forName,  accept=accept)

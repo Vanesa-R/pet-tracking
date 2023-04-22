@@ -7,26 +7,26 @@ let infoTask = document.querySelector(".pet__calendar .about__task");
 
 // Variables y arrays
 let date = new Date()
-let actualMonth = date.getMonth();
-let actualYear =  date.getFullYear();
+let currentMonth = date.getMonth(); // Mes de 0 a 11
+let currentYear =  date.getFullYear();
 
 const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
 
 const printCalendar = () => {
-    let firstDayOfMonth = new Date(actualYear, actualMonth, 0).getDay(); // Día semana
-    let lastDayOfMonth = new Date(actualYear, actualMonth + 1, 0).getDate(); // Último día del mes 28, 30, 31
-    let lastDayPreviousMonth = new Date(actualYear, actualMonth, 0).getDate(); // Último día del mes anterior 28, 30, 31
-    let firstDayOfNextMonth = new Date(actualYear, actualMonth, lastDayOfMonth).getDay() // Primer día semana mes siguiente - de 0 a 6
+    let firstDayOfMonth = new Date(currentYear, currentMonth, 0).getDay(); // Día semana de 0 a 6 que es día 1
+    let lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate(); // Último día del mes 28, 29, 30, 31
+    let lastDayPreviousMonth = new Date(currentYear, currentMonth, 0).getDate(); // Último día del mes anterior 28, 29, 30, 31
+    let firstDayOfNextMonth = new Date(currentYear, currentMonth, lastDayOfMonth).getDay() // Primer día semana mes siguiente - de 0 a 6
 
     // Pintar mes actual
-    dateCalendar.textContent = `${months[actualMonth]} ${actualYear}`;
+    dateCalendar.textContent = `${months[currentMonth]} ${currentYear}`;
     
     // Pintar últimos días del mes anterior
-    for (let i = firstDayOfMonth; i > 0; i--){
+    for (let i = firstDayOfMonth; i > 0; i--){ // Posiciones que deben ocupar días previos de 0 a 6
         let day = document.createElement("li");
         day.classList.add("day", "text", "--light")
-        day.textContent = `${lastDayPreviousMonth - i +1}`;
+        day.textContent = `${lastDayPreviousMonth - i +1}`; // En dichas posiciones pintamos los últimos días del mes anterior
         days.appendChild(day)
     }
 
@@ -38,20 +38,19 @@ const printCalendar = () => {
         days.appendChild(day)
 
         // Destacar día actual
-
         if ((i === date.getDate()) &&
-            actualMonth === new Date().getMonth() &&
-            actualYear === new Date().getFullYear()){
+            currentMonth === new Date().getMonth() &&
+            currentYear === new Date().getFullYear()){
                 day.classList.add("--today")
         }
     }
     
     // Printar primeros días del mes siguiente
-    if (firstDayOfNextMonth > 0){
-        for (let i = firstDayOfNextMonth; i < 7; i++){
+    if (firstDayOfNextMonth > 0){ // Si es 0 el día 1 comienza en lunes y no se mostrará en el mes
+        for (let i = firstDayOfNextMonth; i < 7; i++){ // Posiciones del mes siguiente
             let day = document.createElement("li");
             day.classList.add("day", "text", "--light")
-            day.textContent = `${i - firstDayOfNextMonth +1}`;
+            day.textContent = `${i - firstDayOfNextMonth +1}`; // Pintamos todas las posiciones con los días del mes siguiente
             days.appendChild(day)
         }
     }
@@ -115,8 +114,8 @@ const printTaskCalendar = (registrationDay, typePet, myTask, myTiming, arrHygien
                     days.forEach(day => {
                         if (!day.classList.contains("--light")){
                             if ((day.textContent == i.getDate()) &&
-                                (actualMonth == i.getMonth()) &&
-                                (actualYear == i.getFullYear())){
+                                (currentMonth == i.getMonth()) &&
+                                (currentYear == i.getFullYear())){
                                     day.classList.add("--task", className)
                                     day.setAttribute(`data-${task[0].replaceAll(" ", "_")}`, `${task[0]}`)
                             }

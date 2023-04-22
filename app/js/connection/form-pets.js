@@ -8,7 +8,7 @@ const formPet = async (userId) => {
     const details = document.querySelectorAll(".detail__task");
     const selectPet = document.querySelectorAll("input[name='type__pet']");
     const imagePet = document.querySelector("input[name='avatar__pet']");
-    const btnAddPet = document.querySelector(".control__tab .btn__submit--pet");
+    const dropZone = document.querySelector(".form__add__pet .drop__zone");
     const success = document.querySelector(".form__add__pet .text--success")
 
     // Declaración de variables, arrays y objetos
@@ -32,7 +32,7 @@ const formPet = async (userId) => {
 
 
     // DESPLAZAMIENTO ENTRE PASOS DEL FORMULARIO
-    
+
     let activeTab = steps.findIndex(step => {
         return step.classList.contains("tab--active");
     })
@@ -50,8 +50,11 @@ const formPet = async (userId) => {
         showActiveTab()
     }
     
+    
+    // Escucha en botones "Anterior", "Siguiente" y "Enviar"
     formPet.addEventListener("click", (e, user) => {
 
+        // Siguiente
         if (e.target.classList.contains("btn__next")){            
             e.preventDefault()
            
@@ -71,8 +74,10 @@ const formPet = async (userId) => {
             (activeTab == 1) && printResumeTaskandTime()
             
             activeTab++;
-
-        } else if (e.target.classList.contains("btn__prev")){
+        } 
+        
+        // Anterior
+        else if (e.target.classList.contains("btn__prev")){
             e.preventDefault()
 
             if (activeTab == 1){
@@ -100,10 +105,13 @@ const formPet = async (userId) => {
             
             activeTab--;
 
-        } else if (e.target.classList.contains("btn__submit")){
+        } 
+        
+        // Enviar
+        else if (e.target.classList.contains("btn__submit")){
             e.preventDefault();
 
-            // Enviar datos a Firestore Database
+            // Almacenar datos en Firestore Database
             let name = document.querySelector("input[name='name__pet']").value;
             let date = new Date();
             date = date.toLocaleDateString();
@@ -125,7 +133,7 @@ const formPet = async (userId) => {
                 merge: true
             })
 
-            // Guardar fotografía en Storage
+            // Almacenar dados en Firestore Storage
             const imageRef = ref(storage, `images/${avatar}`)
             uploadBytes(imageRef, fileAvatar)
             .then((snapshot) => {
@@ -142,6 +150,7 @@ const formPet = async (userId) => {
                 formPet.reset()
                 mytask.length = 0;
                 myTiming.length = 0;
+                dropZone.childNodes.forEach((el, i) => (i > 2) && el.remove())
             }, 1600)
 
             // Llevar al primer paso del formulario
@@ -281,7 +290,6 @@ const formPet = async (userId) => {
             
             group.appendChild(label)
             group.appendChild(selectTime)
-
             document.querySelector(".container__task--checked").appendChild(group);
 
         }
@@ -327,12 +335,48 @@ const formPet = async (userId) => {
         }
     }
 
-    // Escucha a input file
+    // Escucha en input file
     imagePet.addEventListener("change", e => {
         fileAvatar = e.target.files[0];
         avatar = fileAvatar.name;
+        showPreviewImg(fileAvatar)
     })
+
+    
+    // Escucha en drop zone
+    dropZone.addEventListener("dragover", e => {
+        e.preventDefault();
+    })
+
+    dropZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        fileAvatar = e.dataTransfer.files[0];
+        avatar = fileAvatar.name;
+        showPreviewImg(fileAvatar)
+    })
+
+    // Previsualización de imagen
+    const showPreviewImg = (fileAvatar) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(fileAvatar);
+        reader.addEventListener("load", (e) => {
+
+            // Mostrar imagen agregada
+            let picture = document.createElement("picture");
             
+            dropZone.childNodes.forEach((el, i) => (i > 2) && el.remove())
+
+            picture.classList.add("picture__preview");
+            let imgPreview = document.createElement("img");
+            imgPreview.classList.add("img__preview");
+            imgPreview.setAttribute("src", e.target.result)
+            
+            picture.appendChild(imgPreview)
+            dropZone.appendChild(picture)
+        })
+    }
+
+    // Escucha en el formulario        
     formPet.addEventListener("change", (e) => validateFormPet(e))
 
     // Escucha a input radio
