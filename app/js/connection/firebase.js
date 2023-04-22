@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
+
 
 // Configuración de firebase
 const firebaseConfig = {
@@ -20,3 +22,6 @@ const db = getFirestore(app);
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
+
+// Initialize Cloud Storage and get a reference to the service
+const storage = getStorage(app);

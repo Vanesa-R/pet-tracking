@@ -27,3 +27,12 @@ mixin radio(forName, name, value, label)
 mixin checkbox(forName, name, value, label)
     input.input(id=forName, type="checkbox", name=name, value=value)
     label.label(for=forName) #{label}
+
+
+mixin input-group-drop(forGroup, title, forName, srcIcon, altIcon, label, type, accept)
+    div.input__group
+        label(for=forGroup) #{title}
+        div.drop__zone
+            img.icon(src=srcIcon, alt=altIcon,  accept=accept)
+            label(for=forName) #{label}
+                input(id=forName, type=type, name=forName)

@@ -39,6 +39,30 @@
                 width: 100%;
             }
             
+            // Drop Zone
+            .input__group {
+                .drop__zone {
+                    @include flexbox(flex, column, nowrap, center, center);
+                    height        : 150px;
+                    padding       : 10px 16px;
+                    border        : 1px dashed $grey-200;
+                    border-radius : 8px;
+
+                    .icon {
+                        margin-bottom: .5em;
+                    }
+
+                    label {
+                        margin-bottom: 0;
+                        font-size    : .8em;
+                    }
+
+                    input[type="file"]{
+                        display: none;
+                    }
+                }
+            }
+
             // Radio buttons
             .container__radio__group {
                 @include input-group-basic;

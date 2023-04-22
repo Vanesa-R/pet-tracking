@@ -1,3 +1,5 @@
+import { ref, uploadBytes } from "firebase/storage";
+
 const formPet = async (userId) => {
 
     // DOM
@@ -5,12 +7,15 @@ const formPet = async (userId) => {
     const steps = Array.from(document.querySelectorAll(".form__pet__tab"));
     const details = document.querySelectorAll(".detail__task");
     const selectPet = document.querySelectorAll("input[name='type__pet']");
+    const imagePet = document.querySelector("input[name='avatar__pet']");
     const btnAddPet = document.querySelector(".control__tab .btn__submit--pet");
     const success = document.querySelector(".form__add__pet .text--success")
 
     // Declaración de variables, arrays y objetos
     let group = "";
     let typePet = "";
+    let fileAvatar = "";
+    let avatar = "";
 
     let checkbox = [];
     let selects = [];
@@ -50,11 +55,11 @@ const formPet = async (userId) => {
         if (e.target.classList.contains("btn__next")){            
             e.preventDefault()
            
-            // Pintamos desplegable de tareas
+            // Pintamos desplegable de tareas del segundo paso
             if (activeTab == 0){ 
                 printTask(typePet)
                 
-                // Control para mantener tareas seleccionadas en caso de retroceder paso
+                // Control para mantener las tareas seleccionadas en caso de retroceder paso
                 for (let i in checkbox){
                     for (let j in mytask){
                         (mytask[j] === checkbox[i].value) && checkbox[i].click();
@@ -62,6 +67,7 @@ const formPet = async (userId) => {
                 }
             }
 
+            // Pintamos el resumen de tareas y temporalización del tercer paso
             (activeTab == 1) && printResumeTaskandTime()
             
             activeTab++;
@@ -70,8 +76,7 @@ const formPet = async (userId) => {
             e.preventDefault()
 
             if (activeTab == 1){
-                
-                // Remover tareas del desplegable en caso de retroceder paso
+                // Remover desplegable de tareas en caso de retroceder paso
                 let group = document.querySelectorAll(".checkbox__group");
                 group.forEach(checkbox => {
                     checkbox.remove()
@@ -98,18 +103,17 @@ const formPet = async (userId) => {
         } else if (e.target.classList.contains("btn__submit")){
             e.preventDefault();
 
-            // Datos
-
+            // Enviar datos a Firestore Database
             let name = document.querySelector("input[name='name__pet']").value;
             let date = new Date();
             date = date.toLocaleDateString();
-
             let idPet = Math.random().toString(30);
 
             setDoc(doc(db, "pets", idPet), {
                 datos : {
                     mascota : {
                         nombre: name,
+                        avatar: `images/${avatar}`,
                         tipo: typePet,
                         tareas: mytask,
                         temporalizacion: myTiming,
@@ -121,9 +125,18 @@ const formPet = async (userId) => {
                 merge: true
             })
 
-
+            // Guardar fotografía en Storage
+            const imageRef = ref(storage, `images/${avatar}`)
+            uploadBytes(imageRef, fileAvatar)
+            .then((snapshot) => {
+                console.log(`Imagen almacenada con éxito`)
+            })
+            .catch(error => console.log(error))
+          
+            // Mostramos mensaje de éxito al usuario
             success.textContent = "¡Mascota agregada con éxito!"
             
+            // Limpiar datos del formulario y dejar de mostrar el mensaje de éxito
             setTimeout(() => {
                 success.textContent = "";
                 formPet.reset()
@@ -131,6 +144,7 @@ const formPet = async (userId) => {
                 myTiming.length = 0;
             }, 1600)
 
+            // Llevar al primer paso del formulario
             setTimeout(() => {
                 steps.forEach((step, i) => (i === 0) && step.classList.add("tab--active"))
             }, 1650)
@@ -145,7 +159,6 @@ const formPet = async (userId) => {
 
     // Comportamiendo de desplegables del formulario
     details.forEach(detail => {
-        
         detail.addEventListener("click", () => {
             (!detail.hasAttribute("open")) && details.forEach(detail => detail.removeAttribute("open"));
         })
@@ -201,7 +214,6 @@ const formPet = async (userId) => {
         }
 
         details.forEach(detail => {
-
             section = detail.firstElementChild.childNodes[1].textContent;
             
             if (section === "Higiene"){   
@@ -240,6 +252,8 @@ const formPet = async (userId) => {
         })
     }
 
+
+    // Pintado del tercer paso del formulario con las tareas y temporalización
     const printResumeTaskandTime = () => {
 
         for (let i in mytask){
@@ -280,10 +294,9 @@ const formPet = async (userId) => {
     }
 
 
+    // Valifación de campos obligatorios
     const validateFormPet = (e) => {
-
         steps.forEach(step => {
-
             let activeBTNNext =  document.querySelector(`.btn__next[data-next="${activeTab}"]`);
 
             switch(activeTab){
@@ -296,14 +309,12 @@ const formPet = async (userId) => {
                 case 1:
                     (isValidatePetInput.taskPet) ? activeBTNNext.removeAttribute("disabled") : activeBTNNext.setAttribute("disabled", "disabled");
                     break;
-                
-                case 2:
-                    break;
             }
         }
     )}
                    
     
+    // Validación input text
     const validatePetInputs = (input, check, text) => {
         if (regExpres.user.test(input.value)){
             input.classList.remove("validate--error");
@@ -315,9 +326,16 @@ const formPet = async (userId) => {
             isValidatePetInput[check] = false;
         }
     }
+
+    // Escucha a input file
+    imagePet.addEventListener("change", e => {
+        fileAvatar = e.target.files[0];
+        avatar = fileAvatar.name;
+    })
             
     formPet.addEventListener("change", (e) => validateFormPet(e))
 
+    // Escucha a input radio
     selectPet.forEach(radio => {
         radio.addEventListener("change", (e) => {
             typePet = radio.value;
