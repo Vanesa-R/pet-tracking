@@ -34,7 +34,7 @@ onAuthStateChanged(auth, (user) => {
 
         if (location.pathname.includes("index")){
             informationAppLoggedOut.classList.remove("section__fade--in");
-            informationAppLoggedIn.classList.add("section__fade--in");
+            informationAppLoggedIn.classList.replace("section--hidden", "section__fade--in");
             showPets(user.uid);
         }
 
@@ -64,7 +64,7 @@ onAuthStateChanged(auth, (user) => {
     
             if (location.pathname.includes("index")){
                 informationAppLoggedOut.classList.add("section__fade--in");
-                informationAppLoggedIn.classList.remove("section__fade--in");
+                informationAppLoggedIn.classList.replace("section__fade--in", "section--hidden");
             }
 
             page51.forEach(section => {

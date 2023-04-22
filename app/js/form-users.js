@@ -57,6 +57,7 @@ const closeModal = () => {
     modalLogin.classList.remove("modal__container--active");
     modalLogin.firstChild.classList.remove("modal--active");
     modalLogin.lastChild.classList.remove("modal--active");
+    location.reload()
 }
 
 

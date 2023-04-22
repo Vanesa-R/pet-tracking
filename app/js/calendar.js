@@ -76,19 +76,14 @@ const printTaskCalendar = (registrationDay, typePet, myTask, myTiming, arrHygien
     let interval;
     let className;
 
-    switch(typePet){
-        case "perro":
-        case "gato":
-            endLoop = endLoop + 15;
-            break;
-        case "ave":
-            endLoop = endLoop + 10;
-            break;
-        case "tortuga":
-            endLoop = endLoop + 30;
-            break;
+    const setEndLoop = {
+        "perro": endLoop + 15,
+        "gato": endLoop + 15,
+        "ave": endLoop + 10,
+        "tortuga": endLoop + 30
     }
 
+    endLoop = setEndLoop[typePet];
     dateEnd.setFullYear(endLoop)
 
     for (let j in myTask){
