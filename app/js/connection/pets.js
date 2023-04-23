@@ -1,5 +1,5 @@
 // Firebase
-import { query, where, collection, getDocs, AggregateField } from "firebase/firestore";
+import { query, where, collection, getDocs } from "firebase/firestore";
 import { getDownloadURL } from "firebase/storage";
 
 // Variables DOM
@@ -38,30 +38,7 @@ const showPets = async (userId) => {
                 article.setAttribute("data-pet", `${data[i].mascota.nombre}`)
                 cards.push(article);
 
-                 // Avatar
-                 let picture = document.createElement("picture");
-                 picture.classList.add("picture");
-                 let avatar = document.createElement("img");
-                 avatar.classList.add("card__img")
-                 
-                 if (data[i].mascota.avatar){
-                     const pathReference = ref(storage, `${data[i].mascota.avatar}`);
-                     getDownloadURL(pathReference)
-                       .then((url) => {
-                         avatar.setAttribute('src', `${url}`);
-                       })
-                       .catch(error => console.log(error));
-                 } else {
-                     avatar.setAttribute("src", `/dist/assets/images/avatars/avatar-${data[i].mascota.tipo}.png`);
-                 }
-
-                let name = document.createElement("h3");
-                name.classList.add("card__title", "title__body--bold");
-                name.textContent = data[i].mascota.nombre;
-
-                picture.appendChild(avatar)
-                article.appendChild(picture)
-                article.appendChild(name)
+                showDataBasicPet(article, data[i].mascota.avatar, data[i].mascota.tipo, data[i].mascota.nombre)
                 section.appendChild(article)
             }
         });
@@ -81,36 +58,10 @@ const showPets = async (userId) => {
 
                         card.addEventListener("click", (e) => {
                             section.classList.replace("section__fade--in", "section--hidden");
-
-                            // Avatar
-                            let picture = document.createElement("picture");
-                            picture.classList.add("picture");
-                            let avatar = document.createElement("img");
-                            avatar.classList.add("card__img")
-                            
-                            if (data[i].mascota.avatar){
-                                const pathReference = ref(storage, `${data[i].mascota.avatar}`);
-                                getDownloadURL(pathReference)
-                                  .then((url) => {
-                                    avatar.setAttribute('src', `${url}`);
-                                  })
-                                  .catch(error => console.log(error));
-                            } else {
-                                avatar.setAttribute("src", `/dist/assets/images/avatars/avatar-${data[i].mascota.tipo}.png`);
-                            }
-            
-                            // Nombre
-                            let name = document.createElement("h3");
-                            name.classList.add("card__title", "title__body--bold");
-                            name.textContent = data[i].mascota.nombre;
-                            
-                            printTaskCalendar(data[i].fecha_alta, data[i].mascota.tipo, data[i].mascota.tareas, data[i].mascota.temporalizacion, hygiene)                            
-
                             infoPet.parentNode.classList.add("section__fade--in")
-                            picture.appendChild(avatar)
-                            infoPet.appendChild(picture);
-                            infoPet.appendChild(name);
 
+                            showDataBasicPet(infoPet, data[i].mascota.avatar, data[i].mascota.tipo, data[i].mascota.nombre)
+                            printTaskCalendar(data[i].fecha_alta, data[i].mascota.tipo, data[i].mascota.tareas, data[i].mascota.temporalizacion, hygiene)                            
 
                             // Desplazamiento entre meses del calendario
                             icons.forEach(icon => {
@@ -149,7 +100,7 @@ const showPets = async (userId) => {
     }
 }
 
-
+// Muestra las tareas al clicar días del calendario
 const showTask = () => {
     let days = document.querySelectorAll(".day");
 
@@ -198,4 +149,31 @@ const showTask = () => {
             }
         }
     })
+}
+
+// Muestra información básica de la mascota
+const showDataBasicPet = (el, avatarPet, typePet, namePet) => {
+    let picture = document.createElement("picture");
+    picture.classList.add("picture");
+    let avatar = document.createElement("img");
+    avatar.classList.add("card__img")
+
+    if (avatarPet){
+        const pathReference = ref(storage, `${avatarPet}`);
+        getDownloadURL(pathReference)
+        .then((url) => {
+            avatar.setAttribute('src', `${url}`);
+        })
+        .catch(error => console.log(error));
+    } else {
+        avatar.setAttribute("src", `/dist/assets/images/avatars/avatar-${typePet}.png`);
+    }
+
+    let name = document.createElement("h3");
+    name.classList.add("card__title", "title__body--bold");
+    name.textContent = namePet;
+
+    picture.appendChild(avatar)
+    el.appendChild(picture)
+    el.appendChild(name)
 }

@@ -21,7 +21,6 @@ forms.forEach(form => {
             .then(() => {
                 const userId = auth.currentUser.uid;
                 newUserDDBB(userId, name, email.value);
-
                 closeModal();
             })
             .catch((error) => {
