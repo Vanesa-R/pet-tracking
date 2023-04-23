@@ -117,30 +117,14 @@ const formPet = async (userId) => {
             date = date.toLocaleDateString();
             let idPet = Math.random().toString(30);
 
-            setDoc(doc(db, "pets", idPet), {
-                datos : {
-                    mascota : {
-                        nombre: name,
-                        avatar: `images/${avatar}`,
-                        tipo: typePet,
-                        tareas: mytask,
-                        temporalizacion: myTiming,
-                    },
-                    fecha_alta: date,
-                    usuario: userId
-                },
-            }, {
-                merge: true
-            })
+            newPetDDBB(idPet, name, typePet, mytask, myTiming, date, userId);
+            (fileAvatar) && updatePetDDBB(idPet, avatar);
+            
 
-            // Almacenar dados en Firestore Storage
-            const imageRef = ref(storage, `images/${avatar}`)
-            uploadBytes(imageRef, fileAvatar)
-            .then((snapshot) => {
-                console.log(`Imagen almacenada con éxito`)
-            })
-            .catch(error => console.log(error))
-          
+            // Almacenar fichero en Firestore Storage
+            (fileAvatar) && newImageStorage(avatar, fileAvatar)
+
+
             // Mostramos mensaje de éxito al usuario
             success.textContent = "¡Mascota agregada con éxito!"
             

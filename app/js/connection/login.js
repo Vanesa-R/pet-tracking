@@ -1,7 +1,5 @@
 // Firebase 
-import { async } from "@firebase/util";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
 
 
 // Evento submit sobre formulario de login y registro
@@ -100,14 +98,3 @@ linkPassword.addEventListener("click", () => {
        
       });
 })
-
-
-// Almacenar nuevo usuario en la base de datos
-const newUserDDBB = (userId, name, email) => {
-    setDoc(doc(db, "users", userId), {
-        datos_personales : {
-            nombre: name,
-            email: email
-        }
-    })
-}
