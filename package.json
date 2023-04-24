@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --mode=development"
+    "webpack": "webpack --mode=development",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d bluid"
   },
   "repository": {
     "type": "git",
@@ -20,12 +22,13 @@
   "bugs": {
     "url": "https://github.com/Vanesa-R/pet-tracking/issues"
   },
-  "homepage": "https://github.com/Vanesa-R/pet-tracking#readme",
+  "homepage": "https://github.com/Vanesa-R/pet-tracking",
   "devDependencies": {
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
     "babel-loader": "^9.1.2",
+    "gh-pages": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "^8.0.0",
