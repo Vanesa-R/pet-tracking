@@ -32,13 +32,13 @@ onAuthStateChanged(auth, (user) => {
             }
         })
 
-        if (location.pathname.includes("index")){
+        if (!location.href.includes("mascota")){
             informationAppLoggedOut.classList.remove("section__fade--in");
             informationAppLoggedIn.classList.replace("section--hidden", "section__fade--in");
             showPets(user.uid);
         }
-
-        if (location.pathname.includes("mascota")){
+        
+        if (location.pathname.includes("mascota")) {
             formPet(user.uid)
         }
         
@@ -58,11 +58,13 @@ onAuthStateChanged(auth, (user) => {
     // Usuario desconectado - Invitado
     } else {
 
+        rotateImages()
+
         btnInteraction.forEach(btn => {
             (btn.classList.contains("user__logged--out")) && btn.classList.add("btn--enabled");
             (btn.classList.contains("user__logged--in")) && btn.classList.remove("btn--enabled");
     
-            if (location.pathname.includes("index")){
+            if (!location.href.includes("mascota")){
                 informationAppLoggedOut.classList.add("section__fade--in");
                 informationAppLoggedIn.classList.replace("section__fade--in", "section--hidden");
             }

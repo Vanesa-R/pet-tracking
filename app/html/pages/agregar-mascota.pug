@@ -17,7 +17,7 @@ block formularioNewPet
                 legend.legend 
                     h2.subtitle Datos de tu mascota
                 +input-group("name__pet", "Nombre *", "text", "Nombre de mascota")
-                +input-group-drop("avatar__group", "Fotografía", "avatar__pet", "/dist/assets/icons/icon-upload.png", "Subir imagen", "Arrastra el fichero o haz clic aquí", "file", ".jpg, .jpeg, .png")
+                +input-group-drop("avatar__group", "Fotografía", "avatar__pet", "assets/icons/icon-upload.png", "Subir imagen", "Arrastra el fichero o haz clic aquí", "file", ".jpg, .jpeg, .png")
 
                 div.container__radio__group
                     label(for="type__pet") Selecciona tu mascota *
@@ -36,9 +36,9 @@ block formularioNewPet
             fieldset.fieldset
                 legend.legend
                     h2.subtitle Selecciona tareas                
-                +detail("Higiene", "/dist/assets/images/hygiene.png", "Higiene de la mascota", "/dist/assets/icons/icon-chevron-down.png", "Desplegar detalle")
-                +detail("Limpieza", "/dist/assets/images/cleaning.png", "Limpieza", "/dist/assets/icons/icon-chevron-down.png", "Desplegar detalle")
-                //- +detail("Medicación", "/dist/assets/images/medicacion.png", "Medicación", "/dist/assets/icons/chevron-down.png", "Desplegar detalle")
+                +detail("Higiene", "assets/images/hygiene.png", "Higiene de la mascota", "assets/icons/icon-chevron-down.png", "Desplegar detalle")
+                +detail("Limpieza", "assets/images/cleaning.png", "Limpieza", "assets/icons/icon-chevron-down.png", "Desplegar detalle")
+                //- +detail("Medicación", "assets/images/medicacion.png", "Medicación", "assets/icons/chevron-down.png", "Desplegar detalle")
             
                 div.control__tab(data-control="1")
                     button.btn.btn__prev.btn--secondary Anterior

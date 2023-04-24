@@ -194,7 +194,7 @@ const setAvatar = (el, idPet, avatarPet) => {
 
         let icon = document.createElement("img");
         icon.classList.add("icon");
-        icon.setAttribute("src", "/dist/assets/icons/icon-upload-img.png")
+        icon.setAttribute("src", "assets/icons/icon-upload-img.png")
         icon.setAttribute("alt", "Cambiar imagen");
 
         let input = document.createElement("input");

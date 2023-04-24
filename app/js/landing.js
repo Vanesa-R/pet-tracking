@@ -8,5 +8,3 @@ const rotateImages = () => {
         img.setAttribute("src",`assets/images/decoratives/pets${imgRandom}.png`)
     }, 5000)
 }
-
-(location.pathname.includes("index") && rotateImages())

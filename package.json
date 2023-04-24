@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/Vanesa-R/pet-tracking/issues"
   },
-  "homepage": "https://github.com/Vanesa-R/pet-tracking",
+  "homepage": "https://github.com/Vanesa-R/pet-tracking/",
   "devDependencies": {
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.4",
