@@ -24,7 +24,10 @@
                 }
 
                 .icon {
-                    cursor: pointer;
+                    @include btn--secondary;
+                    height  : 32px;
+                    padding : 4px;
+                    cursor  : pointer;
                 }
             }
     
