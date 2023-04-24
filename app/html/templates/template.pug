@@ -23,7 +23,7 @@ html(lang="es")
     // HEADER
     header.header
       a.logo(href="./index.html" title="Pet Tracking" aria-label="Ir a la página de inicio")
-        img(src="/dist/assets/images/logo.png" alt="Ir a la página de inicio")
+        img(src="assets/images/logo.png" alt="Ir a la página de inicio")
 
       nav.menu__primary.section--hidden
         ul.menu__items(role="menu")
@@ -47,12 +47,12 @@ html(lang="es")
       section.modal__container
         div.modal.modal__login
           form.form.form__login
-            img(src="/dist/assets/icons/icon-close.png" alt="Cerrar modal de acceso" class="icon icon__close")
-            img(src="/dist/assets/images/logotipo.png" alt="Logotipo" class="form__logotipo")
+            img(src="assets/icons/icon-close.png" alt="Cerrar modal de acceso" class="icon icon__close")
+            img(src="assets/images/logotipo.png" alt="Logotipo" class="form__logotipo")
                   
             div.form__login--withEmail
               +input-required("email__login", "Email", "email")
-              +input-password("password__login", "Contraseña", "password", "/dist/assets/icons/icon-eye-close.png", "Mostrar contraseña")
+              +input-password("password__login", "Contraseña", "password", "assets/icons/icon-eye-close.png", "Mostrar contraseña")
               p.paragraph.link.link__password ¿Olvidaste tu contraseña?
               button.btn__submit.btn__submit--login.btn--primary(disabled) Entrar
               p.form__text.paragraph ¿Aún no tienes cuenta? 
@@ -60,19 +60,19 @@ html(lang="es")
 
             div.form__login--withCount
               button.btn.btn__rrss.btn--google
-                img(src="/dist/assets/icons/icon-google.png" alt="Acceder con Google")
+                img(src="assets/icons/icon-google.png" alt="Acceder con Google")
                 span.btn__text Accede con Google
                     
         div.modal.modal__register
           form.form.form__register
-            img.icon.icon__close(src="/dist/assets/icons/icon-close.png" alt="Cerrar modal de registro")
-            img.form__logotipo(src="/dist/assets/images/logotipo.png" alt="Logotipo")
+            img.icon.icon__close(src="assets/icons/icon-close.png" alt="Cerrar modal de registro")
+            img.form__logotipo(src="assets/images/logotipo.png" alt="Logotipo")
             
             div.form__register--create
               +input-group("user__name", "Nombre", "text")
               +input-required("email__register", "Email", "email")
-              +input-password("password__register", "Contraseña", "password", "/dist/assets/icons/icon-eye-close.png", "Mostrar contraseña")
-              +input-password("repeat__password__register", "Repetir contraseña", "password", "/dist/assets/icons/icon-eye-close.png", "Mostrar contraseña")
+              +input-password("password__register", "Contraseña", "password", "assets/icons/icon-eye-close.png", "Mostrar contraseña")
+              +input-password("repeat__password__register", "Repetir contraseña", "password", "assets/icons/icon-eye-close.png", "Mostrar contraseña")
               button.btn__submit.btn__submit--register.btn--primary(disabled) Regístrate
               p.form__text.paragraph ¿Ya tienes cuenta?
                 span.link.link__login Entra

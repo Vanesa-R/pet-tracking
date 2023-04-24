@@ -172,7 +172,7 @@ const printDataBasicPet = (el, avatarPet, typePet, namePet) => {
         })
         .catch(error => console.log(error));
     } else {
-        avatar.setAttribute("src", `/dist/assets/images/avatars/avatar-${typePet}.png`);
+        avatar.setAttribute("src", `assets/images/avatars/avatar-${typePet}.png`);
     }
 
     let name = document.createElement("h3");

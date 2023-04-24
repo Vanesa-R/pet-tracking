@@ -166,10 +166,10 @@ iconPass.forEach(icon => {
         if (input.value !== ""){
             if (input.getAttribute("type") === "password"){
                 input.setAttribute("type", "text")
-                icon.setAttribute("src", "/dist/assets/icons/icon-eye-open.png")
+                icon.setAttribute("src", "assets/icons/icon-eye-open.png")
             } else {
                 input.setAttribute("type", "password")
-                icon.setAttribute("src", "/dist/assets/icons/icon-eye-close.png")
+                icon.setAttribute("src", "assets/icons/icon-eye-close.png")
             }
         }
     })
