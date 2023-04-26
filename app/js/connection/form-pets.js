@@ -25,6 +25,7 @@ const formPet = async (userId) => {
 
     const isValidatePetInput = {
         namePet: false,
+        avatarPet: false,
         typePet: false,
         taskPet: false,
     }
@@ -118,11 +119,11 @@ const formPet = async (userId) => {
             let idPet = Math.random().toString(30);
 
             newPetDDBB(idPet, name, typePet, mytask, myTiming, date, userId);
-            (fileAvatar) && updatePetDDBB(idPet, avatar);
+            (fileAvatar && isValidatePetInput.avatarPet) && updatePetDDBB(idPet, avatar);
             
 
             // Almacenar fichero en Firestore Storage
-            (fileAvatar) && newImageStorage(avatar, fileAvatar)
+            (fileAvatar && isValidatePetInput.avatarPet) && newImageStorage(avatar, fileAvatar)
 
 
             // Mostramos mensaje de éxito al usuario
@@ -131,10 +132,11 @@ const formPet = async (userId) => {
             // Limpiar datos del formulario y dejar de mostrar el mensaje de éxito
             setTimeout(() => {
                 success.textContent = "";
-                formPet.reset()
+                formPet.reset();
                 mytask.length = 0;
                 myTiming.length = 0;
                 dropZone.childNodes.forEach((el, i) => (i > 2) && el.remove())
+                document.querySelectorAll(".message--error").forEach(error => error.remove())
             }, 1600)
 
             // Llevar al primer paso del formulario
@@ -319,11 +321,24 @@ const formPet = async (userId) => {
         }
     }
 
+    // Validación input file
+    const validatePetFile = (e, avatar, el) => {
+        let regExpresFile = /([a-zA-Z0-9\s_\\.\-\(\):])+(.jpeg|.jpg|.png)$/;
+        if (regExpresFile.test(avatar)){
+            isValidatePetInput.avatarPet = true;
+            el.textContent = "";
+        } else {
+            isValidatePetInput.avatarPet = false;
+            el.textContent = "El fichero no es válido. Selecciona una imagen.";
+        }
+    }
+
     // Escucha en input file
     imagePet.addEventListener("change", e => {
         fileAvatar = e.target.files[0];
         avatar = fileAvatar.name;
-        showPreviewImg(fileAvatar)
+        validatePetFile(e, avatar, e.target.parentNode.parentNode.nextElementSibling);
+        showPreviewImg(fileAvatar);
     })
 
     
@@ -332,11 +347,12 @@ const formPet = async (userId) => {
         e.preventDefault();
     })
 
-    dropZone.addEventListener("drop", (e) => {
+    dropZone.addEventListener("drop", e => {
         e.preventDefault();
         fileAvatar = e.dataTransfer.files[0];
         avatar = fileAvatar.name;
-        showPreviewImg(fileAvatar)
+        validatePetFile(e, avatar, e.target.parentNode.nextElementSibling)
+        showPreviewImg(fileAvatar);
     })
 
     // Previsualización de imagen
