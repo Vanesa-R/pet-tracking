@@ -41,6 +41,7 @@ const showPets = async (userId) => {
                 printDataBasicPet(article, data[i].mascota.avatar, data[i].mascota.tipo, data[i].mascota.nombre)
                 section.appendChild(article)
             }
+
         });
 
         // Información completa de cada mascota, visible al clicar una card
