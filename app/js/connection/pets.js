@@ -21,10 +21,11 @@ const showPets = async (userId) => {
 
     // Si no se ha agregado ninguna mascota se anima al usuario a iniciar el proceso
     if (querySnap.empty){
-        sectionEmpty.classList.add("section__fade--in");
+        sectionEmpty.classList.replace("section--hidden", "section__fade--in");
 
     // Si se han agregado se mostrarán en la página de inicio
     } else {
+        section.parentNode.classList.remove("section--hidden")
         section.classList.add("section__fade--in");
 
         // Detalle de cada mascota con información básica (cards)

@@ -28,6 +28,19 @@
         }
     }
 
+    .greeting {
+        position: absolute;
+        right   : 60px;
+
+        @media (min-width: $bp-tablet) {
+            right   : 140px;
+        }
+
+        @media (min-width: $bp-laptop) {
+            right   : 200px;
+        }
+    }
+
     .menu__primary {
         position        : fixed;
         inset           : 0;
@@ -40,7 +53,7 @@
         @media (min-width: $bp-tablet) {
             position    : relative;
             width       : 70%;
-            left        : -20px;
+            left        : 50px;
             height      : auto;
             background  : none;
             clip-path   : none;
@@ -63,7 +76,7 @@
 
             @media (min-width: $bp-tablet) {
                 display         : flex;
-                justify-content : flex-end;
+                justify-content : flex-start;
             }
 
             .list__menu__item {
