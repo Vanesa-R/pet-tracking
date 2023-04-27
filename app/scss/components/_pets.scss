@@ -8,11 +8,6 @@
 
         &.section__fade--in{
             @include flexbox(flex, column, nowrap, center, center);
-    
-            @media (min-width: $bp-laptop) {
-                flex-direction: row;
-                justify-content: space-evenly;
-            }
         }
 
         .img__empty__area {
@@ -28,10 +23,12 @@
     .section__pets {
         width: 100%;
 
-        @media (min-width: $bp-laptop) {
-            @include flexbox(flex, row, wrap, center, flex-start);
+        &.section__fade--in {
+            @media (min-width: $bp-laptop) {
+                @include flexbox(flex, row, wrap, center, flex-start);
+            }
         }
-
+        
         .container__cards {
             &.section__fade--in{
                 @include flexbox(flex, row, wrap, space-between, center);

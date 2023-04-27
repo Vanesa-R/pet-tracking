@@ -1,23 +1,34 @@
 // Firebase
 import { onAuthStateChanged } from "firebase/auth";
-
+import { getDoc } from "firebase/firestore";
 
 // Variables DOM
 let btnInteraction = document.querySelectorAll(".header .interaction .btn");
 let btnMenuMobile = document.querySelector(".icon__menu");
+let greeting = document.querySelector(".greeting");
 let informationAppLoggedOut = document.querySelector(".information__app");
 let informationAppLoggedIn = document.querySelector(".information__pets");
-
 let page51 = document.querySelectorAll(".page-51");
 let warningPage51 = document.querySelectorAll(".private__area__warning");
 let linksModal = document.querySelectorAll(".private__area__warning .link");
 
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
 
     // Usuario conectado
     if (user) {
 
+        // Saludo
+        const userRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(userRef);
+        if (docSnap.exists()) {
+            let data = docSnap.data();
+            for (let i in data){
+                greeting.textContent = (data[i].nombre) && `Hola, ${data[i].nombre}`
+            }
+        }
+    
+    
         btnInteraction.forEach(btn => {
 
             (btn.classList.contains("user__logged--out")) && btn.classList.remove("btn--enabled");
@@ -57,6 +68,8 @@ onAuthStateChanged(auth, (user) => {
 
     // Usuario desconectado - Invitado
     } else {
+
+        greeting.textContent = ``;
 
         rotateImages()
 
