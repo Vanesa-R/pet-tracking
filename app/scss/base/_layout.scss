@@ -6,22 +6,24 @@ body {
     padding     : 1em;
     font-size   : 20px;
 
-    &::before,
-    &::after {
-        position: absolute;
-    }
-
-    &::before {
-        content: "";
-        top: -30px;
-        left: -20px;
-        z-index: -10;
-        width: 150px;
-        height: 100px;
-        background: linear-gradient(120deg, $sunglow-200, $sunglow-100);
-        border-radius: 50%;
-        border: 5px solid $white;
-        outline: 3px solid $sunglow-100;
+    &:not(.page__error){
+        &::before,
+        &::after {
+            position: absolute;
+        }
+    
+        &::before {
+            content: "";
+            top: -30px;
+            left: -20px;
+            z-index: -10;
+            width: 150px;
+            height: 100px;
+            background: linear-gradient(120deg, $sunglow-200, $sunglow-100);
+            border-radius: 50%;
+            border: 5px solid $white;
+            outline: 3px solid $sunglow-100;
+        }
     }
 
     .main {

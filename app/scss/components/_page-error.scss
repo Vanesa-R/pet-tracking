@@ -1,0 +1,55 @@
+.page__error {
+    @include flexbox(flex, column, nowrap, center, center);
+    background-color:  $sunglow-100--t;
+
+    @media (min-width: $bp-tablet) {
+        flex-direction  : row;
+    }
+
+    .title__error {
+        @include flexbox(flex, column, nowrap, center, center);
+
+        @media (min-width: $bp-tablet) {
+            margin-right: 2em;
+        }
+        
+        .title {
+            padding-bottom  : 0;
+            font-size       : 10em;
+            letter-spacing  : -8px;
+            color           : $grey-300;
+            text-shadow     : $amethyst-100 -5px -3px 0px;
+    
+           span {
+            display: inline-block;
+    
+            &.span--first {
+                transform: rotate(-10deg);
+            }
+    
+            &.span--last {
+                transform: rotate(10deg);
+            }
+
+            &:not(.span--first, .span--last){
+                position: relative;
+            }
+           }
+        }
+
+
+        .subtitle {
+            color           : $grey-200;
+            margin-bottom: 2em;
+
+        }
+
+        .btn {
+            @include btn--primary;
+            display         : inline-flex;
+            text-decoration : none;
+            margin-top      : 1em;
+        }
+    }
+
+}
