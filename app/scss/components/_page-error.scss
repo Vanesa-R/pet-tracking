@@ -12,7 +12,7 @@
         @media (min-width: $bp-tablet) {
             margin-right: 2em;
         }
-        
+
         .title {
             padding-bottom  : 0;
             font-size       : 10em;
@@ -48,7 +48,8 @@
             @include btn--primary;
             display         : inline-flex;
             text-decoration : none;
-            margin-top      : 1em;
+            margin-top      : 1.5em;
+            margin-bottom   : 2em;
         }
     }
 
