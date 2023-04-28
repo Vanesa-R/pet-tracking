@@ -16,8 +16,15 @@ block introductionLoggedIn
   div.information__pets.section--hidden  
     div.section__pets.section--hidden
       section.container__cards
+      
+      section.section__pet__info
+        div.pet__info
+        +calendar
+        p.link.pet__info--delete
+          | 
+          img(src="assets/icons/icon-trash.png", alt="Eliminar mascota") 
+          | Eliminar mascota
 
-      +calendar
     
     div.section__pets--empty.section--hidden
       p.paragraph.onomatopoeia.--light

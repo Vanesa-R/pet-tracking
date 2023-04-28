@@ -6,6 +6,7 @@ import { getDownloadURL } from "firebase/storage";
 let sectionEmpty = document.querySelector(".information__pets .section__pets--empty");
 let section = document.querySelector(".information__pets .section__pets .container__cards");
 let infoPet = document.querySelector(".pet__info");
+let deleteInfo = document.querySelector(".pet__info--delete");
 let icons = document.querySelectorAll(".calendar__header__interaction .icon");
 
 // Variables y arrays
@@ -54,10 +55,11 @@ const showPets = async (userId) => {
             
             querySnap.forEach((doc) => {
                 let data = doc.data();
+
                 for (let i in data){
                     
                     if (cardPet === data[i].mascota.nombre){
-
+                        
                         card.addEventListener("click", (e) => {
                             section.classList.replace("section__fade--in", "section--hidden");
                             infoPet.parentNode.classList.add("section__fade--in")
@@ -97,7 +99,15 @@ const showPets = async (userId) => {
                             })
 
                             printTask();
+
+                            // Eliminar mascota
+                            deleteInfo.addEventListener("click", (e) => {
+                                (data[i].mascota.avatar) && deleteImageStorage(data[i].mascota.avatar)
+                                deletePetDDBB(doc.id)
+                                setTimeout(() => location.reload(), 1000)
+                            })
                         })
+
                     }   
                 }
             });
@@ -186,7 +196,7 @@ const printDataBasicPet = (el, avatarPet, typePet, namePet) => {
     el.appendChild(name)
 }
 
-// Posibilidad de modificar el avatar por defecto
+// Modificar el avatar por defecto
 const setAvatar = (el, idPet, avatarPet) => {
 
     if (!avatarPet){
