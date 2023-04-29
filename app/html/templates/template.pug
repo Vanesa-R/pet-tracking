@@ -28,6 +28,7 @@ html(lang="es")
       nav.menu__primary.section--hidden
         ul.menu__items(role="menu")
           li.list__menu__item(role="menuitem"): a.link(href="./agregar-mascota.html") Registrar mascota
+          li.list__menu__item(role="menuitem"): p.link.delete__count Eliminar cuenta
           li.list__menu__item(role="menuitem"): button.interaction__logout.btn.btn--primary.user__logged--in(aria-label="Cerrar sesión") Cerrar sesión
 
       p.greeting.paragraph   
@@ -63,7 +64,20 @@ html(lang="es")
               button.btn.btn__rrss.btn--google
                 img(src="assets/icons/icon-google.png" alt="Acceder con Google")
                 span.btn__text Accede con Google
-                    
+        
+        div.modal.modal__reauthenticate
+          form.form.form__reauthenticate
+            img(src="assets/icons/icon-close.png" alt="Cerrar modal" class="icon icon__close")
+            p.paragraph Escribe tu contraseña y confirma que quieres eliminar tu cuenta de manera permanente.
+
+            div.form__reauthenticate--password
+              +input-password("password__reauthenticate", "Contraseña", "password", "assets/icons/icon-eye-close.png", "Mostrar contraseña")
+              button.btn__submit.btn__submit--reauthenticate.btn--primary(disabled) Eliminar cuenta
+
+        div.modal.modal__deleteAccount
+          p.paragraph La cuenta ha sido eliminada.
+          p.title__body--bold ¡Lamentamos que te vayas!
+
         div.modal.modal__register
           form.form.form__register
             img.icon.icon__close(src="assets/icons/icon-close.png" alt="Cerrar modal de registro")

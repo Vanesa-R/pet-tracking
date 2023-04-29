@@ -76,25 +76,21 @@
             @media (min-width: $bp-laptop) {
                 display         : flex;
                 justify-content : flex-start;
+                gap             : 12px;
             }
 
             .list__menu__item {
                 @include link-basic;
                 font-size: 20px;
-    
+                padding-bottom: 32px;
+                
                 @media (min-width: $bp-laptop) {
-                   font-size: 16px;
-                }
-    
-                &:first-of-type {
-                    padding-bottom: 32px;
-
-                    @media (min-width: $bp-laptop) {
-                        padding-bottom: 0;
-                    }
+                    font-size: 16px;
+                    padding-bottom: 0;
                 }
 
                 &:last-of-type {
+                    padding-bottom: 0;
                     @media (min-width: $bp-laptop) {
                         display: none;
                     }
@@ -102,6 +98,12 @@
     
                 .link {
                     text-decoration: none;
+                    color: $amethyst-400;
+
+                    @media (min-width: $bp-laptop) {
+                        @include link-login;
+                    }
+                    
                 }
 
 

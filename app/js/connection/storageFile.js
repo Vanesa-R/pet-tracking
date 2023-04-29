@@ -1,4 +1,4 @@
-import { deleteObject } from "firebase/storage"
+import { deleteObject, ref, uploadBytes } from "firebase/storage"
 
 // Almacenar imagen en Firestore Storage
 const newImageStorage = (avatar, fileAvatar) => {
@@ -16,5 +16,4 @@ const deleteImageStorage = (avatar) => {
     deleteObject(desertRef)
     .then(() => console.log("Imagen eliminada"))
     .catch(error => console.log(error))
-
 }
