@@ -91,6 +91,7 @@ const validateForm = (e) => {
 
         case "password__register":
         case "password__login":
+        case "password__reauthenticate":
             validateInput(regExpres.password, e.target.value, e.target, "password", "La contraseña no cumple con los requisitos")
             break;
 
@@ -123,6 +124,10 @@ const validateForm = (e) => {
             } else {
                 document.querySelector(".form__register--create .btn__submit").setAttribute("disabled", "disabled")
             }
+        }
+
+        if (form.classList.contains("form__reauthenticate")){
+            (isValidateInput.password) ? document.querySelector(".btn__submit--reauthenticate").removeAttribute("disabled") : document.querySelector(".btn__submit--reauthenticate").setAttribute("disabled", "disabled");
         }
     })
 }

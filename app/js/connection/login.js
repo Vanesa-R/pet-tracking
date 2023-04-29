@@ -1,8 +1,8 @@
 // Firebase 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 
-// Evento submit sobre formulario de login y registro
+// Evento submit sobre formularios de login y registro
 forms.forEach(form => {
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -19,7 +19,7 @@ forms.forEach(form => {
             .then(() => {
                 const userId = auth.currentUser.uid;
                 newUserDDBB(userId, name, email.value);
-                closeModal();
+                setTimeout(() => closeModal(), 500)
             })
             .catch((error) => {
                 if (error.code == "auth/email-already-in-use"){
@@ -38,23 +38,15 @@ forms.forEach(form => {
             let email = document.querySelector("#email__login");
             let password = document.querySelector("#password__login");
             let btnSubmit = document.querySelector(".btn__submit--login");
+
             signInWithEmailAndPassword(auth, email.value, password.value)
             .then((userCredential) => {
               closeModal();
             })
             .catch((error) => {
                 btnSubmit.setAttribute("disabled", "disabled");
-                if (error.code == "auth/user-not-found"){
-                    email.nextElementSibling.textContent = "La dirección de correo introducida no está asociada a ninguna cuenta"
-                } else {
-                    email.nextElementSibling.textContent = "";
-                }
-
-                if (error.code == "auth/wrong-password"){
-                    password.nextElementSibling.textContent = "La contraseña es incorrecta"
-                } else {
-                    password.nextElementSibling.textContent = ""
-                }
+                userNotFound(error, email);
+                passwordWrong(error, password);
             });
         }
     })
@@ -71,11 +63,9 @@ btnGoogle.addEventListener("click", () => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const user = result.user;
         newUserDDBB(user.uid, user.displayName, user.email);
-        closeModal();
+        setTimeout(() => closeModal(), 500)
 
-    }).catch((error) => {
-      console.log(error.message)
-    });
+    }).catch((error) => console.log(error.message));
 })
 
 
@@ -90,11 +80,25 @@ linkPassword.addEventListener("click", () => {
         email.nextElementSibling.textContent = "";
       })
       .catch((error) => {
-        if (email.value === "") {
-            email.nextElementSibling.textContent = "El campo email no puede estar vacío"
-        } else if (error.code == "auth/user-not-found"){
-            email.nextElementSibling.textContent = "La dirección de correo introducida no está asociada a ninguna cuenta"
-        }
-       
+        email.nextElementSibling.textContent = (email.value === "") && "El campo email no puede estar vacío";
+        userNotFound(error, email)
       });
 })
+
+
+// Errores acceso
+const userNotFound = (error, el) => {
+    if (error.code == "auth/user-not-found"){
+        el.nextElementSibling.textContent = "La dirección de correo introducida no está asociada a ninguna cuenta"
+    } else {
+        el.nextElementSibling.textContent = "";
+    }
+}
+
+const passwordWrong = (error, el) => {
+    if (error.code == "auth/wrong-password"){
+        el.nextElementSibling.textContent = "La contraseña es incorrecta"
+    } else {
+        el.nextElementSibling.textContent = ""
+    }
+}

@@ -74,7 +74,8 @@ const showPets = async (userId) => {
                                 icon.addEventListener("click", (e) => {
                                     let days = document.querySelectorAll(".day");
                                     days.forEach(day => day.remove())
-                                    
+                                    infoTask.childNodes.forEach(el => el.remove())
+
                                     if (icon.classList.contains("icon__prev")){
                                         currentMonth--
                             
@@ -94,7 +95,7 @@ const showPets = async (userId) => {
                                         printCalendar()
                                         printTaskCalendar(data[i].fecha_alta, data[i].mascota.tipo, data[i].mascota.tareas, data[i].mascota.temporalizacion, hygiene)         
                                         printTask();                   
-                                    }, 150)
+                                    }, 200)
                                 })
                             })
 
@@ -157,12 +158,12 @@ const printTask = () => {
                     infoTask.appendChild(span)
                 }
             } else {
-                // for (let i in day.dataset){
-                //     let item = document.createElement("li");
-                //     item.classList.add("text", `${(hygiene.includes(`${day.dataset[i]}`)) ? "--hygiene__task" : "--cleaning__task"}`)
-                //     item.textContent = `${day.dataset[i]}`
-                //     infoTask.appendChild(item)
-                // }
+                for (let i in day.dataset){
+                    let item = document.createElement("li");
+                    item.classList.add("text", `${(hygiene.includes(`${day.dataset[i]}`)) ? "--hygiene__task" : "--cleaning__task"}`)
+                    item.textContent = `${day.dataset[i]}`
+                    infoTask.appendChild(item)
+                }
             }
         }
     })

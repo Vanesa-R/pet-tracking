@@ -4,6 +4,11 @@
     min-width   : 335px;
     overflow    : hidden;
 
+    @media (min-width: $bp-tablet) {
+        min-width: 450px;
+        max-width: 450px;
+    }
+
     
     .form__pet__tab {
         position        : relative;
@@ -24,8 +29,13 @@
         }
 
         .fieldset {
-            width: 100%;
+            min-width   : 335px;
             padding : 0;
+
+            @media (min-width: $bp-tablet) {
+                min-width: 425px;
+                max-width: 425px;
+            }
             
             .legend {
                 width: 100%;
