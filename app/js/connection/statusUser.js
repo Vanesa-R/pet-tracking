@@ -34,7 +34,7 @@ onAuthStateChanged(auth, async (user) => {
             (btn.classList.contains("user__logged--out")) && btn.classList.remove("btn--enabled");
     
             if (btn.classList.contains("user__logged--in")) {
-                if (window.outerWidth >= 768){
+                if (window.outerWidth >= 1024){
                     btn.classList.add("btn--enabled")
                     btnMenuMobile.classList.remove("btn--enabled");
                 } else {
@@ -42,7 +42,7 @@ onAuthStateChanged(auth, async (user) => {
                 }
 
                 window.addEventListener("resize", () => {
-                    (window.innerWidth >= 768)  ? btn.classList.add("btn--enabled") : btn.classList.remove("btn--enabled");
+                    (window.innerWidth >= 1024)  ? btn.classList.add("btn--enabled") : btn.classList.remove("btn--enabled");
                 })
             }
         })

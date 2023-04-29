@@ -30,14 +30,16 @@
 
     .greeting {
         position: absolute;
-        right   : 60px;
-
-        @media (min-width: $bp-tablet) {
-            right   : 140px;
-        }
+        left    : 0;
+        z-index : 20;
+        opacity : 0;
+        transition: ease 1s all;
 
         @media (min-width: $bp-laptop) {
+            display : flex;
             right   : 200px;
+            left    : initial;
+            opacity : 1;
         }
     }
 
@@ -50,17 +52,14 @@
         clip-path       : circle(0 at 0% 0);
         transition      : ease 1s all;
         
-        @media (min-width: $bp-tablet) {
+
+        @media (min-width: $bp-laptop) {
             position    : relative;
             width       : 70%;
             left        : 50px;
             height      : auto;
             background  : none;
             clip-path   : none;
-        }
-
-        @media (min-width: $bp-laptop) {
-            width: 75%;
         }
 
         @media (min-width: $bp-desktop) {
@@ -74,7 +73,7 @@
         .menu__items {
             display: none;
 
-            @media (min-width: $bp-tablet) {
+            @media (min-width: $bp-laptop) {
                 display         : flex;
                 justify-content : flex-start;
             }
@@ -83,20 +82,20 @@
                 @include link-basic;
                 font-size: 20px;
     
-                @media (min-width: $bp-tablet) {
+                @media (min-width: $bp-laptop) {
                    font-size: 16px;
                 }
     
                 &:first-of-type {
                     padding-bottom: 32px;
 
-                    @media (min-width: $bp-tablet) {
+                    @media (min-width: $bp-laptop) {
                         padding-bottom: 0;
                     }
                 }
 
                 &:last-of-type {
-                    @media (min-width: $bp-tablet) {
+                    @media (min-width: $bp-laptop) {
                         display: none;
                     }
                 }
@@ -112,13 +111,13 @@
         /* Elementos activados del menú*/
         &.menu--active {
             @include flexbox(flex, row, nowrap, center, center);
-            clip-path       : circle(100% at 100%);
+            clip-path       : circle(120% at 100%);
             z-index         : 20;
             .menu__items {
                 @include flexbox(flex, column, nowrap, center, center);
                 list-style      : none;
     
-                @media (min-width: $bp-tablet) {
+                @media (min-width: $bp-laptop) {
                     position    : absolute;
                     right       : 20px;
                 }
@@ -128,12 +127,16 @@
                         @include btn-basic;
                         @include btn--secondary;
     
-                        @media (min-width: $bp-tablet) {
+                        @media (min-width: $bp-laptop) {
                             display: none;
                         }
                     }
                 }
             }
+        }
+
+        &.menu--active + .greeting {
+            opacity: 1;
         }
 
     }
@@ -207,7 +210,7 @@
                 }
             }
 
-            @media (min-width: $bp-tablet) {
+            @media (min-width: $bp-laptop) {
                 display: none;
             }
         }

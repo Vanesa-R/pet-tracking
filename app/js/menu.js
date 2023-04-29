@@ -6,7 +6,7 @@ const btnLogout = document.querySelector(".interaction .interaction__logout")
 
 // Expandir menú de navegación
 btnMenu.addEventListener("click", () => {
-    if (window.innerWidth <= 768){
+    if (window.innerWidth <= 1024){
         menu.classList.toggle("menu--active");
         btnMenu.classList.toggle("icon--active");
         (menu.classList.contains("menu--active")) ? btnMenu.setAttribute("aria-expanded", "true") : btnMenu.setAttribute("aria-expanded", "false");
@@ -18,6 +18,6 @@ btnMenu.addEventListener("click", () => {
 
 const showIconMenu = () => {
     window.addEventListener("resize", () => {
-        (window.innerWidth >= 768)  ? btnMenu.classList.remove("btn--enabled") : btnMenu.classList.add("btn--enabled");
+        (window.innerWidth >= 1024)  ? btnMenu.classList.remove("btn--enabled") : btnMenu.classList.add("btn--enabled");
     })
 }

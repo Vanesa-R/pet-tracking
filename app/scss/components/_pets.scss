@@ -34,7 +34,7 @@
                 @include flexbox(flex, row, wrap, space-between, center);
                 width: 100%;
 
-                @media (min-width: $bp-laptop) {
+                @media (min-width: $bp-tablet) {
                     justify-content: flex-start;
                     gap: 16px;
                 }
@@ -54,6 +54,10 @@
     
                 &:nth-of-type(even){
                     margin-left: 8px;
+                }
+
+                @media (min-width: $bp-tablet) {
+                    width: calc(33% - 12px);
                 }
 
                 @media (min-width: $bp-laptop) {
