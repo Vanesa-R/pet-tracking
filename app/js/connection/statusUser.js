@@ -40,6 +40,10 @@ onAuthStateChanged(auth, async (user) => {
                 } else {
                     btnMenuMobile.classList.add("btn--enabled");
                 }
+
+                window.addEventListener("resize", () => {
+                    (window.innerWidth >= 768)  ? btn.classList.add("btn--enabled") : btn.classList.remove("btn--enabled");
+                })
             }
         })
 

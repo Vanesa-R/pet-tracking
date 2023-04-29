@@ -222,10 +222,8 @@
                 display: none;
 
                 &.btn--enabled {
-                    @media (min-width: $bp-tablet) {
-                        display: inline-flex;
-                        margin-right: 0;
-                    }
+                    display: inline-flex;
+                    margin-right: 0;
                 }
             }
 
