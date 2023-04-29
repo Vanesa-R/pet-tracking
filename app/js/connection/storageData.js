@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, deleteDoc } from "firebase/firestore";
 
 // Almacenar nuevo usuario en la base de datos
 const newUserDDBB = (userId, name, email) => {
@@ -40,4 +40,8 @@ const updatePetDDBB = (idPet, avatar) => {
     }, {
         merge: true
     })
+}
+
+const deletePetDDBB = (idPet) => {
+    deleteDoc(doc(db, "pets", idPet));
 }

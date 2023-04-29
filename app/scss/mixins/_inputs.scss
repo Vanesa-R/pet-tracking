@@ -25,7 +25,7 @@
         border-radius   : 8px;
 
         &.validate--error {
-            border: 1px solid $error;
+            border: 1px solid $alert;
         }
 
         &:focus, &:active {
@@ -38,7 +38,7 @@
         padding-left: 16px;
         font-size   : $font-size-1;
         line-height : 20px;
-        color       : $error;
+        color       : $alert;
     }
 }
 

@@ -131,5 +131,30 @@
                 border-radius   : 50%;
             }
         }
+
+        .pet__info--delete {
+            @include link-basic;
+            @include flexbox(flex, row, nowrap, center, center);
+            @include btn--secondary;
+            color: $alert;
+            
+            img {
+                margin-right: 8px;
+                filter: invert(58%) sepia(53%) saturate(5327%) hue-rotate(328deg) brightness(104%) contrast(105%);
+            }
+
+            @media (hover: hover) {
+                &:hover {
+                   color: #CC4747;
+    
+                   img {
+                    filter: invert(35%) sepia(68%) saturate(848%) hue-rotate(323deg) brightness(99%) contrast(82%);
+    
+                   }
+                }
+            }
+        }
+
+       
     }
 }
