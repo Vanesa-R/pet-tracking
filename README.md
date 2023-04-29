@@ -1,7 +1,7 @@
 # Pet Tracking
 
 <p align="center">
-  <img src="assets/logotipo.png" width="160" >
+  <img src="assets/images/logotipo.png" width="160" >
 </p>
 
 ## Índice
@@ -14,7 +14,7 @@
 
 ### Lenguajes y herramientas
 <p align="left">
-  <img src="assets/stack_tecnologico.png" width="300" >
+  <img src="assets/images/stack_tecnologico.png" width="300" >
 </p>
 
 ### Guía de estilos
@@ -27,7 +27,7 @@ Documento user
 {
   "datos_personales" :  [
     {
-      "email" : "pruebas***v2@***.com"
+      "email" : "*******2@***.com"
       "nombre" : "Vanesa"
     }
    ]
