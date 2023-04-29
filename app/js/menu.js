@@ -18,16 +18,6 @@ btnMenu.addEventListener("click", () => {
 
 const showIconMenu = () => {
     window.addEventListener("resize", () => {
-        if (window.innerWidth >= 768){
-            btnMenu.classList.remove("btn--enabled")
-            if (btnLogout.classList.contains("btn--enabled")){
-                btnLogout.style.display = "inline-flex"
-            }
-        } else {
-            btnMenu.classList.add("btn--enabled")
-            if (btnLogout.classList.contains("btn--enabled")){
-                btnLogout.style.display = "none"
-            }
-        }
+        (window.innerWidth >= 768)  ? btnMenu.classList.remove("btn--enabled") : btnMenu.classList.add("btn--enabled");
     })
 }

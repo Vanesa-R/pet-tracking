@@ -10,7 +10,7 @@ const newImageStorage = (avatar, fileAvatar) => {
     .catch(error => console.log(error))
 }
 
-
+// Eliminar imagen de Firestore Storage
 const deleteImageStorage = (avatar) => {
     const desertRef = ref(storage, `${avatar}`);
     deleteObject(desertRef)
