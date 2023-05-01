@@ -1,5 +1,3 @@
-import { ref, uploadBytes } from "firebase/storage";
-
 const formPet = async (userId) => {
 
     // DOM

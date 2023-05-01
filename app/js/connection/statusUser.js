@@ -69,6 +69,8 @@ onAuthStateChanged(auth, async (user) => {
 
         showIconMenu();
 
+        deleteUserAccount(user);
+
 
     // Usuario desconectado - Invitado
     } else {
