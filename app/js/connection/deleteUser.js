@@ -40,16 +40,16 @@ const deleteUserAccount  = (user) => {
                 .then((result) => {
                     const user = result.user;
                     const credential = GoogleAuthProvider.credentialFromResult(result);
-                    deleteUser(user)                    
+                    deleteUserDDBB(user.uid)                    
                     setTimeout(() => {
                         modalLogin.classList.replace("modal__container", "modal__container--active")
                         formReauthenticate.nextElementSibling.classList.add("modal--active");
-                    }, 150)
+                    }, 500)
 
                     setTimeout(() => {
                         modalLogin.classList.replace("modal__container--active", "modal__container")
                         formReauthenticate.nextElementSibling.classList.remove("modal--active");
-                    }, 2000)
+                    }, 2500)
                 }).catch(error => console.log(error.message));
     
 
@@ -69,16 +69,17 @@ const deleteUserAccount  = (user) => {
                     )
                     reauthenticateWithCredential(user, credential)
                     .then(() => {
-                        deleteUser(user)
+                        deleteUserDDBB(user.uid)
+
                         setTimeout(() => {
                             formReauthenticate.classList.remove("modal--active");
                             formReauthenticate.nextElementSibling.classList.add("modal--active");
-                        }, 150)
+                        }, 500)
 
                         setTimeout(() => {
                             modalLogin.classList.replace("modal__container--active", "modal__container")
                             formReauthenticate.nextElementSibling.classList.remove("modal--active");
-                        }, 2000)
+                        }, 2500)
                     })
                     .catch((error) => passwordWrong(error, password))
                 })

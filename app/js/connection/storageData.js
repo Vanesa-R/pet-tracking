@@ -45,3 +45,7 @@ const updatePetDDBB = (idPet, avatar) => {
 const deletePetDDBB = (idPet) => {
     deleteDoc(doc(db, "pets", idPet));
 }
+
+const deleteUserDDBB = (user) => {
+    deleteDoc(doc(db, "users", user));
+}
