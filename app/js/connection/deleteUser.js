@@ -1,5 +1,5 @@
 // Firebase
-import { deleteUser, reauthenticateWithCredential, reauthenticateWithPopup, EmailAuthProvider  } from "firebase/auth";
+import { reauthenticateWithCredential, reauthenticateWithPopup, EmailAuthProvider  } from "firebase/auth";
 
 
 // DOM 
