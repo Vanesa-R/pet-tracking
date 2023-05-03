@@ -32,8 +32,12 @@ body {
         width               : 100%;
 
         @media (min-width: $bp-laptop) {
-           padding-inline   : 3em;
+           padding-inline   : 4em;
         }
+
+        @media (min-width: 1280px) {
+            padding-inline   : 6em;
+         }
     }
 
     .section--hidden {
@@ -57,10 +61,18 @@ body {
         }
     }
     
-    .subtitle {
+    .subtitle,
+    .pretitle {
         font-weight : 500;
         font-size   : 1.4em;
+    }
+    
+    .subtitle {
         color       : $amethyst-300;
+    }
+
+    .pretitle {
+        color       : $grey-300;
     }
     
     .title__body--bold {

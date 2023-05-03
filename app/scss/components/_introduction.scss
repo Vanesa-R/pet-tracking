@@ -7,8 +7,9 @@
         @include flexbox(flex, column, nowrap, center, center);
 
         @media (min-width: $bp-laptop) {
-            flex-direction: row;
-            justify-content: space-evenly;
+            flex-direction  : row;
+            flex-wrap       : wrap;
+            justify-content : space-between;
         }
     }
     
@@ -77,6 +78,38 @@
             background      : linear-gradient(100deg, $amethyst-200, $turquoise-100);
             border-radius   : 85% 75% 50%/ 50% 85% 75%;
             opacity         : .6;
+        }
+    }
+
+    .information__app__steps {
+        width: 100%;
+        margin-top: 4em;
+
+        @media (min-width: $bp-laptop) {
+            display : flex;
+            gap     : 40px;
+        }
+
+        .article {
+            margin-bottom: 2em;
+
+            @media (min-width: $bp-laptop) {
+                width: 33.33%;
+                margin-bottom: 6em;
+            }
+
+            .pretitle {
+                margin-top: .5em;
+                margin-bottom: .5em;
+            }
+
+            .paragraph {
+                color: $grey-300;
+                @media (min-width: $bp-laptop) {
+                    font-size: .8em;
+                    
+                }
+            }
         }
     }
 }

@@ -89,10 +89,14 @@ const printTaskCalendar = (registrationDay, typePet, myTask, myTiming, arrHygien
     let className;
 
     const setEndLoop = {
+        "tortuga": endLoop + 30,
         "perro": endLoop + 15,
         "gato": endLoop + 15,
         "ave": endLoop + 10,
-        "tortuga": endLoop + 30
+        "conejo": endLoop + 10,
+        "pez": endLoop + 5,
+        "cobaya": endLoop + 5,
+        "hamster": endLoop + 5
     }
 
     endLoop = setEndLoop[typePet];
