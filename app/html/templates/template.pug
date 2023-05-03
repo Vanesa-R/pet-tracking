@@ -5,7 +5,6 @@ html(lang="es")
   head
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(http-equiv="Permissions-Policy", content="interest-cohort=()")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Pet Tracking
     link(rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="css/base/normalize.min.css")
@@ -26,7 +25,7 @@ html(lang="es")
       a.logo(href="/pet-tracking" title="Pet Tracking" aria-label="Ir a la página de inicio")
         img(src="assets/images/logo.png" alt="Ir a la página de inicio")
 
-      nav.menu__primary.section--hidden
+      nav#menu__primary.menu__primary.section--hidden
         ul.menu__items(role="menu")
           li.list__menu__item(role="menuitem"): a.link(href="./agregar-mascota.html") Registrar mascota
           li.list__menu__item(role="menuitem"): p.link.delete__count Eliminar cuenta
@@ -47,7 +46,7 @@ html(lang="es")
     main.main
         
       //- Modales login y registro
-      section.modal__container
+      div.modal__container
         div.modal.modal__login
           form.form.form__login
             img(src="assets/icons/icon-close.png" alt="Cerrar modal de acceso" class="icon icon__close")
