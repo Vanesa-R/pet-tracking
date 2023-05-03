@@ -182,11 +182,14 @@ const printDataBasicPet = (el, avatarPet, typePet, namePet) => {
         getDownloadURL(pathReference)
         .then((url) => {
             avatar.setAttribute('src', `${url}`);
+            
         })
         .catch(error => console.log(error));
     } else {
         avatar.setAttribute("src", `assets/images/avatars/avatar-${typePet}.png`);
     }
+
+    avatar.setAttribute("alt", `Avatar de ${namePet}`)
 
     let name = document.createElement("h3");
     name.classList.add("card__title", "title__body--bold");
