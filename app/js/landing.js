@@ -5,6 +5,6 @@ const rotateImages = () => {
     let img = document.querySelector(".information__app__img img");
     setInterval(() => {
         let imgRandom = Math.round(Math.random()* (5-1)+1); 
-        img.setAttribute("src",`assets/images/decoratives/pets${imgRandom}.png`)
+        img.setAttribute("src",`assets/images/decoratives/pets${imgRandom}.webp`)
     }, 5000)
 }

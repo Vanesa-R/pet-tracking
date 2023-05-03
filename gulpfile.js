@@ -90,10 +90,4 @@ const images = done => {
 
 
 
-//Borrar ficheros no definitivos de la carpeta dist
-// gulp.task("clean", function(){
-//     return del("dist");
-// });
-
-
-exports.package = series(parallel(html, css), images)
+exports.package = series(parallel(html, css, js, bundle), images)
