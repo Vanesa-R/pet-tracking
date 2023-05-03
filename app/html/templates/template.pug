@@ -50,7 +50,7 @@ html(lang="es")
         div.modal.modal__login
           form.form.form__login
             img(src="assets/icons/icon-close.png" alt="Cerrar modal de acceso" class="icon icon__close")
-            img(src="assets/images/logotipo.png" alt="Logotipo" class="form__logotipo")
+            img(src="assets/images/logotipo.png" alt="Logotipo" class="form__logotipo" loading="lazy")
                   
             div.form__login--withEmail
               +input-required("email__login", "Email", "email")
@@ -81,7 +81,7 @@ html(lang="es")
         div.modal.modal__register
           form.form.form__register
             img.icon.icon__close(src="assets/icons/icon-close.png" alt="Cerrar modal de registro")
-            img.form__logotipo(src="assets/images/logotipo.png" alt="Logotipo")
+            img.form__logotipo(src="assets/images/logotipo.png" alt="Logotipo" loading="lazy")
             
             div.form__register--create
               +input-group("user__name", "Nombre", "text")
