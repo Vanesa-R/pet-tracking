@@ -192,18 +192,37 @@ const formPet = async (userId) => {
                 hygiene.push("Baño", "Cepillado", "Corte de pelo", "Corte de uñas", "Limpieza de oidos", "Limpieza de ojos", "Limpieza dental");
                 cleaning.push("Cama", "Comedero", "Bebedero", "Juguetes", "Collar")
                 break;
+
             case "gato":
                 hygiene.push("Baño", "Cepillado", "Corte de pelo", "Corte de uñas", "Limpieza de oidos", "Limpieza de ojos", "Limpieza dental");
                 cleaning.push("Cama", "Arenero", "Rascador", "Comedero", "Bebedero", "Juguetes", "Collar")
                 break;
+
             case "ave":
                 hygiene.push("Corte de uñas");
                 cleaning.push("Jaula", "Comedero", "Bebedero");
                 break;
+
             case "tortuga":
                 hygiene.push("Baño");
                 cleaning.push("Terrario", "Acuario", "Comedero", "Bebedero");
                 break;
+
+            case "pez":
+                cleaning.push("Acuario", "Pecera");
+                break;
+
+            case "conejo":
+            case "cobaya":
+                hygiene.push("Cepillado", "Corte de pelo", "Corte de uñas", "Limpieza de oidos", "Limpieza de ojos");
+                cleaning.push("Jaula", "Cama", "Comedero", "Bebedero", "Juguetes")
+                break;
+
+            case "hamster":
+                hygiene.push("Cepillado");
+                cleaning.push("Jaula", "Casa", "Comedero", "Bebedero", "Rueda ejercicio", "Juguetes")
+                break;
+            
         }
 
         details.forEach(detail => {
@@ -213,6 +232,10 @@ const formPet = async (userId) => {
                 for (let j in hygiene){
                     addTask(hygiene, j)
                     detail.appendChild(group)
+                }
+
+                if (hygiene.length == 0){
+                    detail.remove()
                 }
             } 
             

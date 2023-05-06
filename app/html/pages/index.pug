@@ -1,4 +1,5 @@
 extends ../templates/template
+include ../mixins/article
 include ../mixins/calendar
 
 
@@ -8,8 +9,14 @@ block introductionLoggedOut
     div.information__app__text
       h1.title Monitoriza el cuidado de tus mascotas
       p.paragraph ¡Planifica sus necesidades de manera simple y rápida! Solo tienes que identificarte, dar de alta a tu mascota y marcar las tareas sobre las que quieres realizar seguimiento: baño, corte de pelo, limpieza de juguetes…
+    
     div.information__app__img
       img(src="./assets/images/decoratives/pets1.webp" alt="Entra y mantén un seguimiento de todas las necesidades de tu mascota")
+    
+    div.information__app__steps
+      +article("./assets/images/pet.webp", "Pet", "Selecciona tu mascota", "Nuestro servicio permite gestionar tareas para perros, gatos, peces, aves, conejos, cobayas, hámsteres y tortugas.")
+      +article("./assets/images/task.webp", "Task", "Marca tareas", "Entre las tareas que podrás elegir se encuentran el baño; cepillado; corte de pelo y de uñas; limpieza de oídos, ojos y dental; limpieza de jaulas, camas, juguetes, collares, peceras, terrarios, y muchas más.")
+      +article("./assets/images/calendar.webp", "Calendar", "Elige cuándo", "Indica cada cuánto tiempo quieres realizar las tareas seleccionadas. Nosotros nos encargaremos de calcular los días en los que deberás llevar a cabo cada una de ellas.")
 
 
 block introductionLoggedIn
@@ -31,7 +38,7 @@ block introductionLoggedIn
         |
         em ¡Vaya!
       picture.img__empty__area
-        img(src="assets/images/status/empty.webp", alt="La sección de mascotas está vacía. Agrega a tu mascota", loading="lazy")
+        img(src="assets/images/states/empty.webp", alt="La sección de mascotas está vacía. Agrega a tu mascota", loading="lazy")
       p.paragraph.--light Parece que aún no has agregado a ninguna mascota a tu sección.
       p.paragraph ¡Puedes hacerlo ahora!
         |
