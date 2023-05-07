@@ -4,13 +4,12 @@
 const printYear = () => {
     let year = document.querySelector(".attribution__year")
     let yearCreate = document.querySelector(".attribution__year").dataset.create;
-    let yearActual = new Date().getFullYear();
+    let currentYear = new Date().getFullYear();
 
-    if (yearCreate == yearActual){
+    if (yearCreate == currentYear){
         year.textContent = yearCreate;
-    } else if (yearCreate <= yearActual){
-        year.textContent = `${yearCreate} - ${yearActual}`
+    } else if (yearCreate <= currentYear){
+        year.textContent = `${yearCreate} - ${currentYear}`
     }
-
 }
 printYear();

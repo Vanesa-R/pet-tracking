@@ -1,13 +1,16 @@
 .information__pets {
-    @extend .information__app;
     @extend .private__area__warning;
     width   : 100%;
 
+    @media (min-width: $bp-laptop) {
+        justify-content: center;
+    }
     .section__pets--empty {
         display: none;
 
         &.section__fade--in{
             @include flexbox(flex, column, nowrap, center, center);
+
         }
 
         .img__empty__area {
@@ -16,6 +19,11 @@
 
         .link {
             @include link-login;
+            font-weight: 400;
+            
+            @media (min-width: $bp-laptop) {
+                font-size: .9em;
+            }
         }
 
     }
