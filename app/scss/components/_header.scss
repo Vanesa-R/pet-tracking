@@ -8,15 +8,6 @@
         padding-right: 3em;
     }
 
-    &::before {
-        position    : absolute;
-        top         : 5px;
-        left        : -10px;
-        z-index     : -10;
-        content     : url(../assets/images/decoratives/footprint_2.webp);
-        transform   : rotate(-35deg);
-    }
-
     .logo {
         width   : 94px;
         height  : 40px;

@@ -62,6 +62,7 @@
                     label {
                         margin-bottom: 0;
                         font-size    : .8em;
+                        cursor       : pointer;
                     }
 
                     input[type="file"]{
@@ -103,6 +104,7 @@
                 border          : 1px solid $grey-100;
                 border-radius   : 8px;
                 margin-bottom   : 12px;
+                cursor          : pointer;
 
                 &[open]{
                     .summary__task {
@@ -192,9 +194,23 @@
             }
 
             .text--success {
-                margin-top: 1em;
-                text-align: center;
-                color     : $turquoise-400;
+                display         : none;
+                align-items     : center;
+                justify-content : center;
+                margin-top      : 1em;
+                padding         : .5em;
+                color           : $turquoise-400;
+                background-color: $turquoise-100;
+                border-radius   : 6px;
+                border: 1px solid $turquoise-200;
+
+                &.text--show {
+                    display: flex;
+                }
+                
+                .icon {
+                    margin-right: 10px;
+                }
             }
             
         }

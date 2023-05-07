@@ -7,7 +7,6 @@ let menuMobile = document.querySelector(".menu__primary");
 
 
 btnLogout.forEach(btn => {
-
     btn.addEventListener("click", (e) => {
         signOut(auth)
         .then(() => {
@@ -24,4 +23,3 @@ btnLogout.forEach(btn => {
         .catch((error) => console.log(error));
     })
 })
-

@@ -43,10 +43,14 @@ const formPet = async (userId) => {
         })
     }
 
-    if (activeTab < 0) {
+    const setActiveTab = () => {
         activeTab = 0;
         steps[activeTab].classList.add("tab--active")
         showActiveTab()
+    }
+    
+    if (activeTab < 0) {
+        setActiveTab()
     }
     
     
@@ -125,22 +129,25 @@ const formPet = async (userId) => {
 
 
             // Mostramos mensaje de éxito al usuario
-            success.textContent = "¡Mascota agregada con éxito!"
+            success.classList.add("text--show")
             
             // Limpiar datos del formulario y dejar de mostrar el mensaje de éxito
             setTimeout(() => {
-                success.textContent = "";
-                formPet.reset();
+                success.classList.remove("text--show")
                 mytask.length = 0;
                 myTiming.length = 0;
+                document.querySelectorAll(".message--error").forEach(error => error.textContent = "")
+                formPet.reset();
+                for (let i in isValidatePetInput){ isValidatePetInput[i] = false }
+                document.querySelectorAll(".btn__next").forEach(btn => btn.setAttribute("disabled", "disabled"))
+                document.querySelectorAll(".checkbox__group").forEach(checkbox => checkbox.remove())
                 dropZone.childNodes.forEach((el, i) => (i > 2) && el.remove())
-                document.querySelectorAll(".message--error").forEach(error => error.remove())
-            }, 1600)
+            }, 2800)
 
             // Llevar al primer paso del formulario
             setTimeout(() => {
-                steps.forEach((step, i) => (i === 0) && step.classList.add("tab--active"))
-            }, 1650)
+                setActiveTab()
+            }, 3000)
         }
 
         isValidatePetInput.typePet = (typePet !== "") ? true : false;
@@ -317,7 +324,6 @@ const formPet = async (userId) => {
             switch(activeTab){
                 case 0:
                     (e.target.type === "text") && validatePetInputs(e.target, "namePet", "Escribe el nombre de tu mascota");
-                    typePet = (e.target.type === "radio") && e.target.value;
                     (isValidatePetInput.namePet && isValidatePetInput.typePet) ? activeBTNNext.removeAttribute("disabled") : activeBTNNext.setAttribute("disabled", "disabled")
                     break;
                 

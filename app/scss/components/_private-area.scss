@@ -7,7 +7,7 @@
         text-align  : center;
 
         &.--light {
-            color : $grey-200;
+            color : $grey-300;
 
         }
 
@@ -15,10 +15,16 @@
             margin-bottom: 1em;
             font-size    : 1.5em;
             font-weight  : 600;
+            color        : $grey-200;
         }
 
         .link {
             color       : $amethyst-300;
+            @media (hover: hover){
+                &:hover {
+                    cursor  : pointer;
+                }
+            }
         }
     }
     .img__private__area {

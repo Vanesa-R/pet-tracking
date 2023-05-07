@@ -10,6 +10,12 @@ const newUserDDBB = (userId, name, email) => {
     })
 }
 
+// Eliminar usuario de base de datos
+const deleteUserDDBB = (user) => {
+    deleteDoc(doc(db, "users", user));
+}
+
+
 // Almacenar nueva mascota en la base de datos
 const newPetDDBB = (idPet, name, typePet, mytask, myTiming, date, userId) => {
     setDoc(doc(db, "pets", idPet), {
@@ -42,10 +48,9 @@ const updatePetDDBB = (idPet, avatar) => {
     })
 }
 
+
+// Eliminar mascota de base de datos
 const deletePetDDBB = (idPet) => {
     deleteDoc(doc(db, "pets", idPet));
 }
 
-const deleteUserDDBB = (user) => {
-    deleteDoc(doc(db, "users", user));
-}
