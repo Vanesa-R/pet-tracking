@@ -2,14 +2,15 @@
     display: none;
     height: 100%;
     padding-top: 2em;
+
     
-    &.section__fade--in{
+   &.section__fade--in{
         @include flexbox(flex, column, nowrap, center, center);
 
         @media (min-width: $bp-laptop) {
             flex-direction  : row;
             flex-wrap       : wrap;
-            justify-content : space-between;
+            justify-content: space-between;
         }
     }
     

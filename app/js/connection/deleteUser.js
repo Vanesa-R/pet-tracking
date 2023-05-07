@@ -40,6 +40,7 @@ const deleteUserAccount  = (user) => {
                 .then((result) => {
                     const user = result.user;
                     const credential = GoogleAuthProvider.credentialFromResult(result);
+                    deleteUser(user)
                     deleteUserDDBB(user.uid)                    
                     setTimeout(() => {
                         modalLogin.classList.replace("modal__container", "modal__container--active")
@@ -69,8 +70,8 @@ const deleteUserAccount  = (user) => {
                     )
                     reauthenticateWithCredential(user, credential)
                     .then(() => {
+                        deleteUser(user)
                         deleteUserDDBB(user.uid)
-
                         setTimeout(() => {
                             formReauthenticate.classList.remove("modal--active");
                             formReauthenticate.nextElementSibling.classList.add("modal--active");
@@ -86,6 +87,7 @@ const deleteUserAccount  = (user) => {
             }
            }
        }, 600)
+
        
     })
 }
