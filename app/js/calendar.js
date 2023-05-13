@@ -15,16 +15,16 @@ const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", 
 
 
 const printCalendar = () => {
-    let firstDayOfMonth = new Date(currentYear, currentMonth, 0).getDay(); // Día semana de 0 a 6 que es día 1
-    let lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate(); // Último día del mes 28, 29, 30, 31
-    let lastDayPreviousMonth = new Date(currentYear, currentMonth, 0).getDate(); // Último día del mes anterior 28, 29, 30, 31
-    let firstDayOfNextMonth = new Date(currentYear, currentMonth, lastDayOfMonth).getDay() // Primer día semana mes siguiente - de 0 a 6
+    let firstDayOfMonth = new Date(currentYear, currentMonth, 0).getDay(); // Día semana (entre 0 y 6) que es día 1; ej: si devuelve 0 el día 1 es lunes
+    let lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate(); // Último día del mes (28, 29, 30, 31)
+    let lastDayPreviousMonth = new Date(currentYear, currentMonth, 0).getDate(); // Último día del mes anterior (28, 29, 30, 31)
+    let firstDayOfNextMonth = new Date(currentYear, currentMonth, lastDayOfMonth).getDay() // Primer día semana mes siguiente (entre 0 a 6)
 
     // Pintar mes actual
     dateCalendar.textContent = `${months[currentMonth]} ${currentYear}`;
     
     // Pintar últimos días del mes anterior
-    for (let i = firstDayOfMonth; i > 0; i--){ // Posiciones que deben ocupar días previos de 0 a 6
+    for (let i = firstDayOfMonth; i > 0; i--){ // Posiciones que deben ocupar días previos (0-6)
         let day = document.createElement("li");
         day.classList.add("day", "text", "--light")
         day.textContent = `${lastDayPreviousMonth - i +1}`; // En dichas posiciones pintamos los últimos días del mes anterior
@@ -46,7 +46,7 @@ const printCalendar = () => {
         }
     }
     
-    // Printar primeros días del mes siguiente
+    // Pintar primeros días del mes siguiente
     if (firstDayOfNextMonth > 0){ // Si es 0 el día 1 comienza en lunes y no se mostrará en el mes
         for (let i = firstDayOfNextMonth; i < 7; i++){ // Posiciones del mes siguiente
             let day = document.createElement("li");
@@ -57,6 +57,7 @@ const printCalendar = () => {
     }
 }
 
+// Calcular fechas en las que se realizarán las tareas
 const calculateIntervalDates = (time) => {
     const miliseconds = 1000 * 60 * 60 * 24;    
     const setMyInterval = {
@@ -72,6 +73,7 @@ const calculateIntervalDates = (time) => {
 }
 
 
+// Mostrar las días con tareas en el calendario
 const printTaskCalendar = (registrationDay, typePet, myTask, myTiming, arrHygiene) => {
     
     let days = document.querySelectorAll(".day");

@@ -1,9 +1,8 @@
 /* SECCIÓN MENÚ NAVBAR */
 
 // Variables acceso DOM
-const header = document.querySelector(".header");
-const btnMenu = document.querySelector(".icon__menu");
 const menu = document.querySelector(".menu__primary");
+const btnMenu = document.querySelector(".icon__menu");
 const btnLogout = document.querySelector(".interaction .interaction__logout")
 
 

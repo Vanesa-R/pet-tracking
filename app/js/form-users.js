@@ -53,11 +53,10 @@ iconClose.forEach(icon => {
 })
 
 const closeModal = () => {
-    modalLogin.classList.add("modal__container");
-    modalLogin.classList.remove("modal__container--active");
+    modalLogin.classList.replace("modal__container--active", "modal__container")
     modalLogin.firstChild.classList.remove("modal--active");
     modalLogin.lastChild.classList.remove("modal--active");
-    location.reload()
+    resetForm()
 }
 
 
@@ -156,7 +155,9 @@ const validateInput = (expresion, value, input, check, text) => {
 // Limpiar valores de input
 const resetForm = () => {
     inputs.forEach(input => {
-       input.value = "";
+        input.classList.contains("validate--error") && input.classList.remove("validate--error");
+        input.value = "";
+        input.nextElementSibling.textContent = "";
     })
 
     for (let i in isValidateInput){

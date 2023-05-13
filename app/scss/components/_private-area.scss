@@ -19,6 +19,11 @@
 
         .link {
             color       : $amethyst-300;
+            @media (hover: hover){
+                &:hover {
+                    cursor  : pointer;
+                }
+            }
         }
     }
     .img__private__area {
