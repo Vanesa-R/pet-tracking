@@ -53,6 +53,7 @@ const formPet = async (userId) => {
     // Escucha en botones "Anterior", "Siguiente" y "Enviar"
     formPet.addEventListener("click", (e, user) => {
 
+        console.log(typePet)
         // Siguiente
         if (e.target.classList.contains("btn__next")){            
             e.preventDefault()
@@ -317,7 +318,6 @@ const formPet = async (userId) => {
             switch(activeTab){
                 case 0:
                     (e.target.type === "text") && validatePetInputs(e.target, "namePet", "Escribe el nombre de tu mascota");
-                    typePet = (e.target.type === "radio") && e.target.value;
                     (isValidatePetInput.namePet && isValidatePetInput.typePet) ? activeBTNNext.removeAttribute("disabled") : activeBTNNext.setAttribute("disabled", "disabled")
                     break;
                 
