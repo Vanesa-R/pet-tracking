@@ -53,7 +53,6 @@ const formPet = async (userId) => {
     // Escucha en botones "Anterior", "Siguiente" y "Enviar"
     formPet.addEventListener("click", (e, user) => {
 
-        console.log(typePet)
         // Siguiente
         if (e.target.classList.contains("btn__next")){            
             e.preventDefault()
@@ -140,7 +139,9 @@ const formPet = async (userId) => {
 
             // Llevar al primer paso del formulario
             setTimeout(() => {
-                steps.forEach((step, i) => (i === 0) && step.classList.add("tab--active"))
+                steps.forEach((step, i) => {
+                    (i === 0) ? step.classList.add("tab--active") : step.classList.remove("tab--active")
+                })
             }, 1650)
         }
 
