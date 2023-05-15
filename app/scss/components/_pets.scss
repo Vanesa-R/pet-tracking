@@ -54,7 +54,7 @@
                 padding         : 10px 16px;
                 text-align      : center;
                 border-radius   : 8px;
-                box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+                transition      : ease-in 250ms box-shadow;
     
                 &:nth-of-type(odd){
                     margin-right: 8px;
@@ -64,6 +64,11 @@
                     margin-left: 8px;
                 }
 
+                @media (hover: hover) {
+                    &:hover {
+                        box-shadow: rgba(131, 131, 141, 0.1) 0px 0px 10px;
+                    }
+                }
                 @media (min-width: $bp-tablet) {
                     width: calc(33% - 12px);
                 }
