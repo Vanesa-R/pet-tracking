@@ -37,7 +37,7 @@ const showPets = async (userId) => {
             for (let i in data){
                 let article = document.createElement("article");
                 article.classList.add("article", "card");
-                article.setAttribute("data-pet", `${data[i].mascota.nombre}`)
+                article.setAttribute("data-pet", `${doc.id}`)
                 cards.push(article);
 
                 printDataBasicPet(article, data[i].mascota.avatar, data[i].mascota.tipo, data[i].mascota.nombre)
@@ -51,14 +51,14 @@ const showPets = async (userId) => {
 
         cards.forEach(card => {
 
-            let cardPet = card.dataset.pet; // Nombre de mascota
+            let cardPet = card.dataset.pet;
             
             querySnap.forEach((doc) => {
                 let data = doc.data();
 
                 for (let i in data){
                     
-                    if (cardPet === data[i].mascota.nombre){
+                    if (cardPet === doc.id){
                         
                         card.addEventListener("click", (e) => {
                             section.classList.replace("section__fade--in", "section--hidden");
