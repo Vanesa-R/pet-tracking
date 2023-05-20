@@ -1,0 +1,27 @@
+/*** LINKS ***/
+
+@mixin link-basic {
+    font-family     : $fontSecondary;
+    font-size       : $font-size-3;
+    color           : $grey-300;
+    list-style      : none;
+    text-decoration : none;
+
+    @media (hover: hover){
+        &:hover {
+            color   : $amethyst-300;
+            cursor  : pointer;
+        }
+    }
+}
+
+@mixin link-login {
+   @include link-basic;
+    color       : $amethyst-300;
+
+    @media (hover: hover){
+        &:hover {
+            color: $amethyst-400;
+        }
+    }
+}

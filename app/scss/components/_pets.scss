@@ -1,0 +1,177 @@
+.information__pets {
+    @extend .private__area__warning;
+    width   : 100%;
+
+    @media (min-width: $bp-laptop) {
+        justify-content: center;
+    }
+    .section__pets--empty {
+        display: none;
+
+        &.section__fade--in{
+            @include flexbox(flex, column, nowrap, center, center);
+
+        }
+
+        .img__empty__area {
+            @extend .img__private__area;
+        }
+
+        .link {
+            @include link-login;
+            font-weight: 400;
+            
+            @media (min-width: $bp-laptop) {
+                font-size: .9em;
+            }
+        }
+
+    }
+
+    .section__pets {
+        width: 100%;
+
+        &.section__fade--in {
+            @media (min-width: $bp-laptop) {
+                @include flexbox(flex, row, wrap, center, flex-start);
+            }
+        }
+        
+        .container__cards {
+            &.section__fade--in{
+                @include flexbox(flex, row, wrap, space-between, center);
+                width: 100%;
+
+                @media (min-width: $bp-tablet) {
+                    justify-content: flex-start;
+                    gap: 16px;
+                }
+            }
+            .card {
+                @include flexbox(flex, column, wrap, center, center);
+                width           : calc(50% - 8px);
+                margin-bottom   : 16px;
+                padding         : 10px 16px;
+                text-align      : center;
+                border-radius   : 8px;
+                transition      : ease-in 250ms box-shadow;
+    
+                &:nth-of-type(odd){
+                    margin-right: 8px;
+                }
+    
+                &:nth-of-type(even){
+                    margin-left: 8px;
+                }
+
+                @media (hover: hover) {
+                    &:hover {
+                        box-shadow: rgba(131, 131, 141, 0.1) 0px 0px 10px;
+                    }
+                }
+                @media (min-width: $bp-tablet) {
+                    width: calc(33% - 12px);
+                }
+
+                @media (min-width: $bp-laptop) {
+                    width : calc(25% - 12px);
+                    cursor: pointer;
+
+                    &:nth-of-type(odd){
+                        margin-right: 0px;
+                    }
+        
+                    &:nth-of-type(even){
+                        margin-left: 0px;
+                    }
+                }
+    
+                &:nth-of-type(1n){
+                    background: linear-gradient(195deg, $sunglow-100 5%, transparent);
+                    border-color: $sunglow-400;
+                    
+                }
+    
+                .card__title {
+                    font-size: 1em;
+                }
+    
+                img {
+                    border-radius: 50%;
+                    border: 1px solid $grey-200;
+                }
+            }
+        }
+
+        .section__pet__info {
+            display         : none;
+
+            &.section__fade--in{
+                @include flexbox(flex, column, wrap, flex-start, center);
+                position: relative;
+            }
+
+            .pet__info {
+                position: relative;
+                @include flexbox(flex, column, wrap, center, center);
+
+                input[type="file"]{
+                    display: none;
+                }
+
+                label[for="set__avatar__pet"]{
+                    @include btn--primary;
+                    @include flexbox(flex, row, wrap, center, center);
+                    @include icon-background(32px, 32px, $amethyst-100);
+                    position        : absolute;
+                    top             : -.5em;
+                    left            : -.5em;
+                    padding         : 0;
+                
+                    .icon {
+                        @include icon-basic;
+                    }
+                }
+            }
+        }
+
+        .container__cards,
+        .pet__info {
+            .picture {
+                width           : 64px;
+                height          : 64px;
+            }
+            .card__img {
+                width           : 100%;
+                height          : 100%;
+                object-fit      : cover;
+                border-radius   : 50%;
+            }
+        }
+
+        .pet__info--delete {
+            @include link-basic;
+            @include flexbox(flex, row, nowrap, center, center);
+            @include btn--secondary;
+            color: $alert;
+            
+            img {
+                margin-right: 8px;
+                filter: invert(58%) sepia(53%) saturate(5327%) hue-rotate(328deg) brightness(104%) contrast(105%);
+            }
+
+            @media (hover: hover) {
+                &:hover {
+                   color: #CC4747;
+    
+                   img {
+                    filter: invert(35%) sepia(68%) saturate(848%) hue-rotate(323deg) brightness(99%) contrast(82%);
+    
+                   }
+                }
+            }
+        }
+
+       
+    }
+}

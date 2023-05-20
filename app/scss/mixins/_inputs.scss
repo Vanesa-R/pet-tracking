@@ -1,0 +1,121 @@
+/*** INPUTS ***/
+@mixin input-group-basic {
+    display         : flex;
+    flex-direction  : column;
+    font-family     : $fontSecondary;
+    padding-bottom  : 30px;
+
+    label {
+        font-size       : $font-size-1;
+        margin-bottom   : 8px;
+        color           : $grey-300;
+    }
+
+    input,
+    .label,
+    .select {
+        display         : flex;
+        align-items     : center;
+        height          : 48px;
+        font-family     : $fontSecondary;
+        font-size       : $font-size-3;
+        padding         : 10px 16px;
+        color           : $black;
+        border          : 1px solid $grey-200;
+        border-radius   : 8px;
+
+        &.validate--error {
+            border: 1px solid $alert;
+        }
+
+        &:focus, &:active {
+            border: 2px solid $turquoise-200;
+        }
+    }
+
+    .message--error {
+        min-height  : fit-content;
+        padding-left: 16px;
+        font-size   : $font-size-1;
+        line-height : 20px;
+        color       : $alert;
+    }
+}
+
+
+/* Radio buttons */
+@mixin radio-basic {
+   
+    .input {
+        display: none;
+
+        &:checked + .label {
+            border: 2px solid $amethyst-400;
+        }
+
+        &:checked + .label::after {
+            position: absolute;
+            top     : 20px;
+            left    : 18px;
+            width   : 24px;
+            height  : 24px;
+            content : url(../assets/icons/icon-check.png);
+        }
+
+        @media (hover: hover) {
+            &:hover + .label::before {
+                background-color: $white;
+                border          : 2px solid $turquoise-200;
+            }
+        }
+    }
+
+    .label {
+        position    : relative;
+        width       : calc(50% - 4px);
+        height      : 64px;
+        padding-left: 56px;
+        transition: 300ms ease-in all;
+        cursor      : pointer;
+
+        &::before {
+            position        : absolute;
+            content         : "";
+            left            : 16px;
+            width           : 28px;
+            height          : 28px;
+            border-radius   : 50%;
+            background-color: $amethyst-100;
+            border          : 1px solid $amethyst-400;
+            box-sizing      : border-box;
+        }
+    }
+}
+
+
+/* Checkbox buttons */
+
+@mixin checkbox-basic {
+    @include radio-basic();
+    padding-top     : 6px;
+    padding-bottom  : 6px;
+    
+    .input {
+        &:checked + .label {
+            border: none;
+        }
+
+        &:checked + .label::after {
+            top     : 2px;
+            left    : 18px;
+        }
+    }
+
+    .label {
+        font-family     : $fontSecondary;
+        font-size       : $font-size-3;
+        &::before {
+            border-radius: 4px;
+        }
+    }
+}

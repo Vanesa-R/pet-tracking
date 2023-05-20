@@ -1,0 +1,21 @@
+/*** RESET STYLES ***/
+@mixin reset-appearance {
+    border: 0;
+    outline: 0;
+    background: 0;
+    appearance: none;
+}
+
+@mixin reset-autofill {
+    &:-webkit-autofill {
+      transition: background-color 9999s;
+    }
+}
+
+
+@mixin reset-scroll-bar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

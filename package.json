@@ -4,7 +4,9 @@
   "description": "Aplicación para realizar un seguimiento del cuidado y necesidades de nuestra mascota",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --mode=development",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -19,10 +21,13 @@
   "bugs": {
     "url": "https://github.com/Vanesa-R/pet-tracking/issues"
   },
-  "homepage": "https://github.com/Vanesa-R/pet-tracking#readme",
+  "homepage": "https://github.com/Vanesa-R/pet-tracking/",
   "devDependencies": {
-    "@babel/core": "^7.21.3",
-    "@babel/preset-env": "^7.20.2",
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "babel-loader": "^9.1.2",
+    "gh-pages": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "^8.0.0",
@@ -34,6 +39,12 @@
     "gulp-plumber": "^1.2.1",
     "gulp-pug": "^5.0.0",
     "gulp-rename": "^2.0.0",
-    "gulp-terser": "^2.1.0"
+    "gulp-terser": "^2.1.0",
+    "webpack": "^5.79.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-stream": "^7.0.0"
+  },
+  "dependencies": {
+    "firebase": "^9.18.0"
   }
 }

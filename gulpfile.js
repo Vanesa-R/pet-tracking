@@ -69,6 +69,16 @@ const js = done => {
     done() 
 }
 
+const bundle = done => {
+    src("app/js/connection/*.js")
+    .pipe(plumber())
+    .pipe(concat("bundle.js"))
+    .pipe(babel())
+    .pipe(terser())
+    .pipe(dest("app/js"));
+    done() 
+}
+
 // IMÁGENES
 const images = done => {
     src("app/assets/**/*")
@@ -80,10 +90,4 @@ const images = done => {
 
 
 
-//Borrar ficheros no definitivos de la carpeta dist
-// gulp.task("clean", function(){
-//     return del("dist");
-// });
-
-
-exports.package = series(parallel(html, css, js), images)
+exports.package = series(parallel(html, css, js, bundle), images)

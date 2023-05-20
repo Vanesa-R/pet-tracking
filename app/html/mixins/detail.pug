@@ -1,0 +1,11 @@
+include ../mixins/input
+
+mixin detail(title, image, alt, icon, altIcon)
+    details.detail__task
+        summary.summary__task
+            picture.img__task
+                img(src=image, alt=alt)
+            h3.title__body--bold #{title}
+            img.icon__down(src=icon, alt=altIcon)
+        if title == "Medicación"
+            +input-group("medication", "Inserta su medicación", "text")

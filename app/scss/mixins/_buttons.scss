@@ -1,0 +1,54 @@
+/*** BUTTONS ***/
+
+@mixin btn-basic {
+    height          : 42px;
+    padding         : 12px 16px;
+    font-family     : $fontSecondary;
+    font-size       : 16px;
+    line-height     : 14px;
+    font-weight     : 500;
+    border          : 2px solid transparent;
+    border-radius   : 6px;
+
+    &:disabled {
+        color           : $grey-200;
+        background-color: $grey-100;
+    }
+    
+    &:not(:disabled){
+        @media (hover: hover) {
+            cursor: pointer;
+            &:active {
+                border-color: $turquoise-200;
+            }
+        }
+    }
+}
+
+@mixin btn--primary {
+    @include btn-basic;
+    color           : $amethyst-400;
+    background-color: $amethyst-100;
+
+    &:not(:disabled){
+        @media (hover: hover) {
+            &:hover {
+                background-color: $amethyst-200;
+            }
+        }
+    }
+}
+
+@mixin btn--secondary {
+    @include btn-basic;
+    color           : $grey-300;
+    background-color: $white;
+
+    &:not(:disabled){
+        @media (hover: hover) {
+            &:hover {
+                background-color: $grey-100;
+            }
+        }
+    }
+}

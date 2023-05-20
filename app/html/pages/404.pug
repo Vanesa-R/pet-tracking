@@ -1,0 +1,30 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title 404 | Page not found
+        link(rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="css/base/normalize.min.css")
+        link(rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="css/style.min.css")
+        link(rel="shortcut icon" href="assets/images/favicon.png" type="image/png" sizes="32x32")
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@500;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap")
+        meta(name="description" content="Pet Tracking App")
+        meta(name="robots" content="index follow")
+        meta(name="author" content="Vanesa Rodríguez")
+        meta(name="copyright" content="Vanesa Rodríguez")
+    body.page__error
+        div.title__error
+            h1.title
+                | 
+                span.span--first 4
+                span.span 0
+                span.span--last 4
+            h2.subtitle Página no encontrada
+            p.paragraph No hemos encontrado la página que buscas
+            a.btn.btn--primary(href="/pet-tracking") Vuelve al inicio
+
+        picture.picture
+            img(src="assets/images/states/error404.webp", alt="Página no encontrada", loading="lazy")

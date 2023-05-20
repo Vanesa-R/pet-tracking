@@ -1,0 +1,11 @@
+.footer {
+    position        : absolute;
+    bottom          : 0;
+    @include flexbox(flex, row, nowrap, center, center);
+    padding-bottom  : .5em;
+    .attribution {
+        font-family : $fontPrimary;
+        font-size   : $font-size-2;
+        color       : $grey-300;
+    }
+}
