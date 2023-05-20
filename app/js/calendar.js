@@ -1,3 +1,5 @@
+/* SECCIÓN PRIVADA CALENDARIO DE MASCOTAS */
+
 
 // DOM
 let calendar = document.querySelector(".pet__info__calendar");

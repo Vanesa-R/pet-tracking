@@ -29,7 +29,6 @@ forms.forEach(form => {
                     email.nextElementSibling.textContent = "";
                 }
             })
-            
         }
 
 
@@ -88,17 +87,9 @@ linkPassword.addEventListener("click", () => {
 
 // Errores acceso
 const userNotFound = (error, el) => {
-    if (error.code == "auth/user-not-found"){
-        el.nextElementSibling.textContent = "La dirección de correo introducida no está asociada a ninguna cuenta"
-    } else {
-        el.nextElementSibling.textContent = "";
-    }
+    el.nextElementSibling.textContent = (error.code == "auth/user-not-found") ? "La dirección de correo introducida no está asociada a ninguna cuenta" : "";
 }
 
 const passwordWrong = (error, el) => {
-    if (error.code == "auth/wrong-password"){
-        el.nextElementSibling.textContent = "La contraseña es incorrecta"
-    } else {
-        el.nextElementSibling.textContent = ""
-    }
+    el.nextElementSibling.textContent = (error.code == "auth/wrong-password") ? "La contraseña es incorrecta" : "";
 }

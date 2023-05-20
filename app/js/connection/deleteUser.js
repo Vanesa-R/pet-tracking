@@ -7,6 +7,7 @@ const linkDelete = document.querySelector(".delete__count");
 let btnconfirmDelete = document.querySelector(".form__reauthenticate .btn__submit--reauthenticate");
 let formReauthenticate = document.querySelector(".modal__reauthenticate");
 
+
 const deleteUserAccount  = (user) => {
     linkDelete.addEventListener("click", async () => {
 
@@ -87,7 +88,5 @@ const deleteUserAccount  = (user) => {
             }
            }
        }, 600)
-
-       
     })
 }

@@ -194,9 +194,23 @@
             }
 
             .text--success {
-                margin-top: 1em;
-                text-align: center;
-                color     : $turquoise-400;
+                display         : none;
+                align-items     : center;
+                justify-content : center;
+                margin-top      : 1em;
+                padding         : .5em;
+                color           : $turquoise-400;
+                background-color: $turquoise-100;
+                border-radius   : 6px;
+                border: 1px solid $turquoise-200;
+
+                &.text--show {
+                    display: flex;
+                }
+                
+                .icon {
+                    margin-right: 10px;
+                }
             }
             
         }

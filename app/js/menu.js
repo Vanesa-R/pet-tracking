@@ -3,7 +3,6 @@
 // Variables acceso DOM
 const menu = document.querySelector(".menu__primary");
 const btnMenu = document.querySelector(".icon__menu");
-const btnLogout = document.querySelector(".interaction .interaction__logout")
 
 
 // Expandir menú de navegación

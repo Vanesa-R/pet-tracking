@@ -129,11 +129,11 @@ const formPet = async (userId) => {
 
 
             // Mostramos mensaje de éxito al usuario
-            success.textContent = "¡Mascota agregada con éxito!"
+            success.classList.add("text--show")
             
             // Limpiar datos del formulario y dejar de mostrar el mensaje de éxito
             setTimeout(() => {
-                success.textContent = "";
+                success.classList.remove("text--show")
                 mytask.length = 0;
                 myTiming.length = 0;
                 document.querySelectorAll(".message--error").forEach(error => error.textContent = "")

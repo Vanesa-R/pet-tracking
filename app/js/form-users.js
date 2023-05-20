@@ -1,3 +1,5 @@
+/* MODALES DE REGISTRO Y LOGIN */
+
 // Variables DOM
 let btnInteraction = document.querySelectorAll(".header .interaction .btn");
 let modalLogin = document.querySelector(".modal__container");

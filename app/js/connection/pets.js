@@ -74,7 +74,7 @@ const showPets = async (userId) => {
                                 icon.addEventListener("click", (e) => {
                                     let days = document.querySelectorAll(".day");
                                     days.forEach(day => day.remove())
-                                    infoTask.childNodes.forEach(el => el.remove())
+                                    // infoTask.childNodes.forEach(el => el.remove())
 
                                     if (icon.classList.contains("icon__prev")){
                                         currentMonth--
