@@ -5,8 +5,7 @@ import { deleteUser, reauthenticateWithCredential, reauthenticateWithPopup, Emai
 // DOM 
 const linkDelete = document.querySelector(".delete__count");
 let btnconfirmDelete = document.querySelector(".form__reauthenticate .btn__submit--reauthenticate");
-let formReauthenticate = document.querySelector(".modal__reauthenticate");
-
+let stepsReauthenticate = document.querySelectorAll(".form__reauthenticate .form__reauthenticate__step")
 
 const deleteUserAccount  = (user) => {
     linkDelete.addEventListener("click", async () => {
@@ -45,12 +44,10 @@ const deleteUserAccount  = (user) => {
                     deleteUserDDBB(user.uid)                    
                     setTimeout(() => {
                         modalLogin.classList.replace("modal__container", "modal__container--active")
-                        formReauthenticate.nextElementSibling.classList.add("modal--active");
                     }, 500)
 
                     setTimeout(() => {
                         modalLogin.classList.replace("modal__container--active", "modal__container")
-                        formReauthenticate.nextElementSibling.classList.remove("modal--active");
                     }, 2500)
                 }).catch(error => console.log(error.message));
     
@@ -64,29 +61,30 @@ const deleteUserAccount  = (user) => {
                 let password = document.querySelector("#password__reauthenticate");
                 
                 btnconfirmDelete.addEventListener("click", () => {
-
                     const credential = EmailAuthProvider.credential(
                         user.email,
                         password.value
                     )
+
                     reauthenticateWithCredential(user, credential)
                     .then(() => {
                         deleteUser(user)
                         deleteUserDDBB(user.uid)
                         setTimeout(() => {
-                            formReauthenticate.classList.remove("modal--active");
-                            formReauthenticate.nextElementSibling.classList.add("modal--active");
-                        }, 500)
+                            stepsReauthenticate.forEach((step, i) => (i == 1) ? step.classList.add("step--show") : step.classList.remove("step--show"))
+                        }, 150)
 
                         setTimeout(() => {
-                            modalLogin.classList.replace("modal__container--active", "modal__container")
-                            formReauthenticate.nextElementSibling.classList.remove("modal--active");
-                        }, 2500)
+                            stepsReauthenticate.forEach((step, i) => (i == 0) ? step.classList.add("step--show") : step.classList.remove("step--show"))
+                            modalLogin.classList.replace("modal__container--active", "modal__container");
+                            document.querySelector(".modal__reauthenticate").classList.remove("modal--active");
+                        }, 3000)
                     })
                     .catch((error) => passwordWrong(error, password))
                 })
             }
            }
        }, 600)
+
     })
 }

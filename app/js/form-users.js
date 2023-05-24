@@ -14,7 +14,7 @@ let iconPass = document.querySelectorAll(".input__icon");
 const regExpres = {
     user: /^[a-zA-Z]{3,16}$/,
     email: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
-    password:  /^[a-z0-9_-]{8,18}$/
+    password:  /^[a-zA-Z0-9_-]{8,18}$/
 }
 
 
@@ -88,6 +88,7 @@ const validateForm = (e) => {
 
         case "email__register":
         case "email__login":
+        case "email__recovery":
             validateInput(regExpres.email, e.target.value, e.target, "email", "La dirección de correo electrónico no es válida")
             break;
 
@@ -131,11 +132,16 @@ const validateForm = (e) => {
         if (form.classList.contains("form__reauthenticate")){
             (isValidateInput.password) ? document.querySelector(".btn__submit--reauthenticate").removeAttribute("disabled") : document.querySelector(".btn__submit--reauthenticate").setAttribute("disabled", "disabled");
         }
+
+        if (form.classList.contains("form__resetPassword")){
+            (isValidateInput.email) ? document.querySelector(".btn__submit--resetPassword").removeAttribute("disabled") : document.querySelector(".btn__submit--resetPassword").setAttribute("disabled", "disabled");
+        }
     })
 }
 
 const validateInput = (expresion, value, input, check, text) => {
 
+    console.log(isValidateInput)
     if (input.value != ""){
         if (expresion.test(value)){
             input.classList.remove("validate--error")
@@ -152,6 +158,8 @@ const validateInput = (expresion, value, input, check, text) => {
             input.classList.remove("validate--error");
             input.nextElementSibling.textContent = "";
         }
+
+        isValidateInput[check] = (value != "user__name") && false;
     }
 }
 

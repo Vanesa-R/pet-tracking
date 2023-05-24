@@ -76,17 +76,19 @@ onAuthStateChanged(auth, async (user) => {
     } else {
 
         greeting.textContent = ``;
-
         rotateImages()
 
         btnInteraction.forEach(btn => {
             (btn.classList.contains("user__logged--out")) && btn.classList.add("btn--enabled");
             (btn.classList.contains("user__logged--in")) && btn.classList.remove("btn--enabled");
+
+            (btnMenuMobile.classList.contains("btn--enabled")) && btnMenuMobile.classList.remove("btn--enabled")
     
             if (!location.href.includes("mascota")){
                 informationAppLoggedOut.classList.add("section__fade--in");
                 informationAppLoggedIn.classList.replace("section__fade--in", "section--hidden");
             }
+
 
             page51.forEach(section => {
                 section.classList.add("section--hidden");
