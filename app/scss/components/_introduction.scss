@@ -3,6 +3,9 @@
     height: 100%;
     padding-top: 2em;
 
+    @media (min-width: $bp-desktop) {
+        padding-top: 0;
+    }
     
    &.section__fade--in{
         @include flexbox(flex, column, nowrap, center, center);
@@ -97,6 +100,10 @@
             @media (min-width: $bp-laptop) {
                 width: 33.33%;
                 margin-bottom: 6em;
+            }
+
+            @media (min-width: $bp-desktop) {
+                margin-bottom: 3em;
             }
 
             .pretitle {
