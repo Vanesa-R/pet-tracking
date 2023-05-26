@@ -129,9 +129,93 @@
                 }
             }
 
+            &.modal__resetPassword {
+                .form__reset__step {
+                    &.email__send {
+                        .paragraph {
+                            margin-bottom:  2em;
+                        }  
+                    }
+
+                    &:not(.email__send){
+                        .paragraph {
+                            margin-bottom: 1em;
+                        }
+                    }
+                }
+            }
+
             &.modal__reauthenticate {
-                .paragraph {
-                    margin: 1.5em 1.2em 2em 0;
+                .form__reauthenticate__step {
+                    &:not(.account__deleted){
+                        .paragraph {
+                            margin: 1.5em 0 2em;
+                        }
+                    }
+                    &.account__deleted {
+                        text-align: center;
+                        .paragraph {
+                            margin-bottom: 2em;
+                        }
+                    }
+                }
+                .form .input__group {
+                    .icon {
+                        top: 20px;
+                    }
+                }
+            }
+
+            &.modal__resetPassword,
+            &.modal__reauthenticate {
+                .form__reset__step,
+                .form__reauthenticate__step {
+                    display: none;
+
+                    &.step--show {
+                        display: initial;
+                    }
+
+                    .container__image {
+                        position        : relative;
+                        display         : flex;
+                        justify-content : center;
+                        margin-bottom   : 2em;
+
+                        &::after {
+                            position: absolute;
+                            content: "";
+                            width: 100px;
+                            height: 100px;
+                            border-radius   : 50% 100% 50% / 25% 50% 100% 100%;
+                            transform       : rotate(-45deg);
+                            opacity         : .5;
+                        }
+
+                        .image {
+                            position: relative;
+                            top     : .5em;
+                            z-index : 5;
+                            width   : 68px;
+                            height  : 68px;
+                        }
+                    }
+                }
+
+                .form__reset__step {
+                    .container__image {
+                        &::after {
+                            background      : linear-gradient($turquoise-200, $sunglow-200);
+                        }
+                    }
+                }
+
+                .form__reauthenticate__step {
+                    .container__image {
+                        &::after {
+                            background      : linear-gradient($turquoise-100, $alert 110%);
+                        }
+                    }
                 }
             }
         }

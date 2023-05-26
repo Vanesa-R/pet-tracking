@@ -68,26 +68,47 @@ btnGoogle.addEventListener("click", () => {
 })
 
 
+
 // FORMULARIO LOGIN - SOLICITAR NUEVA CONTRASEÑA
 let linkPassword = document.querySelector(".link__password");
 
 linkPassword.addEventListener("click", () => {
-    let email = document.querySelector("#email__login");
-    const auth = getAuth();
-    sendPasswordResetEmail(auth, email.value)
-      .then(() => {
-        email.nextElementSibling.textContent = "";
-      })
-      .catch((error) => {
-        email.nextElementSibling.textContent = (email.value === "") && "El campo email no puede estar vacío";
-        userNotFound(error, email)
-      });
+
+    // Variables
+    let email = document.querySelector("#email__recovery");
+    let submit = document.querySelector(".btn__submit--resetPassword");
+    let steps = document.querySelectorAll(".form__reset__step");    
+    modalLogin.firstChild.classList.remove("modal--active");
+    modalLogin.firstChild.nextSibling.classList.add("modal--active");
+
+
+    if (email != ""){
+        submit.addEventListener("click", (e) => {
+            e.preventDefault()
+            const auth = getAuth();
+            sendPasswordResetEmail(auth, email.value)
+            .then(() => {
+                steps.forEach((step, i) => (i == 1) ? step.classList.add("step--show") : step.classList.remove("step--show"))
+                setTimeout(() => {
+                    modalLogin.firstChild.nextSibling.classList.remove("modal--active");
+                    modalLogin.firstChild.classList.add("modal--active");
+                    steps.forEach((step, i) => (i == 0) ? step.classList.add("step--show") : step.classList.remove("step--show"))
+
+                }, 10000)
+            })
+            .catch((error) => {
+              userNotFound(error, email)
+              submit.setAttribute("disabled", "disabled");
+              isValidateInput.email = false;
+            });
+        })
+    }
 })
 
 
 // Errores acceso
 const userNotFound = (error, el) => {
-    el.nextElementSibling.textContent = (error.code == "auth/user-not-found") ? "La dirección de correo introducida no está asociada a ninguna cuenta" : "";
+    el.nextElementSibling.textContent = (error.code == "auth/user-not-found" || error.code == "auth/missing-email") ? "La dirección de correo introducida no está asociada a ninguna cuenta" : "";
 }
 
 const passwordWrong = (error, el) => {

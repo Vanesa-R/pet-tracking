@@ -38,10 +38,6 @@ body {
         @media (min-width: 1280px) {
             padding-inline   : 6em;
         }
-
-        @media (min-width: $bp-desktop) {
-            padding-inline   : 8em;
-        }
     }
 
     .section--hidden {
