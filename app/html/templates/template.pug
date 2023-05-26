@@ -1,4 +1,5 @@
 include ../mixins/input
+include ../mixins/modal-images
 
 doctype html
 html(lang="es")
@@ -45,13 +46,14 @@ html(lang="es")
     // MAIN
     main.main
         
-      //- Modales login y registro
+      //- Modales
       div.modal__container
+
         div.modal.modal__login
           form.form.form__login
-            img(src="assets/icons/icon-close.png" alt="Cerrar modal de acceso" class="icon icon__close")
-            img(src="assets/images/logotipo.png" alt="Logotipo" class="form__logotipo" loading="lazy")
-                  
+            +icon-close
+            +icon-logo
+
             div.form__login--withEmail
               +input-required("email__login", "Email", "email")
               +input-password("password__login", "Contraseña", "password", "assets/icons/icon-eye-close.png", "Mostrar contraseña")
@@ -65,23 +67,43 @@ html(lang="es")
                 img(src="assets/icons/icon-google.png" alt="Acceder con Google")
                 span.btn__text Accede con Google
         
+
+        div.modal.modal__resetPassword
+          form.form.form__resetPassword
+            div.form__reset__step.step--show
+              +icon-close
+              +icon-logo
+              p.paragraph Escribe la dirección de correo electrónico con la que te registraste y solicita una nueva contraseña.
+              +input-required("email__recovery", "", "email")
+              div.form__reset--password
+                button.btn__submit.btn__submit--resetPassword.btn--primary(disabled) Solicitar contraseña
+              
+            div.form__reset__step.email__send
+              p.paragraph Te hemos enviado un mensaje para modificar tu contraseña. ¡No olvides revisar tu carpeta de spam!
+              div.container__image
+                img.image(src="assets/images/email_send.webp", alt="Mensaje enviado")
+
+
         div.modal.modal__reauthenticate
           form.form.form__reauthenticate
-            img(src="assets/icons/icon-close.png" alt="Cerrar modal" class="icon icon__close")
-            p.paragraph Escribe tu contraseña y confirma que quieres eliminar tu cuenta de manera permanente.
-
-            div.form__reauthenticate--password
-              +input-password("password__reauthenticate", "Contraseña", "password", "assets/icons/icon-eye-close.png", "Mostrar contraseña")
+            div.form__reauthenticate__step.step--show
+              +icon-close
+              +icon-logo
+              p.paragraph Escribe tu contraseña y confirma que quieres eliminar tu cuenta de manera permanente.
+              +input-password("password__reauthenticate", "", "password", "assets/icons/icon-eye-close.png", "Mostrar contraseña")
               button.btn__submit.btn__submit--reauthenticate.btn--primary(disabled) Eliminar cuenta
 
-        div.modal.modal__deleteAccount
-          p.paragraph La cuenta ha sido eliminada.
-          p.title__body--bold ¡Lamentamos que te vayas!
+            div.form__reauthenticate__step.account__deleted
+              p.title__body--bold ¡Lamentamos que te vayas!
+              p.paragraph La cuenta ha sido eliminada.
+              div.container__image
+                img.image(src="assets/images/account_deleted.webp", alt="Cuenta eliminada")
+
 
         div.modal.modal__register
           form.form.form__register
-            img.icon.icon__close(src="assets/icons/icon-close.png" alt="Cerrar modal de registro")
-            img.form__logotipo(src="assets/images/logotipo.png" alt="Logotipo" loading="lazy")
+            +icon-close
+            +icon-logo
             
             div.form__register--create
               +input-group("user__name", "Nombre", "text")
