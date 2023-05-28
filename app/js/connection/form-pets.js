@@ -350,7 +350,7 @@ const formPet = async (userId) => {
 
     // Validación input file
     const validatePetFile = (e, avatar, el) => {
-        let regExpresFile = /([a-zA-Z0-9\s_\\.\-\(\):])+(.jpeg|.jpg|.png)$/;
+        let regExpresFile = /([a-zA-Z0-9\s_\\.\-\(\):])+(.jpeg|.jpg|.png|.webp)$/;
         if (regExpresFile.test(avatar)){
             isValidatePetInput.avatarPet = true;
             el.textContent = "";

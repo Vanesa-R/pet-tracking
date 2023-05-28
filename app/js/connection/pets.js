@@ -186,7 +186,7 @@ const printDataBasicPet = (el, avatarPet, typePet, namePet) => {
         })
         .catch(error => console.log(error));
     } else {
-        avatar.setAttribute("src", `assets/images/avatars/avatar-${typePet}.png`);
+        avatar.setAttribute("src", `assets/images/avatars/avatar-${typePet}.webp`);
     }
 
     avatar.setAttribute("alt", `Avatar de ${namePet}`)
@@ -210,7 +210,7 @@ const setAvatar = (el, idPet, avatarPet) => {
 
         let icon = document.createElement("img");
         icon.classList.add("icon");
-        icon.setAttribute("src", "assets/icons/icon-upload-img.png")
+        icon.setAttribute("src", "assets/icons/icon-upload-img.webp")
         icon.setAttribute("alt", "Cambiar imagen");
 
         let input = document.createElement("input");

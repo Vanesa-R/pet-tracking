@@ -19,6 +19,7 @@ const babel = require("gulp-babel");
 const terser = require("gulp-terser");
 
 /* Para assets */
+const webp = require("gulp-webp");
 const imagemin = require("gulp-imagemin");
 
 
@@ -83,6 +84,7 @@ const bundle = done => {
 const images = done => {
     src("app/assets/**/*")
     .pipe(plumber())
+    .pipe(webp())
     .pipe(imagemin())
     .pipe(dest("dist/assets"))
     done();
@@ -90,4 +92,4 @@ const images = done => {
 
 
 
-exports.package = series(parallel(html, css), images)
+exports.package = series(parallel(html, css, js, bundle), images)
