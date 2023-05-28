@@ -2,6 +2,7 @@
 
 // Variables acceso DOM
 const menu = document.querySelector(".menu__primary");
+const main = document.querySelector(".main");
 const btnMenu = document.querySelector(".icon__menu");
 
 
@@ -9,6 +10,7 @@ const btnMenu = document.querySelector(".icon__menu");
 btnMenu.addEventListener("click", () => {
     if (window.innerWidth <= 1024){
         menu.classList.toggle("menu--active");
+        main.classList.toggle("main--fadeOut");
         btnMenu.classList.toggle("icon--active");
         (menu.classList.contains("menu--active")) ? btnMenu.setAttribute("aria-expanded", "true") : btnMenu.setAttribute("aria-expanded", "false");
     }

@@ -28,9 +28,24 @@
         }
     }
     .img__private__area {
-        width           : 200px;
+        position        : relative;
+        z-index         : -5;
+        width           : auto;
         height          : auto;
-        margin-bottom   : 1em;
+        margin-bottom   : 2em;
+
+        &::before {
+            position        : absolute;
+            content         : "";
+            width           : 120%;
+            height          : 120%;
+            opacity         : .4;
+            z-index         : -10;
+            border-radius   : 50% 100% 50% / 25% 50% 100% 100%;
+            background      : linear-gradient($sunglow-100, $amethyst-200);
+            transform       : rotate(-45deg);
+        }
+        
 
         img {
             width       : 100%;

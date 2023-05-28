@@ -8,7 +8,7 @@ const printYear = () => {
 
     if (yearCreate == currentYear){
         year.textContent = yearCreate;
-    } else if (yearCreate <= currentYear){
+    } else if (yearCreate < currentYear){
         year.textContent = `${yearCreate} - ${currentYear}`
     }
 }

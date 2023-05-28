@@ -29,7 +29,12 @@ body {
     .main {
         display          : flex;
         justify-content  : center;
-        width               : 100%;
+        width            : 100%;
+        transition       : 300ms ease-out visibility 600ms;
+
+        &.main--fadeOut {
+            visibility: hidden;
+        }
 
         @media (min-width: $bp-laptop) {
            padding-inline   : 4em;

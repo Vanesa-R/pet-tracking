@@ -5,7 +5,6 @@ import { signOut } from "firebase/auth";
 let btnLogout = document.querySelectorAll(".interaction__logout");
 let menuMobile = document.querySelector(".menu__primary");
 
-
 btnLogout.forEach(btn => {
     btn.addEventListener("click", (e) => {
         signOut(auth)
@@ -15,10 +14,14 @@ btnLogout.forEach(btn => {
 
             // CTA iniciar sesión
             (btn.classList.contains("user__logged--in")) && btn.classList.remove("btn--enabled");
+            
+            // Mostrar main
+            (main.classList.contains("main--fadeOut") && main.classList.remove("main--fadeOut"));
 
             // Ocultar menú de navegación
             menuMobile.classList.remove("menu--active");
             btnMenuMobile.classList.remove("btn--enabled");
+
         })
         .catch((error) => console.log(error));
     })
