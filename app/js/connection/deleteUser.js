@@ -13,6 +13,9 @@ const deleteUserAccount  = (user) => {
         // Cerrar menú móvil en caso de estar abierto
         (menu.classList.contains("menu--active")) && menu.classList.remove("menu--active");
 
+        // Mostrar main en caso de estar oculto
+        (main.classList.contains("main--fadeOut") && main.classList.remove("main--fadeOut"));
+
 
         // Consultar si hay datos almacenados en Storage y Dabatase del usuario. Eliminarlos si existen
         const myQuery = query(collection(db, "pets"), where("datos.usuario", "==", user.uid));
