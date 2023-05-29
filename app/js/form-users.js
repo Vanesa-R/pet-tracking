@@ -95,7 +95,7 @@ const validateForm = (e) => {
         case "password__register":
         case "password__login":
         case "password__reauthenticate":
-            validateInput(regExpres.password, e.target.value, e.target, "password", "La contraseña no cumple con los requisitos")
+            validateInput(regExpres.password, e.target.value, e.target, "password", "La contraseña no cumple con los requisitos. Debe contener mínimo 8 caracteres")
             break;
 
         case "repeat__password__register":
@@ -141,7 +141,6 @@ const validateForm = (e) => {
 
 const validateInput = (expresion, value, input, check, text) => {
 
-    console.log(isValidateInput)
     if (input.value != ""){
         if (expresion.test(value)){
             input.classList.remove("validate--error")
