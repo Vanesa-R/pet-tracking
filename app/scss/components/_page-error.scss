@@ -10,7 +10,7 @@
         @include flexbox(flex, column, nowrap, center, center);
 
         @media (min-width: $bp-tablet) {
-            margin-right: 2em;
+            margin-right: 4em;
         }
 
         .title {

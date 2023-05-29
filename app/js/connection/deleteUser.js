@@ -4,8 +4,9 @@ import { deleteUser, reauthenticateWithCredential, reauthenticateWithPopup, Emai
 
 // DOM 
 const linkDelete = document.querySelector(".delete__count");
+const modalReauthenticate = document.querySelector(".modal__reauthenticate");
 let btnconfirmDelete = document.querySelector(".form__reauthenticate .btn__submit--reauthenticate");
-let stepsReauthenticate = document.querySelectorAll(".form__reauthenticate .form__reauthenticate__step")
+let stepsReauthenticate = document.querySelectorAll(".form__reauthenticate .form__reauthenticate__step");
 
 const deleteUserAccount  = (user) => {
     linkDelete.addEventListener("click", async () => {
@@ -47,10 +48,13 @@ const deleteUserAccount  = (user) => {
                     deleteUserDDBB(user.uid)                    
                     setTimeout(() => {
                         modalLogin.classList.replace("modal__container", "modal__container--active")
+                        modalReauthenticate.classList.add("modal--active");
+                        stepsReauthenticate.forEach((step, i) => (i == 1) ? step.classList.add("step--show") : step.classList.remove("step--show"))
                     }, 500)
 
                     setTimeout(() => {
                         modalLogin.classList.replace("modal__container--active", "modal__container")
+                        modalReauthenticate.classList.remove("modal--active");
                     }, 2500)
                 }).catch(error => console.log(error.message));
     
@@ -59,7 +63,7 @@ const deleteUserAccount  = (user) => {
             } else if (user.providerData[i].providerId == "password"){
 
                 modalLogin.classList.replace("modal__container", "modal__container--active")
-                document.querySelector(".modal__reauthenticate").classList.add("modal--active");
+                modalReauthenticate.classList.add("modal--active");
 
                 let password = document.querySelector("#password__reauthenticate");
                 
@@ -80,7 +84,7 @@ const deleteUserAccount  = (user) => {
                         setTimeout(() => {
                             stepsReauthenticate.forEach((step, i) => (i == 0) ? step.classList.add("step--show") : step.classList.remove("step--show"))
                             modalLogin.classList.replace("modal__container--active", "modal__container");
-                            document.querySelector(".modal__reauthenticate").classList.remove("modal--active");
+                            modalReauthenticate.classList.remove("modal--active");
                         }, 3000)
                     })
                     .catch((error) => passwordWrong(error, password))
