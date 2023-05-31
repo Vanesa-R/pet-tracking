@@ -5,10 +5,17 @@
 </p>
 
 ## Índice
+- [Manual de usuario](#manual-de-usuario)
 - [Lenguajes y herramientas](#lenguajes-y-herramientas)
 - [Guía de estilos](#guía-de-estilos)
 - [Base de datos](#base-de-datos)
 
+<br>
+
+## Documentación
+#### [Manual de usuario](https://github.com/Vanesa-R/pet-tracking/blob/master/assets/files/Pet%20Tracking%20-%20Manual%20de%20usuario.pdf)
+
+<br>
 
 ## Análisis y diseño
 
