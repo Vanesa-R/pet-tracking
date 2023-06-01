@@ -14,7 +14,7 @@ let iconPass = document.querySelectorAll(".input__icon");
 const regExpres = {
     user: /^[a-zA-Z]{3,16}$/,
     email: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
-    password:  /^[a-zA-Z0-9_-]{8,18}$/
+    password:  /^[a-zA-Z0-9]{8,18}$/
 }
 
 
