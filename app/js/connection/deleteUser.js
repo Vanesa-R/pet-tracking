@@ -53,7 +53,9 @@ const deleteUserAccount  = (user) => {
                     }, 500)
 
                     setTimeout(() => {
-                        modalLogin.classList.replace("modal__container--active", "modal__container")
+                        if (!location.pathname.includes("mascota")) {
+                            modalLogin.classList.replace("modal__container--active", "modal__container");
+                        }                        
                         modalReauthenticate.classList.remove("modal--active");
                     }, 2500)
                 }).catch(error => console.log(error.message));
@@ -61,7 +63,6 @@ const deleteUserAccount  = (user) => {
 
             // Acceso mediante email y password
             } else if (user.providerData[i].providerId == "password"){
-
                 modalLogin.classList.replace("modal__container", "modal__container--active")
                 modalReauthenticate.classList.add("modal--active");
 
@@ -83,7 +84,9 @@ const deleteUserAccount  = (user) => {
 
                         setTimeout(() => {
                             stepsReauthenticate.forEach((step, i) => (i == 0) ? step.classList.add("step--show") : step.classList.remove("step--show"))
-                            modalLogin.classList.replace("modal__container--active", "modal__container");
+                            if (!location.pathname.includes("mascota")) {
+                                modalLogin.classList.replace("modal__container--active", "modal__container");
+                            }
                             modalReauthenticate.classList.remove("modal--active");
                         }, 3000)
                     })
