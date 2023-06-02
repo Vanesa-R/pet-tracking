@@ -19,7 +19,7 @@ forms.forEach(form => {
             .then(() => {
                 const userId = auth.currentUser.uid;
                 newUserDDBB(userId, name, email.value);
-                setTimeout(() => closeModal(), 500)
+                setTimeout(() => closeModal(), 1000)
             })
             .catch((error) => {
                 if (error.code == "auth/email-already-in-use"){
@@ -62,7 +62,7 @@ btnGoogle.addEventListener("click", () => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const user = result.user;
         newUserDDBB(user.uid, user.displayName, user.email);
-        setTimeout(() => closeModal(), 500)
+        setTimeout(() => closeModal(), 1000)
 
     }).catch((error) => console.log(error.message));
 })
