@@ -158,12 +158,20 @@
                             margin-bottom: 2em;
                         }
                     }
+
+                    &.error__deleted {
+                        .title__body--bold {
+                            text-align: center;
+                        }
+                    }
                 }
                 .form .input__group {
                     .icon {
                         top: 20px;
                     }
                 }
+
+                
             }
 
             &.modal__resetPassword,
@@ -210,10 +218,18 @@
                     }
                 }
 
-                .form__reauthenticate__step {
+                .form__reauthenticate__step:not(.error__deleted) {
                     .container__image {
                         &::after {
                             background      : linear-gradient($turquoise-100, $alert 110%);
+                        }
+                    }
+                }
+
+                .form__reauthenticate__step.error__deleted {
+                    .container__image {
+                        &::after {
+                            background      : linear-gradient(hsl(0, 100%, 81%), $alert 110%);
                         }
                     }
                 }

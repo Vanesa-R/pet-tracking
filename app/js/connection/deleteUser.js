@@ -58,7 +58,20 @@ const deleteUserAccount  = (user) => {
                         }                        
                         modalReauthenticate.classList.remove("modal--active");
                     }, 2500)
-                }).catch(error => console.log(error.message));
+
+                }).catch(error => {
+                    if (error.code == "auth/user-mismatch") {
+                        modalLogin.classList.replace("modal__container", "modal__container--active")
+                        modalReauthenticate.classList.add("modal--active")
+                        stepsReauthenticate.forEach((step, i) => (i == 2) ? step.classList.add("step--show") : step.classList.remove("step--show"))
+
+                        setTimeout(() => {
+                            modalLogin.classList.replace("modal__container--active", "modal__container");
+                            modalReauthenticate.classList.remove("modal--active");
+                            stepsReauthenticate.forEach((step, i) => (i == 0) ? step.classList.add("step--show") : step.classList.remove("step--show"))
+                        }, 6000)
+                    }
+                });
     
 
             // Acceso mediante email y password
