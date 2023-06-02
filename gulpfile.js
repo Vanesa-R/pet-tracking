@@ -92,4 +92,4 @@ const images = done => {
 
 
 
-exports.package = series(parallel(html, css, js, bundle), images)
+exports.package = series(parallel(html, css), images)
