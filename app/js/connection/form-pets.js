@@ -141,13 +141,14 @@ const formPet = async (userId) => {
                 for (let i in isValidatePetInput){ isValidatePetInput[i] = false }
                 document.querySelectorAll(".btn__next").forEach(btn => btn.setAttribute("disabled", "disabled"))
                 document.querySelectorAll(".checkbox__group").forEach(checkbox => checkbox.remove())
+                document.querySelectorAll(".group__task").forEach(checkbox => checkbox.remove())
                 dropZone.childNodes.forEach((el, i) => (i > 2) && el.remove())
-            }, 2800)
+            }, 3000)
 
             // Llevar al primer paso del formulario
             setTimeout(() => {
                 setActiveTab()
-            }, 3000)
+            }, 3200)
         }
 
         isValidatePetInput.typePet = (typePet !== "") ? true : false;
